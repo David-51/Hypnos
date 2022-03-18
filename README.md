@@ -17,7 +17,7 @@ You will find :
 - Wireframes
 
 
-## Technical specification
+## Technical specifications
 
 **Server**
 - Apache
@@ -35,8 +35,17 @@ You will find :
 - MySQL
 
 ## How to install Hypnos Application
+### How to install database
+- Run your terminal.
+- Go to your application folder
+- run your sql server (for an example with MySql : ```mysql.server start```)
+- connect to your server (```mysql -u *user* -p```)
+then you have probably to type your passwork
+- run the script at the prompt
+```source sql/db.sql```
+
+
 
 ## How to test Hypnos Application
 
 ## The Database files
-
