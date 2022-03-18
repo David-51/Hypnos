@@ -39,7 +39,7 @@ You will find :
 - Run your terminal.
 - Go to your application folder
 - run your sql server (for an example with MySql : ```mysql.server start```)
-- connect to your server (```mysql -u ```*```user```*``` -p```)
+- connect to your server (```mysql -u ```*```username```*``` -p```)
 then you have probably to type your password
 - run the script at the prompt
 ```source sql/db.sql```
