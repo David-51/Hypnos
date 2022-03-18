@@ -39,13 +39,16 @@ You will find :
 - Run your terminal.
 - Go to your application folder
 - run your sql server (for an example with MySql : ```mysql.server start```)
-- connect to your server (```mysql -u *user* -p```)
-then you have probably to type your passwork
+- connect to your server (```mysql -u ```*```user```*``` -p```)
+then you have probably to type your password
 - run the script at the prompt
 ```source sql/db.sql```
-
-
 
 ## How to test Hypnos Application
 
 ## The Database files
+
+## Quick démos
+you can quickly create a demo with establishments, suites and users
+run the script demos : `source sql/demo.sql`
+
