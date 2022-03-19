@@ -1,4 +1,6 @@
 -- ADD picture link
+\! echo "\033[32m*** Add Picture Link ***\033[m";
+
 INSERT 
     INTO pictures (
         id,
