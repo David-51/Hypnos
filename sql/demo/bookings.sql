@@ -2,7 +2,7 @@
 INSERT INTO bookings (
         id,
         user_email,
-        suites_id,
+        suite_id,
         date_checkin,
         date_checkout,
         price
