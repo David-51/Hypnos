@@ -2,20 +2,23 @@
 
 namespace API\Model\Entity;
 
-class EstablishmentEntity extends Entity
+class Establishments extends Entities
 {
-    public string $id = 'id';
+    public string $primary_key = 'id';     //uuid ?
+     
     public string $name;
     public string $city;
     public string $adress;
     public string $description;
+    public array $constructor = [
+        'name', 'city', 'adress', 'description'
+    ];
 
     public function __construct($name, $city, $adress, $description)
-    {        
-        $this->name = $name;
-        $this->city = $city;
-        $this->adress = $adress;
-        $this->description = $description;
+    {                   
+        $this->datas = array_combine($this->constructor, [$name, $city, $adress, $description]);
+        $this->setDatas();
+        $this->setEntityName(__CLASS__);
     }
 
     public function setName($name) :string {
@@ -48,5 +51,10 @@ class EstablishmentEntity extends Entity
 
     public function getDescription() :string {
         return $this->description;
-    }    
+    }
+    
+    public function getAll() {        
+        return $this;
+    }
+
 }

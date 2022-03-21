@@ -1,10 +1,11 @@
 <?php
 session_start();
 require './config/Autoloader.php';
+require_once './config/apiPathConfig.php';
 
-use API\Model\Manager\DatabaseManager;
-use API\Model\Entity\EstablishmentEntity;
-use API\Model\Manager\EntityManager;
+use API\Model\Manager\Database;
+use API\Model\Entity\Establishments;
+use API\Model\Manager\Entity;
 use Config\Autoloader;
 
 ?>
@@ -12,12 +13,13 @@ use Config\Autoloader;
 
 <?php
 
-require_once './config/apiPathConfig.php';
-
 Autoloader::register();
-DatabaseManager::getConnection();
+Database::getConnection();
 
-$hotel = new EstablishmentEntity('palace', 'paris','ici', 'lorem ipsum');
+$hotel = new Establishments('Un beau machin', 'paris','ici', 'lorem ipsum');
 
-$em = new EntityManager($hotel);
-var_dump($em->getEntityName());
+$em = new Entity($hotel);
+
+$response = $em->persistEntity();
+
+var_dump($response);

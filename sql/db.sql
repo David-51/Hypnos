@@ -19,7 +19,7 @@ Use hypnos;
 \! echo "\033[33m*** Create Table establishments ***\033[m";
 CREATE Table IF NOT EXISTS establishments
 (
-    id VARCHAR(36) NOT NULL UNIQUE PRIMARY KEY DEFAULT (UUID()),
+    id VARCHAR(36) UNIQUE PRIMARY KEY DEFAULT (UUID()),
     name VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     adress TEXT NOT NULL,
