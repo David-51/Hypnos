@@ -5,18 +5,20 @@ namespace API\Model\Entity;
 class Establishments extends Entities
 {
     public string $primary_key = 'id';     //uuid ?
-     
+        
+    public string $id = '';
     public string $name;
     public string $city;
     public string $adress;
     public string $description;
     public array $constructor = [
-        'name', 'city', 'adress', 'description'
+        'id', 'name', 'city', 'adress', 'description'
     ];
 
     public function __construct($name, $city, $adress, $description)
     {                   
-        $this->datas = array_combine($this->constructor, [$name, $city, $adress, $description]);
+        $this->id = $this->setUniqId();
+        $this->datas = array_combine($this->constructor, [$this->id, $name, $city, $adress, $description]);
         $this->setDatas();
         $this->setEntityName(__CLASS__);
     }

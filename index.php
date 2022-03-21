@@ -19,7 +19,6 @@ Database::getConnection();
 $hotel = new Establishments('Un beau machin', 'paris','ici', 'lorem ipsum');
 
 $em = new Entity($hotel);
+$em->persistEntity();
 
-$response = $em->persistEntity();
-
-var_dump($response);
+var_dump($hotel->id);

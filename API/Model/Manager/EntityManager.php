@@ -46,10 +46,8 @@ class Entity
             };
         }
         catch(\PDOException $e){
-            return $this->response = ['something goes wrong with establishments'];
-        }
-    
-       
+            return $this->response = json_encode(['something goes wrong with establishments']);
+        }           
     }
 
     public function deleteEntity(){
