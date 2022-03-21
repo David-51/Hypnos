@@ -1,0 +1,24 @@
+SetEnv ENV_HTACCESS_READING true
+
+
+RewriteEngine On
+RewriteBase /
+
+#si ce n'est pas un répertoire
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Si ce n'est pas un fichier
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^api/(.+)$ /api/index.php [QSA,L]
+
+RewriteEngine On
+RewriteBase /
+
+#si ce n'est pas un répertoire
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Si ce n'est pas un fichier
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^(.+)$ /index.php [QSA,L]

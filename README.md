@@ -39,7 +39,7 @@ You will find :
 - Run your terminal.
 - Go to your application folder
 - run your sql server (for an example with MySql : ```mysql.server start```)
-- connect to your server (```mysql -u ```*```username```*``` -p```)
+- connect to your server (```mysql -u username -p```)
 then you have probably to type your password
 - run the script at the prompt
 ```source sql/db.sql```
@@ -49,6 +49,5 @@ then you have probably to type your password
 ## The Database files
 
 ## Quick démos
-you can quickly create a demo with establishments, suites and users
+you can quickly create a demo with establishments, suites, users and other features.
 run the script demos : `source sql/demo.sql`
-
