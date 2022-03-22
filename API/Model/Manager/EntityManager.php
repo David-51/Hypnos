@@ -14,8 +14,7 @@ class Entity
         $this->entity = $entity;
         $this->db = Database::getConnection();
         $this->entity_name = $entity->entity_name;
-        $this->primary_key = key($entity);
-                        
+        $this->primary_key = key($entity);                        
     }
     /**
      * @param array $rows defined which rows to query default *, 
@@ -119,7 +118,24 @@ class Entity
     }
 
     public function deleteEntity(){
+        $where = key($this->entity);
+        $cond = $this->entity->$where;  
 
+        $query = "DELETE FROM $this->entity_name WHERE $where=\"$cond\"";
+        try{
+            $sth = $this->db->prepare($query);
+            $sth->execute();
+
+            //delete datas froms $this->entity->datas
+            $this->entity->datas= array_map(function(){
+                return '';
+            }, $this->entity->datas);
+
+            return ['success', $this->entity];
+        }
+        catch(\PDOException $e){
+            return ['error', $e];
+        }
     }
 
 }
