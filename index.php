@@ -13,20 +13,37 @@ use Config\Autoloader;
 Autoloader::register();
 ?>
 <h1>Test page</h1>
-<h4>Récupérer la liste de tous les hotels</h4>
+<h4>Créer une entité Hotel</h4>
 <?php
-$hotel = new Establishments;
-$hotel->setEntity('**** Le Sublime ****', 'Juvigny', '3 rue de abbé aubert', 'un truc vraiment génial');
-$em = new Entity($hotel);
-$em->getEntity();
-// var_dump($hotel);
+var_dump($hotel = new Establishments);
+?>
+<hr>
+<h4>SetEntity Hotel</h4>
+<?php
+var_dump($hotel->setEntity('**** Le Sublime ****', 'Juvigny', '3 rue de abbé aubert', 'un truc vraiment génial'));
+?>
+<hr>
+<h4>Créer un EntityManager Hotel</h4>
+<?php
+var_dump($em = new Entity($hotel));
+?>
+<hr>
+<h4>
+    getEntity Hotel
+</h4>
+<?php
+var_dump($em->getEntity());
 ?>
 <hr>
 <h4>Modifier le nom d'un hotel et persister</h4>
 <?php
-$hotel->setName('--- Le Mervailleur ---');
-$em->persistEntity();
-// var_dump($hotel);
+var_dump($hotel->setName('--- Le Mervailleur ---'));
+?>
+<h4>
+    Persite le l'entité Hotel via EntityManager
+</h4>
+<?php
+var_dump($em->persistEntity());
 ?>
 <h2>test</h2>
 

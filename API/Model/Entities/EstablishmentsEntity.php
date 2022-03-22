@@ -34,7 +34,8 @@ class Establishments extends Entities
             'city' => '',
             'adress' => '',
             'description' => ''
-        ];        
+        ];
+        return $this;
     }
     public function setName($name) :string {
         return $this->name = $name;
