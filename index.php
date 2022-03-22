@@ -8,17 +8,30 @@ use API\Model\Entity\Establishments;
 use API\Model\Manager\Entity;
 use Config\Autoloader;
 
+Autoloader::register();
 ?>
 <h1>Home</h1>
-
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, repellendus.
 <?php
+$hotel = new Establishments('le montreal', 'Paris', '3 rue des champs', 'awesome place');
 
-Autoloader::register();
-Database::getConnection();
-
-$hotel = new Establishments('Un beau machin', 'paris','ici', 'lorem ipsum');
 
 $em = new Entity($hotel);
-$em->persistEntity();
 
-var_dump($hotel->id);
+$db = Database::getConnection();
+var_dump($em->getEntity());
+
+class test {
+    public string $id;
+    public string $name;
+    public string $city;
+    public string $adress;
+    public string $description;
+}
+
+
+// $sth = $db->prepare("SELECT * FROM establishments");
+// $sth->execute();
+// $result = $sth->fetchAll(PDO::FETCH_CLASS, 'test');
+
+// var_dump($result);

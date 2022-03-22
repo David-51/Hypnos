@@ -1,25 +1,34 @@
 <?php
-
 namespace API\Model\Entity;
 
 class Establishments extends Entities
-{
-    public string $primary_key = 'id';     //uuid ?
-        
-    public string $id = '';
+{   
+    // primary key
+    public string $id; // first must be always primary key
+    
     public string $name;
     public string $city;
     public string $adress;
     public string $description;
-    public array $constructor = [
-        'id', 'name', 'city', 'adress', 'description'
-    ];
+    public array $datas;
 
-    public function __construct($name, $city, $adress, $description)
+    public function __construct()
     {                   
+
+        // Pour utiliser Fetch class il faut virer le constructor qui casse les burnes, et utiliser les setters pour construire l'object,
+        // ce qui permet au passage de constuire un objet vide et de le remplir ensuite
+        // $name, $city, $adress, $description <--- le constructor fait tout buggé ? utiliser des setters pour construire tout ca
         $this->id = $this->setUniqId();
-        $this->datas = array_combine($this->constructor, [$this->id, $name, $city, $adress, $description]);
-        $this->setDatas();
+        
+        $this->datas = [
+            'id' => $this->id,
+            'name' => $this->name,
+            'city' => $this->city,
+            'adress' => $this->adress,
+            'description' => $this->description
+        ];
+        
+        $this->setDatas(); // à supprr
         $this->setEntityName(__CLASS__);
     }
 
