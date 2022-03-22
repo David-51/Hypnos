@@ -82,8 +82,12 @@ class Entity
         }
 
     }
-    
-    public function persistEntity(){        
+    /**
+     * @return array 
+     * if success ['succes', Entity]
+     * then ['error', 'message']
+     */
+    public function persistEntity() :array{        
                 
         $this->params = implode(", ", array_keys($this->entity->datas));        
 
@@ -116,20 +120,24 @@ class Entity
             return ['error', 'something goes wrong with establishments'];
         }           
     }
-
-    public function deleteEntity(){
-        $where = key($this->entity);
-        $cond = $this->entity->$where;  
+    /**
+     * Delete the current Entity 
+     * @return array Success + entity if ok else if error
+     */
+    public function deleteEntity(){        
+        $where = $this->primary_key;
+        $cond = $this->entity->$where;
 
         $query = "DELETE FROM $this->entity_name WHERE $where=\"$cond\"";
         try{
             $sth = $this->db->prepare($query);
-            $sth->execute();
-
-            //delete datas froms $this->entity->datas
-            $this->entity->datas= array_map(function(){
-                return '';
-            }, $this->entity->datas);
+            
+            if($sth->execute()){
+                //delete datas froms $this->entity->datas
+                $this->entity->datas= array_map(function(){
+                    return '';
+                }, $this->entity->datas);
+            }
 
             return ['success', $this->entity];
         }
