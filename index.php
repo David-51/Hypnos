@@ -1,37 +1,33 @@
 <?php
+
+// créer des entities à la racine conduit à double l'entité à cause de la redirection htaccess
+
 session_start();
 require './config/Autoloader.php';
 require_once './config/apiPathConfig.php';
 
-use API\Model\Manager\Database;
 use API\Model\Entity\Establishments;
 use API\Model\Manager\Entity;
 use Config\Autoloader;
 
 Autoloader::register();
 ?>
-<h1>Home</h1>
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, repellendus.
+<h1>Test page</h1>
+<h4>Récupérer la liste de tous les hotels</h4>
 <?php
-$hotel = new Establishments('le montreal', 'Paris', '3 rue des champs', 'awesome place');
-
-
+$hotel = new Establishments;
+$hotel->setEntity('**** Le Sublime ****', 'Juvigny', '3 rue de abbé aubert', 'un truc vraiment génial');
 $em = new Entity($hotel);
+$em->getEntity();
+// var_dump($hotel);
+?>
+<hr>
+<h4>Modifier le nom d'un hotel et persister</h4>
+<?php
+$hotel->setName('--- Le Mervailleur ---');
+$em->persistEntity();
+// var_dump($hotel);
+?>
+<h2>test</h2>
 
-$db = Database::getConnection();
-var_dump($em->getEntity());
 
-class test {
-    public string $id;
-    public string $name;
-    public string $city;
-    public string $adress;
-    public string $description;
-}
-
-
-// $sth = $db->prepare("SELECT * FROM establishments");
-// $sth->execute();
-// $result = $sth->fetchAll(PDO::FETCH_CLASS, 'test');
-
-// var_dump($result);

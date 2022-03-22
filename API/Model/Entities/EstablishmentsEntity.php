@@ -1,6 +1,8 @@
 <?php
 namespace API\Model\Entity;
 
+use API\Model\Manager\Database;
+
 class Establishments extends Entities
 {   
     // primary key
@@ -10,28 +12,30 @@ class Establishments extends Entities
     public string $city;
     public string $adress;
     public string $description;
+
+    // this array is update from databse
     public array $datas;
 
     public function __construct()
-    {                   
-
-        // Pour utiliser Fetch class il faut virer le constructor qui casse les burnes, et utiliser les setters pour construire l'object,
-        // ce qui permet au passage de constuire un objet vide et de le remplir ensuite
-        // $name, $city, $adress, $description <--- le constructor fait tout buggé ? utiliser des setters pour construire tout ca
-        $this->id = $this->setUniqId();
-        
-        $this->datas = [
-            'id' => $this->id,
-            'name' => $this->name,
-            'city' => $this->city,
-            'adress' => $this->adress,
-            'description' => $this->description
-        ];
-        
-        $this->setDatas(); // à supprr
-        $this->setEntityName(__CLASS__);
+    {                          
+        $this->setEntityName(__CLASS__);        
     }
+    
+    public function setEntity(string $name, string $city, string $adress, string $description){
+        $this->id = $this->setUniqId();
+        $this->name = $name;
+        $this->city = $city;
+        $this->adress = $adress;
+        $this->description = $description;
 
+        $this->datas = [
+            'id' => '',
+            'name' => '',
+            'city' => '',
+            'adress' => '',
+            'description' => ''
+        ];        
+    }
     public function setName($name) :string {
         return $this->name = $name;
     }

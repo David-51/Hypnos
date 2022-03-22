@@ -16,7 +16,8 @@ class Database
     {
         if(!(self::$pdo)){                        
             try{
-                self::$pdo = new \PDO(self::DSN, self::USERNAME, self::PASSWORD);
+                self::$pdo = new \PDO(self::DSN, self::USERNAME, self::PASSWORD);                
+                self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
             catch(\PDOException $e){
                 echo "Error de connexion <br>". $e;

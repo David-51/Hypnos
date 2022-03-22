@@ -20,9 +20,10 @@ class Entities
     }
 
     public function setDatas(){
-        foreach($this->datas as $key => $value){        
-            $this->$key = $value;
-        }               
+        
+        foreach($this->datas as $key => $value){
+            $this->datas[$key] = $this->$key;
+        }
     } 
 
     public function getPrimaryKey(){        
