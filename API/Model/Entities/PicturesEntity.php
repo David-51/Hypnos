@@ -1,8 +1,6 @@
 <?php
 namespace API\Model\Entity;
 
-use API\Model\Manager\Entity;
-
 class Pictures extends Entities
 {   
     // primary key

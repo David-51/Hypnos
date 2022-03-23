@@ -6,9 +6,12 @@ use API\Model\Manager\Entity;
 
 class Entities
 {
-    public string $entity_name;    
+    public string $entity_name; 
     public array $datas;
-
+    public function __construct()
+    {
+        $this->em = new Entity($this);
+    }
     public function getEntityName(){
         return $this->entity_name;
     }
