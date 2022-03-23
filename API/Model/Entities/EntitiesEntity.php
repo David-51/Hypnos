@@ -7,9 +7,11 @@ use API\Model\Manager\Entity;
 class Entities
 {
     public string $entity_name; 
-    public array $datas;
+    public array $datas;    
+
     public function __construct()
     {
+        // Implement AP\Model\Manager\EntityManager to all Entity
         $this->em = new Entity($this);
     }
     public function getEntityName(){

@@ -8,6 +8,7 @@ require_once './config/apiPathConfig.php';
 use API\Model\Entity\Establishments;
 use API\Model\Entity\Pictures;
 use API\Model\Entity\Suites;
+use API\Model\Entity\Users;
 use API\Model\Manager\Entity;
 use Config\Autoloader;
 
@@ -182,9 +183,40 @@ var_dump($first_link->em->deleteEntity());
 <hr>
 <h2>Affichage des 3 links</h2>
 <?php
-
 var_dump($my_suites->getLinks());
-var_dump($my_suites);
+?>
+<hr>
+<h1>Users Test</h1>
+<h2>Création d'un user</h2>
+<?php
+$user = new Users;
+var_dump($user->setEntity('david@example.com', 'David', 'moimeme', 'passwordhashh', 'adm'));
+?>
+<h2>Modifier quelques champs ...</h2>
+<?php
+var_dump(
+    $user->setFirstname('Biloute'), 
+    $user->setLastname('la biroute'),
+    $user->setEmail('biloute@example.com'),
+    $user->setRole('man'),
+    $user);
+?>
+<h2>Persist le user</h2>
+<?php
+var_dump($user->setEntityManager()->persistEntity());
+?>
+<h2>Delete le user</h2>
+<?php
+var_dump($user->em->deleteEntity());
+?>
+<h2>Recréation du user</h2>
+<?php
+var_dump($user->em->persistEntity());
+?>
+<h2>Affichage de tous les users en BDD</h2>
+<?php
+var_dump($user->em->getEntity());
+
 
 $finish = microtime(true) - $start;
 echo 'finish in '. $finish .'ms';

@@ -23,6 +23,7 @@ class Users extends Entities
     public function setEntity(string $email, string $firstname, string $lastname, string $password, string $role = 'use'){
         $this->email = $email;
         $this->firstname = $firstname;
+        $this->lastname = $lastname;
         $this->password = $password;
         $this->role = $role;        
 
@@ -50,6 +51,13 @@ class Users extends Entities
 
     public function getLastname() :string {
         return $this->lastname;
+    }
+    public function setFirstname($firstname) :string {
+        return $this->firstname = $firstname;
+    }
+
+    public function getFirstname() :string {
+        return $this->firstname;
     }
     public function setPassword($password) :string {
         return $this->password = $password;
