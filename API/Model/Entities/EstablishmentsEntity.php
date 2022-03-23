@@ -13,7 +13,7 @@ class Establishments extends Entities
     public string $adress;
     public string $description;
 
-    public array $suites;
+    // public array $suites;
     // this array is update from databse
     public array $datas;
 
@@ -21,6 +21,8 @@ class Establishments extends Entities
     {                          
         $this->setEntityName(__CLASS__);        
         $this->id = $this->setUniqId();
+
+        return $this;
     }
     
     public function setEntity(string $name, string $city, string $adress, string $description){
@@ -37,19 +39,7 @@ class Establishments extends Entities
             'description' => ''
         ];
         return $this;
-    }
-
-    // public function addSuite(Suites $suites) :Establishments{
-    //     $key = $suites->getPrimaryKey();
-    //     $this->suites[$suites->$key] = $suites;           
-    //     return $this;
-    // }
-
-    // public function removeSuite(Suites $suites) :Establishments{
-    //     $key = $suites->getPrimaryKey();
-    //     unset($this->suites[$suites->$key]);
-    //     return $this;
-    // }    
+    }  
 
     public function getSuites() :array{        
         $em = new Entity($this);
@@ -86,10 +76,6 @@ class Establishments extends Entities
 
     public function getDescription() :string {
         return $this->description;
-    }
-    
-    public function getAll() {        
-        return $this;
     }
 
 }

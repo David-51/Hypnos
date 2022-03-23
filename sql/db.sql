@@ -45,9 +45,9 @@ CREATE Table IF NOT EXISTS suites
 CREATE Table IF NOT EXISTS pictures
 (
     id VARCHAR(36) NOT NULL UNIQUE PRIMARY KEY DEFAULT (UUID()),
-    suites_id VARCHAR(36),
+    suite_id VARCHAR(36),
     picture_link TEXT NOT NULL,        
-    FOREIGN KEY (suites_id) REFERENCES suites(id)
+    FOREIGN KEY (suite_id) REFERENCES suites(id)
         ON DELETE CASCADE
 ) ENGINE = InnoDB;
 

@@ -4,7 +4,7 @@
 INSERT 
     INTO pictures (
         id,
-        suites_id,
+        suite_id,
         picture_link      
     )    
     VALUES (

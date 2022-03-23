@@ -1,6 +1,8 @@
 <?php
 namespace API\Model\Entity;
 
+use API\Model\Manager\Entity;
+
 class Suites extends Entities
 {   
     // primary key
@@ -19,6 +21,8 @@ class Suites extends Entities
     {                          
         $this->setEntityName(__CLASS__);        
         $this->id = $this->setUniqId();
+
+        return $this;
     }
     
     public function setEntity(Establishments $establishment, string $title, string $link_to_booking, string $description, int $price){
@@ -39,14 +43,17 @@ class Suites extends Entities
             'price' => 0,
             'establishment_id' => ''            
         ];
-
-        $establishment->getSuites();
+        
         return $this;
     }
     // public function removeSuite(){
     //     $this->establishment->removeSuite($this);
     //     return $this->establishment;
     // }
+    public function getLinks() :array{        
+        $em = new Entity($this);
+        return $em->getChilds(new Pictures);
+    }
 
     public function setTitle($title){
         return $this->title = $title;
@@ -77,9 +84,4 @@ class Suites extends Entities
     public function getPrice(){
         return $this->price;
     }
-   
-    public function getAll() {        
-        return $this;
-    }
-
 }

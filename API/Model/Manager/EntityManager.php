@@ -44,15 +44,17 @@ class Entity
 
         return ['success', $response];
     }
-
+    /**
+     * @param Entities $child Class of child you want to fetch
+     */
     public function getChilds(Entities $child) :array{                        
 
         $where = substr($this->entity_name, 0, -1).'_id';
                 
-        var_dump($key = key($this->entity));
+        $key = $this->primary_key;        
         $entity_id = $this->entity->$key;        
         
-        var_dump($query = "SELECT * FROM $child->entity_name WHERE $where = \"$entity_id\"");
+        $query = "SELECT * FROM $child->entity_name WHERE $where = \"$entity_id\"";
         try{
             $sth = $this->db->prepare($query);
             $sth->execute();
@@ -112,22 +114,22 @@ class Entity
      */
     public function persistEntity() :array{        
                 
-        $this->params = implode(", ", array_keys($this->entity->datas));        
+        $params = implode(", ", array_keys($this->entity->datas));        
 
-        $this->bindValues = implode(", ", array_map(function($value){
+        $valueToBind = implode(", ", array_map(function($value){
             return ':'.$value;
         }, array_keys($this->entity->datas)));                                        
 
+            var_dump($query = "INSERT INTO $this->entity_name($params)
+            VALUES($valueToBind)");                        
         try{
-            $query = "INSERT INTO $this->entity_name($this->params)
-            VALUES($this->bindValues)";                        
 
             $sth = $this->db->prepare($query);
 
             // copy the entity to array Datas
-            $this->entity->setDatas();            
-
-            foreach($this->entity->datas as $key => $value){                             
+            $this->entity->setDatas();                        
+            
+            foreach($this->entity->datas as $key => $value){
                 $sth->bindValue(':'.$key, $value);
             }
             
@@ -161,8 +163,8 @@ class Entity
                     return '';
                 }, $this->entity->datas);
             }
-
-            return ['success', $this->entity];
+            
+            return ['success'];
         }
         catch(\PDOException $e){
             return ['error', $e];
@@ -170,3 +172,5 @@ class Entity
     }
 
 }
+
+// INSERT INTO Suites(title, link_to_booking, description, price, establishment_id) VALUES("my awesome Romm", "https://booking.com", "my lvel description", "6000", "501089b0-aaae-11ec-8e5b-10ab28c567b1");

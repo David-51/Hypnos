@@ -63,5 +63,8 @@ class Entities
         $uniqid = uniqid(true);    
         return substr($uniqid, 0, 8). '-' . substr($uniqid, 8, 4) . '-' . substr($uniqid, 12, 2). bin2hex(random_bytes(1)) . '-' . bin2hex(random_bytes(2)) . '-' . bin2hex(random_bytes(2)) . $this->ipToHex();
     }
+    public function getAll() {        
+        return $this;
+    }
 
 }
