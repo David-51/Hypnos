@@ -1,8 +1,6 @@
 <?php
 namespace API\Model\Entity;
 
-use API\Model\Manager\Database;
-
 class Establishments extends Entities
 {   
     // primary key
@@ -13,6 +11,7 @@ class Establishments extends Entities
     public string $adress;
     public string $description;
 
+    public array $suites;
     // this array is update from databse
     public array $datas;
 
@@ -37,6 +36,19 @@ class Establishments extends Entities
         ];
         return $this;
     }
+
+    public function addSuite(Suites $suites) :Establishments{
+        $key = $suites->getPrimaryKey();
+        $this->suites[$suites->$key] = $suites;           
+        return $this;
+    }
+
+    public function removeSuite(Suites $suites) :Establishments{
+        $key = $suites->getPrimaryKey();
+        unset($this->suites[$suites->$key]);
+        return $this;
+    }
+
     public function setName($name) :string {
         return $this->name = $name;
     }

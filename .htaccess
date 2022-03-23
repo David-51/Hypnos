@@ -1,5 +1,4 @@
-SetEnv ENV_HTACCESS_READING true
-
+# SetEnv ENV_HTACCESS_READING true
 
 RewriteEngine On
 RewriteBase /
