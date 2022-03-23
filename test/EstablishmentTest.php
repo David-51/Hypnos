@@ -1,10 +1,12 @@
 <?php
 $start = microtime(true);
+
 // créer des entities à la racine conduit à double l'entité à cause de la redirection htaccess
 
 require './config/Autoloader.php';
 require_once './config/apiPathConfig.php';
 
+use API\Model\Entity\Administrators;
 use API\Model\Entity\Establishments;
 use API\Model\Entity\Pictures;
 use API\Model\Entity\Suites;
@@ -190,15 +192,14 @@ var_dump($my_suites->getLinks());
 <h2>Création d'un user</h2>
 <?php
 $user = new Users;
-var_dump($user->setEntity('david@example.com', 'David', 'moimeme', 'passwordhashh', 'adm'));
+var_dump($user->setEntity('david@example.com', 'David', 'moimeme', 'passwordhashh'));
 ?>
 <h2>Modifier quelques champs ...</h2>
 <?php
 var_dump(
     $user->setFirstname('Biloute'), 
     $user->setLastname('la biroute'),
-    $user->setEmail('biloute@example.com'),
-    $user->setRole('man'),
+    $user->setEmail('biloute@example.com'),    
     $user);
 ?>
 <h2>Persist le user</h2>
@@ -216,7 +217,28 @@ var_dump($user->em->persistEntity());
 <h2>Affichage de tous les users en BDD</h2>
 <?php
 var_dump($user->em->getEntity());
+?>
+<h2>Création d'un admin à partir du User</h2>
+<?php
+var_dump($admin = new Administrators);
+?>
+<h2>Hydratation de l'admin</h2>
+<?php
+var_dump($user);
+var_dump($admin->setEntity($user));
+?>
+<h2>Persist Admin</h2>
+<?php
+var_dump($admin->persistAdmin());
 
+var_dump($user->setFirstname('Updated !'));
+
+var_dump($user);
+
+var_dump($user->setEntityManager()->updateEntity($user->email, ['firstname']));
+
+$user->setEmail('newEmail@example.com');
+var_dump($user->em->updateEntity($user->email, ['firstname']));
 
 $finish = microtime(true) - $start;
 echo 'finish in '. $finish .'ms';

@@ -7,7 +7,7 @@ use API\Model\Manager\Entity;
 class Entities
 {
     public string $entity_name; 
-    public array $datas;    
+    public array $datas;
 
     public function __construct()
     {
@@ -37,6 +37,11 @@ class Entities
 
     public function getPrimaryKey(){        
         return key($this);
+    }
+
+    public function getPrimaryKeyValue(){
+        $key = $this->getPrimaryKey();
+        return $this->$key;
     }
 
     public function setEntityManager(){

@@ -8,14 +8,27 @@ use PDO;
 class Entity
 {    
     public array $response;
+    public string $primary_key_value;
+
 
     public function __construct(Entities $entity)    
     {                       
         $this->entity = $entity;
         $this->db = Database::getConnection();
         $this->entity_name = $entity->entity_name;
-        $this->primary_key = key($entity);                        
+
+        $this->primary_key = $this->entity->getPrimaryKey();
+        $this->primary_key_value = $this->entity->getPrimaryKeyValue();
+                
     }
+
+    public function getPrimaryKey(){        
+        return $this->entity->getPrimaryKey();
+    }
+    public function getPrimaryKeyValue(){
+        return $this->entity->getPrimaryKeyValue();
+    }
+
     /**
      * @param array $rows defined which rows to query default *, 
      * @param string $where defined the WHERE in the query statement. ! array $rows is required if $where is defined
@@ -75,12 +88,16 @@ class Entity
      * @param array $rows the rows to update format is [$key], the value is the object value
      * 
      */
-    public function updateEntity(string $primary_key_value, array $rows = []) {
+    public function updateEntity(string $primary_key_value = 'default', array $rows = []) {
+        $primary_key_value = ($primary_key_value === 'default') ? $this->primary_key_value : $primary_key_value;
         if(empty($rows)){
 
             $rows = array_keys($this->entity->datas);
+
             // delete the primary_key because this cant be modify
-            unset($rows[0]);            
+            if($rows[0] === 'id'){
+                unset($rows[0]);            
+            }
         } 
 
         $rowsValues = [];
@@ -91,22 +108,25 @@ class Entity
             
         try{
             $query = "UPDATE $this->entity_name SET $this->bindValues WHERE $this->primary_key = \"$primary_key_value\"";
-            $sth = $this->db->prepare($query);
-            var_dump($query);
+            $sth = $this->db->prepare($query);            
 
-            foreach($rows as $value){
-                var_dump($value);
-                var_dump($val = $this->entity->$value);
-                echo ":$key, $val <br>";                        
-                var_dump($sth->bindValue(':'.$value, $this->entity->$value));
+            foreach($rows as $value){                
+                $val = $this->entity->$value;                
+                $sth->bindValue(':'.$value, $this->entity->$value);
             }
-            $sth->execute();
+            $sth->execute();            
         }
         catch(\PDOException $e){
-            echo $e;
+            return ['error', $e];
         }
-
+        // Update datas array because this is the mirror of BDD;
+        
+        foreach($rows as $value){            
+            $this->entity->datas[$value] = $this->entity->$value;
+        }
+        return ['success', $this->entity];
     }
+
     /**
      * @return array 
      * if success ['succes', Entity]
