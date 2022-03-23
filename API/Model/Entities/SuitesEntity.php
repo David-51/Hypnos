@@ -18,10 +18,10 @@ class Suites extends Entities
     public function __construct()
     {                          
         $this->setEntityName(__CLASS__);        
+        $this->id = $this->setUniqId();
     }
     
     public function setEntity(Establishments $establishment, string $title, string $link_to_booking, string $description, int $price){
-        $this->id = $this->setUniqId();
         $this->establishment = $establishment;
         $this->title = $title;
         $this->link_to_booking = $link_to_booking;
@@ -40,13 +40,13 @@ class Suites extends Entities
             'establishment_id' => ''            
         ];
 
-        $establishment->addSuite($this);        
+        $establishment->getSuites();
         return $this;
     }
-    public function removeSuite(){
-        $this->establishment->removeSuite($this);
-        return $this->establishment;
-    }
+    // public function removeSuite(){
+    //     $this->establishment->removeSuite($this);
+    //     return $this->establishment;
+    // }
 
     public function setTitle($title){
         return $this->title = $title;

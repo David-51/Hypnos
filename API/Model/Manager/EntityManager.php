@@ -45,6 +45,29 @@ class Entity
         return ['success', $response];
     }
 
+    public function getChilds(Entities $child) :array{                        
+
+        $where = substr($this->entity_name, 0, -1).'_id';
+                
+        var_dump($key = key($this->entity));
+        $entity_id = $this->entity->$key;        
+        
+        var_dump($query = "SELECT * FROM $child->entity_name WHERE $where = \"$entity_id\"");
+        try{
+            $sth = $this->db->prepare($query);
+            $sth->execute();
+    
+            $sth->setFetchMode(\PDO::FETCH_CLASS, get_class($child));
+            $response = $sth->fetchAll();  
+
+            return ['success', $response];
+        }                      
+        catch(\PDOException $e){
+            return ['error', $e];
+        }
+
+    }
+
     /**
      * @param string $primary_key is the primary key which can be an id or email...
      * @param array $rows the rows to update format is [$key], the value is the object value

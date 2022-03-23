@@ -83,13 +83,23 @@ var_dump($em = new Entity($hotel));
     Affichage des 2 suites
 </h2>
 <?php
-var_dump($hotel->suites);
+// var_dump($hotel->suites);
 ?>
 <hr>
 <h2>Remove the first suite</h2>
 <?php
-var_dump($suite->removeSuite());
+// var_dump($suite->removeSuite());
+?>
+<hr>
+<h2>Afficher toutes les suites</h2>
+<?php
+
+// $newSuite = new Suites;
+var_dump($em->getChilds($suite));
+
+?><hr><?php
+var_dump($hotel->getSuites());
 
 
-$finish = microtime(true) - $start;;
+$finish = microtime(true) - $start;
 echo 'finish in '. $finish .'ms';

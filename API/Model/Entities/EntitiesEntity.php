@@ -2,6 +2,8 @@
 
 namespace API\Model\Entity;
 
+use API\Model\Manager\Entity;
+
 class Entities
 {
     public string $entity_name;    
@@ -18,7 +20,9 @@ class Entities
     public function getDatas(){
         return $this->datas;
     }
-
+    /**
+     * ADD data to pesist in object datas
+     */
     public function setDatas(){
         
         foreach($this->datas as $key => $value){
@@ -28,6 +32,11 @@ class Entities
 
     public function getPrimaryKey(){        
         return key($this);
+    }
+
+    public function setEntityManager(){
+        $this->em = new Entity($this);
+        return $this->em;
     }
 
     // UniqId is based on microsecond timestamp and the client's remote Ip, the last is random hexadecimal. If no Ip is detected, random Ip

@@ -1,6 +1,8 @@
 <?php
 namespace API\Model\Entity;
 
+use API\Model\Manager\Entity;
+
 class Establishments extends Entities
 {   
     // primary key
@@ -18,10 +20,10 @@ class Establishments extends Entities
     public function __construct()
     {                          
         $this->setEntityName(__CLASS__);        
+        $this->id = $this->setUniqId();
     }
     
     public function setEntity(string $name, string $city, string $adress, string $description){
-        $this->id = $this->setUniqId();
         $this->name = $name;
         $this->city = $city;
         $this->adress = $adress;
@@ -37,16 +39,21 @@ class Establishments extends Entities
         return $this;
     }
 
-    public function addSuite(Suites $suites) :Establishments{
-        $key = $suites->getPrimaryKey();
-        $this->suites[$suites->$key] = $suites;           
-        return $this;
-    }
+    // public function addSuite(Suites $suites) :Establishments{
+    //     $key = $suites->getPrimaryKey();
+    //     $this->suites[$suites->$key] = $suites;           
+    //     return $this;
+    // }
 
-    public function removeSuite(Suites $suites) :Establishments{
-        $key = $suites->getPrimaryKey();
-        unset($this->suites[$suites->$key]);
-        return $this;
+    // public function removeSuite(Suites $suites) :Establishments{
+    //     $key = $suites->getPrimaryKey();
+    //     unset($this->suites[$suites->$key]);
+    //     return $this;
+    // }    
+
+    public function getSuites() :array{        
+        $em = new Entity($this);
+        return $em->getChilds(new Suites);
     }
 
     public function setName($name) :string {

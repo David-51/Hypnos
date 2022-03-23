@@ -15,4 +15,12 @@ INSERT
         "Cette suite de 150m2 face à la mer est l'endroit idéal pour ravivez la flamme de votre couple, personne ne peut résister à ce cadre",
         "35000",        
         (SELECT id FROM establishments WHERE city='Canne')
+    ),
+    (
+        UUID(),
+        "La Marinière",
+        "https://iamaveryusefullinktobooking.com",
+        "Cette suite de 150m2 face à la mer est l'endroit idéal pour ravivez la flamme de votre couple, personne ne peut résister à ce cadre",
+        "35000",        
+        (SELECT id FROM establishments WHERE city='Canne')
     );
