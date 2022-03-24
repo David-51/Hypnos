@@ -1,9 +1,9 @@
 \! echo "\033[32m*** ADD Administrators ***\033[m";
 INSERT 
     INTO administrators (        
-        user_email
+        user_id
     )
     VALUES         
-        ((SELECT email FROM users WHERE email="john.doe@example.com")),
-        ((SELECT email FROM users WHERE email="jack@example.com"));
+        ((SELECT id FROM users WHERE email="john.doe@example.com")),
+        ((SELECT id FROM users WHERE email="jack@example.com"));
     

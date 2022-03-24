@@ -7,8 +7,9 @@ namespace API\Model\Entity;
  */
 class Administrators extends Entities
 {   
-    // primary key
-    public string $user_email;
+    // primary key    
+    public string $id;
+    public string $user_id;
     private Users $user;
     
     // this array is update from databse
@@ -17,36 +18,53 @@ class Administrators extends Entities
     public function __construct()
     {                          
         $this->setEntityName(__CLASS__);
-        return $this;
+        $this->id = $this->setUniqId();
+        
     }
     
     public function setEntity(Users $user){        
-        
         $this->user = $user;
                 
-        $this->user_email = $user->getPrimaryKeyValue();
+        $this->user_id = $user->getPrimaryKeyValue();
         $user->setRole('adm');        
 
-        $this->datas = [            
-            'user_email' => ''            
+        $this->datas = [  
+            'id' => '',          
+            'user_id' => ''            
         ];
         
         return $this;
     }  
 
     public function setEmail($email) :string {
+        $this->user_email = $email;
         return $this->user->setEmail($email);
     }
-    public function getEmail() :string {
-        return $this->user->email;
+    public function getEmail() :string {        
+        return $this->user_email;
     }
     public function persistAdmin(){
+        
+        // set Role admin to user
+        echo 'set role <br>';
+        $this->user->setRole('adm');
+        
+        echo 'persist Entity <br>';
+        // persist admin Entity
+        var_dump($this->setEntityManager()->persistEntity());
+        
+        echo 'update user <br>';
+        // update User's role
+        var_dump($this->user->setEntityManager()->updateEntity($this->user->email, ['role']));
+        return $this->user;
+    }
+    public function updateAdmin(){
         
         // set Role admin to user
         $this->user->setRole('adm');
         
         // persist admin Entity
-        $this->setEntityManager()->persistEntity();
+        var_dump($this->setEntityManager()->updateEntity());
         
         // update User's role
         var_dump($this->user->setEntityManager()->updateEntity($this->user->email, ['role']));

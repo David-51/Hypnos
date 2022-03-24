@@ -6,6 +6,7 @@ use API\Model\Manager\Entity;
 class Users extends Entities
 {   
     // primary key
+    public string $id;
     public string $email;
     public string $firstname;
     public string $lastname;
@@ -18,6 +19,7 @@ class Users extends Entities
     public function __construct()
     {                          
         $this->setEntityName(__CLASS__);
+        $this->id = $this->setUniqId();
 
         return $this;
     }
@@ -30,6 +32,7 @@ class Users extends Entities
         $this->role = $role;        
 
         $this->datas = [
+            'id' => '',
             'email' => '',
             'firstname' => '',
             'lastname' => '',

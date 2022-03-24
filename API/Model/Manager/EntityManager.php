@@ -95,11 +95,14 @@ class Entity
 
         $primary_key = key($this->entity);        
         if($primary_key_value === 'default'){
+
             // primary key for update must come from array datas because the original can change
             if($this->entity->datas[$primary_key] !== ''){
+                echo 'ici';
                 $primary_key_value = $this->entity->datas[$primary_key];
             }
             else{
+                echo 'la';
                 $primary_key_value = $this->entity->$primary_key;
             }
         }
@@ -116,7 +119,7 @@ class Entity
                 unset($rows[0]);            
             }
         } 
-
+        // j'update avec les datas qui sont dans
         $rowsValues = [];
         foreach ($rows as $key) {
             $rowsValues[] = "$key=:$key";
@@ -128,10 +131,11 @@ class Entity
             $sth = $this->db->prepare($query);            
 
             foreach($rows as $value){                
-                $val = $this->entity->$value;                
+                $val = $this->entity->$value;
+                var_dump($val);
                 $sth->bindValue(':'.$value, $this->entity->$value);
             }
-            $sth->execute();            
+            $sth->execute();
         }
         catch(\PDOException $e){
             return ['error', $e];
@@ -164,14 +168,16 @@ class Entity
             $sth = $this->db->prepare($query);
 
             // copy the entity to array Datas
-            $this->entity->setDatas();                        
+            $this->entity->setDatas();
             
             foreach($this->entity->datas as $key => $value){
+                var_dump($key);
+                var_dump($value);
                 $sth->bindValue(':'.$key, $value);
             }
             
             if($sth->execute()){
-                $this->response = $this->entity->datas;                             
+                // $this->response = $this->entity->datas;                          
                 return ['success', $this->entity];
             };
         }
@@ -194,19 +200,19 @@ class Entity
         var_dump($query = "DELETE FROM $this->entity_name WHERE $where=\"$cond\"");
         try{
             $sth = $this->db->prepare($query);
-            
-            if($sth->execute()){
-                //delete datas froms $this->entity->datas
-                $this->entity->datas= array_map(function(){
-                    return '';
-                }, $this->entity->datas);
-            }
-            
-            return ['success' ,'deleted'];
+            $sth->execute();
         }
         catch(\PDOException $e){
             return ['error', $e];
         }
+       
+        //delete datas froms $this->entity->datas
+        $this->entity->datas= array_map(function(){
+            return '';
+        }, $this->entity->datas);
+        
+        return ['success' ,'deleted'];
+        
     }
 
 }

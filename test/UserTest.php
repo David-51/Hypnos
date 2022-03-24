@@ -1,8 +1,6 @@
 <?php
 $start = microtime(true);
 
-// créer des entities à la racine conduit à double l'entité à cause de la redirection htaccess
-
 require './config/Autoloader.php';
 require_once './config/apiPathConfig.php';
 
@@ -55,10 +53,11 @@ var_dump($admin = new Administrators);
 var_dump($user);
 var_dump($admin->setEntity($user));
 ?>
-<h2>Persist Admin</h2>
+<h2>58 Persist Admin</h2>
 <?php
 var_dump($admin->persistAdmin());
 ?>
+
 <h2>Modifier le prénom de l'admin</h2>
 <?php
 
@@ -114,20 +113,21 @@ var_dump($message->setEntityManager()->persistEntity());
 <h2>Modification du message</h2>
 <?php
 var_dump($message->setMessage('Je suis une modification'));
+
 var_dump($message->em->updateEntity());
 ?>
-
 <?php
-// var_dump($message->em->deleteEntity());
-// var_dump($user);
+var_dump($message->em->deleteEntity());
+var_dump($message);
 ?>
 <h2>user</h2>
 <?php
 var_dump($user);
 ?>
+<?php die(); ?>
 <h2>Delete USER</h2>
 <?php
-// var_dump($user->em->deleteEntity());
+var_dump($user->em->deleteEntity());
 ?>
 <h2>
     Get Messages
@@ -174,7 +174,7 @@ var_dump($manager_list[1][0]);
 <h2>Modification du manager</h2>
 <?php
 $manager->setEmail('MonAwesomeManager@example.com');
-var_dump($manager->em->updateEntity());
+var_dump($manager->updateManager());
 
 
 

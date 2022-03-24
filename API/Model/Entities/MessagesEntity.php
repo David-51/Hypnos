@@ -8,7 +8,7 @@ class Messages extends Entities
 {   
     // primary key
     public string $id;    
-    public string $user_email;
+    public string $user_id;
     public string $message;
 
     // after sent a response, message is done = 1
@@ -21,16 +21,16 @@ class Messages extends Entities
     {                          
         $this->setEntityName(__CLASS__);        
         $this->id = $this->setUniqId();        
+        
     }
     
     public function setEntity(Users $user, $message){
-        $this->id = $this->setUniqId();
         $this->message = $message;        
-        $this->user_email = $user->getPrimaryKeyValue();
+        $this->user_id = $user->getPrimaryKeyValue();
 
         $this->datas = [
             'id' => '',
-            'user_email' => '',
+            'user_id' => '',
             'message' => '',
             'done' => 0
         ];
