@@ -7,6 +7,8 @@ require './config/Autoloader.php';
 require_once './config/apiPathConfig.php';
 
 use API\Model\Entity\Administrators;
+use API\Model\Entity\Establishments;
+use API\Model\Entity\Managers;
 use API\Model\Entity\Messages;
 use API\Model\Entity\Users;
 use Config\Autoloader;
@@ -135,8 +137,44 @@ $message2 = new Messages;
 $message2->setEntity($user, 'Je suis le second message de test');
 $message2->setEntityManager()->persistEntity();
 $message->em->deleteEntity();
-
 var_dump($user->getMessages());
+?>
+<h2>
+    Création d'un Manager Vide
+</h2>
+<?php
+$manager = new Managers;
+var_dump($manager);
+?>
+<h2>Création d'un hotel pour le manager</h2>
+<?php
+$hotel = new Establishments;
+$hotel->setEntity('Le Magnifique', 'Juvigny', "3 rue abbé aubert", 'une superbe place pour s\'encanailller');
+$hotel->setEntityManager()->persistEntity();
+?>
+<h2>Hydratation Manager</h2>
+<?php
+var_dump($manager->setEntity($user, $hotel));
+?>
+<h2>Persist Manager</h2>
+<?php
+var_dump($manager->setEntityManager()->persistEntity());
+?>
+<h2>
+    Affichage de tous les managers
+</h2>
+<?php
+$manager_list = $manager->setEntityManager()->getEntity();
+?>
+<h2>Affichage d'un manager de la liste</h2>
+<?php
+
+var_dump($manager_list[1][0]);
+?>
+<h2>Modification du manager</h2>
+<?php
+$manager->setEmail('MonAwesomeManager@example.com');
+var_dump($manager->em->updateEntity());
 
 
 

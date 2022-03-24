@@ -78,7 +78,8 @@ CREATE Table IF NOT EXISTS managers
 (
     user_email VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY DEFAULT (UUID()),
     establishment_id VARCHAR(36) NOT NULL,
-    FOREIGN KEY (establishment_id) REFERENCES establishments(id)
+    FOREIGN KEY (establishment_id) REFERENCES establishments(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (user_email) REFERENCES users(email) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 -- Create 'message' table
