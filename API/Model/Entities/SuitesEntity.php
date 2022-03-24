@@ -20,12 +20,12 @@ class Suites extends Entities
     public function __construct()
     {                          
         $this->setEntityName(__CLASS__);        
-        $this->id = $this->setUniqId();
-
+        
         return $this;
     }
     
     public function setEntity(Establishments $establishment, string $title, string $link_to_booking, string $description, int $price){
+        $this->id = $this->setUniqId();
         $this->establishment = $establishment;
         $this->title = $title;
         $this->link_to_booking = $link_to_booking;

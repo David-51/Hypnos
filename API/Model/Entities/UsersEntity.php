@@ -19,12 +19,12 @@ class Users extends Entities
     public function __construct()
     {                          
         $this->setEntityName(__CLASS__);
-        $this->id = $this->setUniqId();
-
+        
         return $this;
     }
     
     public function setEntity(string $email, string $firstname, string $lastname, string $password, string $role = 'use'){
+        $this->id = $this->setUniqId();
         $this->email = $email;
         $this->firstname = $firstname;
         $this->lastname = $lastname;

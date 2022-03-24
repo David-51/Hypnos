@@ -54,8 +54,7 @@ class Entities
         $remote = $_SERVER['REMOTE_ADDR'];
         $explode_remote = explode('.', $remote);
         
-        for($i = 0; $i<4 ; $i++){
-
+        for($i = 0; $i<4 ; $i++){            
             if(!isset($explode_remote[$i])){
                 $explode_remote[$i] = rand(0,255);
             }
@@ -65,7 +64,7 @@ class Entities
             else{
                 $ip[] = dechex(intval($explode_remote[$i]));
             }
-        }            
+        }                    
         return implode('', $ip);
     }
     private function base64($id){

@@ -18,11 +18,11 @@ class Administrators extends Entities
     public function __construct()
     {                          
         $this->setEntityName(__CLASS__);
-        $this->id = $this->setUniqId();
         
     }
     
     public function setEntity(Users $user){        
+        $this->id = $this->setUniqId();
         $this->user = $user;
                 
         $this->user_id = $user->getPrimaryKeyValue();

@@ -15,12 +15,12 @@ class Pictures extends Entities
     public function __construct()
     {                          
         $this->setEntityName(__CLASS__);        
-        $this->id = $this->setUniqId();
-
+        
         return $this;
     }
     
     public function setEntity(Suites $suite, string $picture_link){
+        $this->id = $this->setUniqId();
         $this->picture_link = $picture_link; 
         
         $this->suite_id = $suite->getPrimaryKeyValue();

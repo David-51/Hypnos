@@ -124,10 +124,9 @@ var_dump($message);
 <?php
 var_dump($user);
 ?>
-<?php die(); ?>
-<h2>Delete USER</h2>
+
 <?php
-var_dump($user->em->deleteEntity());
+// var_dump($user->em->deleteEntity());
 ?>
 <h2>
     Get Messages
@@ -164,8 +163,9 @@ var_dump($manager->setEntityManager()->persistEntity());
     Affichage de tous les managers
 </h2>
 <?php
-$manager_list = $manager->setEntityManager()->getEntity();
+var_dump($manager_list = $manager->setEntityManager()->getEntity());
 ?>
+<?php die() ?>
 <h2>Affichage d'un manager de la liste</h2>
 <?php
 

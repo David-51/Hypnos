@@ -20,12 +20,12 @@ class Establishments extends Entities
     public function __construct()
     {                          
         $this->setEntityName(__CLASS__);        
-        $this->id = $this->setUniqId();
-
+        
         return $this;
     }
     
     public function setEntity(string $name, string $city, string $adress, string $description){
+        $this->id = $this->setUniqId();
         $this->name = $name;
         $this->city = $city;
         $this->adress = $adress;

@@ -20,11 +20,11 @@ class Messages extends Entities
     public function __construct()
     {                          
         $this->setEntityName(__CLASS__);        
-        $this->id = $this->setUniqId();        
         
     }
     
     public function setEntity(Users $user, $message){
+        $this->id = $this->setUniqId();        
         $this->message = $message;        
         $this->user_id = $user->getPrimaryKeyValue();
 
