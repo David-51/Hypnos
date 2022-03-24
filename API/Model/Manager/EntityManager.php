@@ -9,13 +9,14 @@ class Entity
 {    
     public array $response;
     public string $primary_key_value;
+    public string $primary_key;
 
 
     public function __construct(Entities $entity)    
     {                       
         $this->entity = $entity;
         $this->db = Database::getConnection();
-        $this->entity_name = $entity->entity_name;
+        $this->entity_name = $entity->entity_name;        
 
         $this->primary_key = $this->entity->getPrimaryKey();
         $this->primary_key_value = $this->entity->getPrimaryKeyValue();
@@ -60,9 +61,11 @@ class Entity
     /**
      * @param Entities $child Class of child you want to fetch
      */
-    public function getChilds(Entities $child) :array{                        
+    public function getChilds(Entities $child) :array{      
+        
+        $suffix = key($this->entity);
 
-        $where = substr($this->entity_name, 0, -1).'_id';
+        $where = substr($this->entity_name, 0, -1).'_'. $suffix;
                 
         $key = $this->primary_key;        
         $entity_id = $this->entity->$key;        
@@ -89,7 +92,21 @@ class Entity
      * 
      */
     public function updateEntity(string $primary_key_value = 'default', array $rows = []) {
-        $primary_key_value = ($primary_key_value === 'default') ? $this->primary_key_value : $primary_key_value;
+
+        $primary_key = key($this->entity);        
+        if($primary_key_value === 'default'){
+            // primary key for update must come from array datas because the original can change
+            if($this->entity->datas[$primary_key] !== ''){
+                $primary_key_value = $this->entity->datas[$primary_key];
+            }
+            else{
+                $primary_key_value = $this->entity->$primary_key;
+            }
+        }
+
+        var_dump($primary_key);
+        var_dump($primary_key_value);
+
         if(empty($rows)){
 
             $rows = array_keys($this->entity->datas);
@@ -105,9 +122,9 @@ class Entity
             $rowsValues[] = "$key=:$key";
         }
         $this->bindValues = implode(', ', $rowsValues);
-            
+        
+        var_dump($query = "UPDATE $this->entity_name SET $this->bindValues WHERE $primary_key=\"$primary_key_value\"");
         try{
-            $query = "UPDATE $this->entity_name SET $this->bindValues WHERE $this->primary_key = \"$primary_key_value\"";
             $sth = $this->db->prepare($query);            
 
             foreach($rows as $value){                
@@ -170,10 +187,11 @@ class Entity
      * @return array Success + entity if ok else if error
      */
     public function deleteEntity(){        
-        $where = $this->primary_key;
-        $cond = $this->entity->$where;
+        // $where = $this->primary_key;
+        var_dump($where = key($this->entity));
+        var_dump($cond = $this->entity->$where);
 
-        $query = "DELETE FROM $this->entity_name WHERE $where=\"$cond\"";
+        var_dump($query = "DELETE FROM $this->entity_name WHERE $where=\"$cond\"");
         try{
             $sth = $this->db->prepare($query);
             
@@ -184,7 +202,7 @@ class Entity
                 }, $this->entity->datas);
             }
             
-            return ['success'];
+            return ['success' ,'deleted'];
         }
         catch(\PDOException $e){
             return ['error', $e];

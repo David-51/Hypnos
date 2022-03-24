@@ -2,10 +2,8 @@
 namespace API\Model\Entity;
 
 /**
- * Administrators is base on Users.
- * the best way is to create User, setEntity then persistEntity.
- * And after new Administrators(Users), setEntity and then persistEntity
- * then Update the user.
+ * Use persistAdmin() instead of persistEntity() to persist Administrator
+ * persistAdmin() set user's role to 'admin', persist administrators entity and update User Entity in one function
  */
 class Administrators extends Entities
 {   
@@ -25,9 +23,8 @@ class Administrators extends Entities
     public function setEntity(Users $user){        
         
         $this->user = $user;
-        
-        var_dump($key = $user->getPrimaryKey());
-        var_dump($this->user_email = $user->$key);
+                
+        $this->user_email = $user->getPrimaryKeyValue();
         $user->setRole('adm');        
 
         $this->datas = [            
@@ -44,11 +41,14 @@ class Administrators extends Entities
         return $this->user->email;
     }
     public function persistAdmin(){
-        echo "---- SET ROLE ---- <br>";
+        
+        // set Role admin to user
         $this->user->setRole('adm');
-        echo "---- PERSIST ADMIN ---- <br>";
+        
+        // persist admin Entity
         $this->setEntityManager()->persistEntity();
-        echo "---- UPDATE USER ---- <br>";
+        
+        // update User's role
         var_dump($this->user->setEntityManager()->updateEntity($this->user->email, ['role']));
         return $this->user;
     }

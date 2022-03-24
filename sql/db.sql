@@ -69,7 +69,7 @@ CREATE Table IF NOT EXISTS administrators
 (
     user_email VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY DEFAULT (UUID()),    
     FOREIGN KEY (user_email) REFERENCES users(email)
-        ON DELETE CASCADE
+        ON UPDATE CASCADE ON DELETE CASCADE        
 ) ENGINE = InnoDB;
 
 -- Create 'managers' table
@@ -88,8 +88,8 @@ CREATE Table IF NOT EXISTS messages
     id VARCHAR(36) NOT NULL UNIQUE PRIMARY KEY DEFAULT (UUID()),
     user_email VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,
-    done BIT NOT NULL DEFAULT 0,
-    FOREIGN KEY (user_email) REFERENCES users(email)
+    done INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (user_email) REFERENCES users(email) ON DELETE CASCADE
 );
 
 

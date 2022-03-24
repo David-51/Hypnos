@@ -23,8 +23,9 @@ class Pictures extends Entities
     public function setEntity(Suites $suite, string $picture_link){
         $this->picture_link = $picture_link; 
         
-        $suite_id = key($suite);
-        $this->suite_id = $suite->$suite_id;
+        $this->suite_id = $suite->getPrimaryKeyValue();
+        // $suite_id = key($suite);
+        // $this->suite_id = $suite->$suite_id;
 
         $this->datas = [
             'id' => '',

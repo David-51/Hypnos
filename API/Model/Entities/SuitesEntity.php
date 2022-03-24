@@ -32,8 +32,10 @@ class Suites extends Entities
         $this->description = $description;
         $this->price = $price;
         
-        $establishment_id = key($establishment);
-        $this->establishment_id = $establishment->$establishment_id;
+
+        $this->establishment_id = $establishment->getPrimaryKeyValue();
+        // $establishment_id = key($establishment);
+        // $this->establishment_id = $establishment->$establishment_id;
 
         $this->datas = [
             'id' => '',

@@ -1,6 +1,8 @@
 <?php
 namespace API\Model\Entity;
 
+use API\Model\Manager\Entity;
+
 class Users extends Entities
 {   
     // primary key
@@ -36,7 +38,11 @@ class Users extends Entities
         ];
         
         return $this;
-    }    
+    }
+    public function getMessages() :array{        
+        $em = new Entity($this);
+        return $em->getChilds(new Messages);
+    }
 
     public function setEmail($email) :string {
         return $this->email = $email;
