@@ -42,11 +42,11 @@ class Managers extends Entities
     }  
 
     public function setEmail($email) :string {
-        $this->user_email = $email;
-        return $this->user->setEmail($email);
+        $this->user->setEmail($email);
+        return $this->user->email;
     }
     public function getEmail() :string {
-        return $this->user_email;        
+        return $this->user->email;        
     }
     public function persistManager(){
         
@@ -57,22 +57,15 @@ class Managers extends Entities
         $this->setEntityManager()->persistEntity();
         
         // update User's role
-        var_dump($this->user->setEntityManager()->updateEntity($this->user->email, ['role']));
+        $this->user->setEntityManager()->updateEntity($this->user->id, ['role']);
         return $this->user;
     }
     public function updateManager(){
+                        
+        $this->user->setRole('man');        
         
-        // set Role admin to user
-        var_dump('set role');
-        $this->user->setRole('man');
+        $this->user->setEntityManager()->updateEntity();        
         
-        var_dump('Update Manager Entity');
-        // persist admin Entity
-        $this->setEntityManager()->updateEntity();
-        
-        var_dump('Update User Role');
-        // update User's role
-        // var_dump($this->user->setEntityManager()->updateEntity($this->user->email, ['role']));
         return $this->user;
     }
 }

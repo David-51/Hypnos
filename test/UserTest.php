@@ -165,7 +165,6 @@ var_dump($manager->setEntityManager()->persistEntity());
 <?php
 var_dump($manager_list = $manager->setEntityManager()->getEntity());
 ?>
-<?php die() ?>
 <h2>Affichage d'un manager de la liste</h2>
 <?php
 
@@ -175,6 +174,7 @@ var_dump($manager_list[1][0]);
 <?php
 $manager->setEmail('MonAwesomeManager@example.com');
 var_dump($manager->updateManager());
+
 
 
 

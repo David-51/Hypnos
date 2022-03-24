@@ -37,26 +37,22 @@ class Administrators extends Entities
     }  
 
     public function setEmail($email) :string {
-        $this->user_email = $email;
-        return $this->user->setEmail($email);
+        $this->user->setEmail($email);
+        return $this->user->$email;
     }
     public function getEmail() :string {        
-        return $this->user_email;
+        return $this->user->email;
     }
     public function persistAdmin(){
         
-        // set Role admin to user
-        echo 'set role <br>';
-        $this->user->setRole('adm');
+       // set Role admin to user
+       $this->user->setRole('adm');
         
-        echo 'persist Entity <br>';
-        // persist admin Entity
-        var_dump($this->setEntityManager()->persistEntity());
-        
-        echo 'update user <br>';
-        // update User's role
-        var_dump($this->user->setEntityManager()->updateEntity($this->user->email, ['role']));
-        return $this->user;
+       // persist admin Entity
+       $this->setEntityManager()->persistEntity();
+       
+       // update User's role
+       $this->user->setEntityManager()->updateEntity($this->user->id, ['role']);
     }
     public function updateAdmin(){
         
@@ -64,10 +60,8 @@ class Administrators extends Entities
         $this->user->setRole('adm');
         
         // persist admin Entity
-        var_dump($this->setEntityManager()->updateEntity());
+        $this->user->setEntityManager()->updateEntity();                
         
-        // update User's role
-        var_dump($this->user->setEntityManager()->updateEntity($this->user->email, ['role']));
         return $this->user;
     }
 }

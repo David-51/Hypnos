@@ -130,7 +130,8 @@ class Entity
         try{
             $sth = $this->db->prepare($query);            
 
-            foreach($rows as $value){                
+            foreach($rows as $value){     
+                echo "---- FOREACH VALUE ----";           
                 $val = $this->entity->$value;
                 var_dump($val);
                 $sth->bindValue(':'.$value, $this->entity->$value);

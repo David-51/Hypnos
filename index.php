@@ -9,7 +9,10 @@ switch ($route) {
         break;
     case $route[1] == 'Users':
         require('./test/UserTest.php');
-        break;        
+        break;
+        case $route[1] == "managers":
+            require('./test/manager.php');
+            break;     
     default:
     echo "<h1>Home</h1>";
 }
