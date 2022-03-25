@@ -107,11 +107,8 @@ class Entity
             }
         }
 
-        var_dump($primary_key);
-        var_dump($primary_key_value);
-
         if(empty($rows)){
-
+            // pb with manager
             $rows = array_keys($this->entity->datas);
 
             // delete the primary_key because this cant be modify

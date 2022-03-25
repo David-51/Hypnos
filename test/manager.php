@@ -36,4 +36,14 @@ $manager->updateManager();
 $admin = new Administrators;
 $admin->setEntity($user);
 $admin->persistAdmin();
+?>
+<h1>Test Booking</h1>
+<?php
+
+$date1 = new DateTime('2022-03-25');
+$date2 = new DateTime('2022-03-28');
+
+var_dump(date_diff($date1, $date2)->d);
+
+
 
