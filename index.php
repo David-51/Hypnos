@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// $message = date('d-m-Y'). ' '.$_SERVER['REQUEST_URI'].PHP_EOL;
+// error_log($message, 3, './error_log.log');
+
 $route = explode('/', $_SERVER['REQUEST_URI']);
 
 switch ($route) {
