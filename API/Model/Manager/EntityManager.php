@@ -36,7 +36,7 @@ class Entity
      * @param string $cond !REQUIRED if $were param defined the condition WHERE = $cond
      */
     public function getEntity(array $rows = ['*'], string $where = null, string $cond = null):array {
-
+                              
         $row = implode(', ', $rows);
         
         $entity = strtolower($this->entity_name);
@@ -46,7 +46,7 @@ class Entity
         else{            
             $query = "SELECT $row FROM $this->entity_name ";                                    
         }
-        try{                        
+        try{
             $sth = $this->db->prepare($query);                     
             $sth->execute();
             $sth->setFetchMode(\PDO::FETCH_CLASS, get_class($this->entity));
@@ -189,13 +189,22 @@ class Entity
     /**
      * Delete the current Entity 
      * @return array Success + entity if ok else if error
+     * @param array $condition, requier 3 parameters, [string $entity, string $where, string $condition]
      */
-    public function deleteEntity(){        
-        // $where = $this->primary_key;
-        var_dump($where = key($this->entity));
-        var_dump($cond = $this->entity->$where);
-
-        var_dump($query = "DELETE FROM $this->entity_name WHERE $where=\"$cond\"");
+    public function deleteEntity(array $condition = []){        
+        
+        if(empty($condition)){
+            var_dump($where = key($this->entity));
+            var_dump($condition = $this->entity->$where);
+            $entity = $this->entity_name;
+        }
+        else{
+            $entity =$condition[0];
+            $where = $condition[1];
+            $condition = $condition[2];
+        }
+        
+        var_dump($query = "DELETE FROM $entity WHERE $where=\"$condition\"");
         try{
             $sth = $this->db->prepare($query);
             $sth->execute();

@@ -50,12 +50,23 @@ $book = new Bookings;
 $book->setEntity($user, $suite, '2022-03-25', '2022-03-30');
 $book->setEntityManager()->persistEntity();
 
-var_dump($book);
-
 $book->setCheckout('2022-04-15');
 $book->em->updateEntity();
 
 $book->setCheckin('2022-04-01');
 $book->em->updateEntity();
+?>
+<hr>
+<?php
+$book->UpdateCalendar();
 
-//le prix ne se met pas à jour.
+$book->setCheckout('2022-04-02');
+$book->UpdateCalendar();
+
+$book->setCheckout('2022-04-10');
+$book->UpdateCalendar();
+?>
+<hr>
+<h2>Get Dates</h2>
+<?php
+var_dump($suite->getDates());

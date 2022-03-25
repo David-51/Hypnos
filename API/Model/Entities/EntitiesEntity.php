@@ -35,7 +35,9 @@ class Entities
         }
     } 
 
-    public function getPrimaryKey(){        
+    public function getPrimaryKey(){    
+        echo '<h2>key this</h2>';
+        var_dump(key($this));    
         return key($this);
     }
 

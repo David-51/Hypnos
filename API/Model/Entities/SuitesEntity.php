@@ -86,4 +86,26 @@ class Suites extends Entities
     public function getPrice(){
         return $this->price;
     }
+
+    public function getDates(){
+        $calendar = new Calendars;
+        $req = $this->setEntityManager()->getChilds($calendar);
+        var_dump($req);
+
+        switch ($req[0]){
+            case 'success':
+                $response= [];
+                foreach($req[1] as $key => $value){
+                    $response[] = $value->date;
+                }
+                return $response;
+            break;
+            case 'error':
+                return $req;
+                break;
+            default :
+            return $req;
+            break;
+        }      
+    }
 }
