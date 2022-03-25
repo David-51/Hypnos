@@ -1,8 +1,10 @@
 <?php
 
 use API\Model\Entity\Administrators;
+use API\Model\Entity\Bookings;
 use API\Model\Entity\Establishments;
 use API\Model\Entity\Managers;
+use API\Model\Entity\Suites;
 use API\Model\Entity\Users;
 use Config\Autoloader;
 
@@ -23,7 +25,7 @@ $user->setEmail('anneso@example.com');
 $user->em->updateEntity();
 
 $hotel = new Establishments;
-$hotel->setEntity('Ma maison', 'Juvigny', '3 rueabbé aubert', 'wonderfull');
+$hotel->setEntity('Ma maison', 'Juvigny', '3 rue abbé aubert', 'wonderfull');
 $hotel->setEntityManager()->persistEntity();
 
 $manager = new Managers;
@@ -40,10 +42,20 @@ $admin->persistAdmin();
 <h1>Test Booking</h1>
 <?php
 
-$date1 = new DateTime('2022-03-25');
-$date2 = new DateTime('2022-03-28');
+$suite = new Suites;
+$suite->setEntity($hotel, 'Ma plus chambre', 'https://chezmoi.com', 'my wonderfull room', '40000');
+$suite->setEntityManager()->persistEntity();
 
-var_dump(date_diff($date1, $date2)->d);
+$book = new Bookings;
+$book->setEntity($user, $suite, '2022-03-25', '2022-03-30');
+$book->setEntityManager()->persistEntity();
 
+var_dump($book);
 
+$book->setCheckout('2022-04-15');
+$book->em->updateEntity();
 
+$book->setCheckin('2022-04-01');
+$book->em->updateEntity();
+
+//le prix ne se met pas à jour.

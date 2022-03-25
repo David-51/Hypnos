@@ -1,9 +1,7 @@
 <?php
 namespace API\Model\Entity;
 
-use DateTime;
-
-class Booking extends Entities
+class Bookings extends Entities
 {   
     // primary key
     public string $id;
@@ -33,6 +31,9 @@ class Booking extends Entities
     public function setEntity(Users $user, Suites $suite, string $date_checkin, string $date_checkout){
         $this->id = $this->setUniqId();
         
+        $this->user = $user;
+        $this->suite = $suite;
+
         $this->user_id = $user->getPrimaryKeyValue();
         $this->suite_id = $suite->getPrimaryKeyValue();
         
@@ -54,11 +55,11 @@ class Booking extends Entities
     }
     public function getPrice(){
 
-        $checkin = new DateTime($this->date_checkin);
-        $checkout = new DateTime($this->date_checkout);
+        $checkin = new \DateTime($this->date_checkin);
+        $checkout = new \DateTime($this->date_checkout);
         $period = date_diff($checkin, $checkout)->d;
         
-        return $this->suite->price * $period;
+        return ($this->suite->price) * $period;
     }
 
     /**
