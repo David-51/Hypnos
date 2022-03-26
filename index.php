@@ -1,6 +1,10 @@
 <?php
 session_start();
+$get = $_GET['admin'];
 
+if(isset($_GET['admin'])){
+    echo "ADMINSITATOR";
+}
 // $message = date('d-m-Y'). ' '.$_SERVER['REQUEST_URI'].PHP_EOL;
 // error_log($message, 3, './error_log.log');
 

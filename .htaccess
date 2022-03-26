@@ -1,27 +1,15 @@
-SetEnv ENV_HTACCESS_READING true
-
 RewriteEngine On
 RewriteBase /
 
-#si ce n'est pas un répertoire
-# RewriteCond %{REQUEST_FILENAME} !-d
-
-# Si ce n'est pas un fichier
-# RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond "%{REQUEST_URI}"
-
-RewriteCond "%{REQUEST_URI}" "!=/api/index.php"
-RewriteRule ^api/(.+)$ /api/index.php [QSA,L,END]
-
-RewriteEngine On
-RewriteBase /
-
-#si ce n'est pas un répertoire
-# RewriteCond %{REQUEST_FILENAME} !-d
-
-# Si ce n'est pas un fichier
-# RewriteCond %{REQUEST_FILENAME} !-f
 
 RewriteCond "%{REQUEST_URI}"
-RewriteCond "%{REQUEST_URI}" "!=/index.php"
-RewriteRule ^(.+)$ /index.php [QSA,L]
+RewriteRule ^api/(.+)$ api/index.php [QSA,L]
+
+# Route admin
+RewriteRule ^admin/(.*)$ index.php?admin [QSA,L]
+
+# Route Manager
+RewriteRule ^manager/(.*)$ index.php?admin [QSA,L]
+
+# Route 
+RewriteRule ^(.+)$ index.php [QSA,L]
