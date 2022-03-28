@@ -1,15 +1,29 @@
+SetEnv ENV_HTACCESS_READING true
+
 RewriteEngine On
 RewriteBase /
 
+# fonctionne
 
-RewriteCond "%{REQUEST_URI}"
-RewriteRule ^api/(.+)$ api/index.php [QSA,L]
+# Redirection API
+# api/establishements/suites/pictures
+# RewriteRule ^api\/(\w+)$ $1/?$2 [NC,QSA,PT]
+
+RewriteRule ^api(\/.*\/?)?\/(\w+)+\/?$ api/$1?$2 [NC,QSA,PT]
+
+RewriteCond %{QUERY_STRING} "(.*)"
+RewriteRule ^api/(.*)$ api/index.php?%1 [NC,QSA,L]
 
 # Route admin
-RewriteRule ^admin/(.*)$ index.php?admin [QSA,L]
 
 # Route Manager
-RewriteRule ^manager/(.*)$ index.php?admin [QSA,L]
+
+# Route Home
+
 
 # Route 
-RewriteRule ^(.+)$ index.php [QSA,L]
+
+RewriteRule ^(.*\/?)?\/(\w+)+\/?$ /$1/?$2 [NC,QSA,PT]
+
+RewriteCond %{QUERY_STRING} "(.*)"
+RewriteRule ^(.*)$ index.php?%1 [NC,QSA,L]

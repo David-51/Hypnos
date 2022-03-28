@@ -4,6 +4,8 @@
 require_once '../config/apiPathConfig.php';
 $request_uri = $_SERVER['REQUEST_URI'];
 
+var_dump($_GET);
+
 var_dump($request_uri);
 
 $uri_table = array_slice(explode('/', $request_uri), 2);
