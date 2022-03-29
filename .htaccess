@@ -4,26 +4,10 @@ RewriteEngine On
 RewriteBase /
 
 # fonctionne
-
 # Redirection API
-# api/establishements/suites/pictures
-# RewriteRule ^api\/(\w+)$ $1/?$2 [NC,QSA,PT]
 
-RewriteRule ^api(\/.*\/?)?\/(\w+)+\/?$ api/$1?$2 [NC,QSA,PT]
-
-RewriteCond %{QUERY_STRING} "(.*)"
-RewriteRule ^api/(.*)$ api/index.php?%1 [NC,QSA,L]
-
-# Route admin
-
-# Route Manager
+# RewriteRule ^api\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?$ api/index.php/?main=$1&level2=$2&level3=$3&level4=$4&level5=$5 [QSA,L]
+RewriteRule ^api\/?([a-zA-Z0-9%\-_]+)?\/?([a-zA-Z0-9%\-_]+)?\/?([a-zA-Z0-9%\-_]+)?\/?([a-zA-Z0-9%\-_]+)?\/?([a-zA-Z0-9%\-_]+)?\/?$ api/index.php/?main=$1&level2=$2&level3=$3&level4=$4&level5=$5 [QSA,END]
 
 # Route Home
-
-
-# Route 
-
-RewriteRule ^(.*\/?)?\/(\w+)+\/?$ /$1/?$2 [NC,QSA,PT]
-
-RewriteCond %{QUERY_STRING} "(.*)"
-RewriteRule ^(.*)$ index.php?%1 [NC,QSA,L]
+RewriteRule ^\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?$ index.php/?main=$1&level2=$2&level3=$3&level4=$4&level5=$5 [QSA,END]

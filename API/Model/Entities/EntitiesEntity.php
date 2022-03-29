@@ -70,7 +70,7 @@ class Entities
         return implode('', $ip);
     }
     private function base64($id){
-        $base64 = '0123456789abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ#&@$';
+        $base64 = '0123456789abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZé%à$';
 
         $bin = [];
         for($i = 0; $i < strlen($id) ; $i++){            

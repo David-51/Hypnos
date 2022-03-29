@@ -2,8 +2,6 @@
 
 namespace API\Model\Manager;
 
-use PDO;
-
 class Database
 {
     const DSN = 'mysql:dbname=hypnos;host:127.0.0.1';
@@ -12,12 +10,12 @@ class Database
     
     public static $pdo = null;
     
-    private static function connect() :PDO
+    private static function connect() :\PDO
     {
         if(!(self::$pdo)){                        
             try{
                 self::$pdo = new \PDO(self::DSN, self::USERNAME, self::PASSWORD);                
-                self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             }
             catch(\PDOException $e){
                 echo "Error de connexion <br>". $e;
@@ -30,7 +28,7 @@ class Database
         }
     }
 
-    public static function getConnection() :PDO
+    public static function getConnection() :\PDO
     {
         return self::connect();
     }
