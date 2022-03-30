@@ -18,9 +18,7 @@ class Users extends Entities
 
     public function __construct()
     {                          
-        $this->setEntityName(__CLASS__);
         
-        return $this;
     }
     
     public function setEntity(string $email, string $firstname, string $lastname, string $password, string $role = 'use'){
@@ -44,8 +42,9 @@ class Users extends Entities
     }    
 
     public function getMessages() :array{        
-        $em = new Entity($this);
-        return $em->getChilds(new Messages);
+        $em = new Entity();
+        $response = $em->getEntitiesByClassName('Messages', 'user_id', $this->id);            
+        return $response[0] === 'success' ? $response[1] : $response[0];
     }
 
     public function setEmail($email) :string {

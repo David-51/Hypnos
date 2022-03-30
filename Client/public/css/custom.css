@@ -29,8 +29,18 @@ body{
     font-family: 'Raleway', sans-serif;
     font-weight:400;
 }
+
+a {
+    color: #9AC2C5;
+    text-decoration: none;
+  }
+  
+a:hover {
+    color: #71c8ce;
+  }
+
 .content {    
-    padding-top: 35px;
+    padding-top: 60px;
     padding-bottom:35px;
     height: 100vh;
 }
@@ -53,8 +63,7 @@ body{
 .gradient {
     background: linear-gradient(#13001400 0%, #130014FF 25%)
 }
-/* 27002900 */
-/* Configuration de la navbar */
+
 .wrapper {    
     left: -199px;
     z-index:9999;
@@ -71,4 +80,26 @@ body{
     border-top: solid 2px #F3E1B9;
     width:25px;
     margin: 6px;
+}
+
+.put-forward {
+    background-color: #3c0041;
+}
+
+.liner {
+    border-top: solid 1px #F3E1B9;
+    width: 120px;    
+}
+
+.miniature {
+    float:left;
+    width:100px;
+    height:100px;
+    border: solid 1px black;    
+}
+
+.suites-description {
+    font-size: 0.8rem;
+    text-align: justify;
+    text-justify: inter-character;
 }

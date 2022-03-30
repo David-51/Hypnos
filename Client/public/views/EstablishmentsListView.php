@@ -1,4 +1,3 @@
-<div class="container mt-0 mb-0 col-12 col-md-8 col-lg-6 overflow-scroll content">    
     <div class="row">  
         <div class="col text-center">
             <h1>
@@ -8,7 +7,7 @@
     </div>
     <?php
     foreach($props as $key => $element){ ?>
-        <div class="container mt-2 mb-3 p-2 establishement_card border border-light rounded shadow-light">        
+        <div class="mt-2 mb-3 p-2 border border-light rounded shadow-light put-forward">        
             <div class="row">
                 <div class="col-auto">
                     <h2 class="curve">
@@ -39,4 +38,3 @@
     <?php
     };
     ?>
-</div>

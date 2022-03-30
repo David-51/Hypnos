@@ -6,22 +6,17 @@ use API\Model\Manager\Entity;
 class Establishments extends Entities
 {   
     // primary key
-    public string $id ='undefined'; // first must be always primary key
-    
+    public string $id; 
     public string $name;
     public string $city;
     public string $adress;
     public string $description;
 
-    // public array $suites;
-    // this array is update from databse
-    public array $datas;
+    // public string $entity_name
 
     public function __construct()
-    {                          
-        $this->setEntityName(__CLASS__);        
+    {                                       
         
-        return $this;
     }
     
     public function setEntity(string $name, string $city, string $adress, string $description){
@@ -31,22 +26,8 @@ class Establishments extends Entities
         $this->adress = $adress;
         $this->description = $description;
 
-        $this->datas = [
-            'id' => '',
-            'name' => '',
-            'city' => '',
-            'adress' => '',
-            'description' => ''
-        ];
         return $this;
     }  
-
-    public function getSuites() :array{        
-        $em = new Entity();
-        $response = $em->getEntitiesByClassName('Suites', 'establishment_id', $this->id);
-        var_dump($response);        
-        return $response[0] === 'success' ? $response[1] : $response[0];
-    }
 
     public function setName($name) :string {
         return $this->name = $name;
@@ -78,6 +59,11 @@ class Establishments extends Entities
 
     public function getDescription() :string {
         return $this->description;
+    }
+
+    public function getSuites(){        
+              
+        
     }
 
 }

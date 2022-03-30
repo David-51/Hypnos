@@ -17,7 +17,7 @@ class Administrators extends Entities
 
     public function __construct()
     {                          
-        $this->setEntityName(__CLASS__);        
+    
     }
     
     public function setEntity($user_id){        

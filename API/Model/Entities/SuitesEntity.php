@@ -6,56 +6,28 @@ use API\Model\Manager\Entity;
 class Suites extends Entities
 {   
     // primary key
-    public string $id = 'undefined';
-    public Establishments $establishment;
+    public string $id;
     public string $title;
     public string $link_to_booking;
     public string $description;
     public int $price;
-    public string $establishment_id;
-
-    // this array is update from databse
-    public array $datas;
+    public string $establishment_id;    
 
     public function __construct()
-    {                          
-        $this->setEntityName(__CLASS__);        
+    {                                
         
-        return $this;
     }
     
     public function setEntity(Establishments $establishment, string $title, string $link_to_booking, string $description, int $price){
         $this->id = $this->setUniqId();
-        $this->establishment = $establishment;
         $this->title = $title;
         $this->link_to_booking = $link_to_booking;
         $this->description = $description;
         $this->price = $price;
-        
-
-        $this->establishment_id = $establishment->getPrimaryKeyValue();
-        // $establishment_id = key($establishment);
-        // $this->establishment_id = $establishment->$establishment_id;
-
-        $this->datas = [
-            'id' => '',
-            'title' => '',
-            'link_to_booking' => '',
-            'description' => '',
-            'price' => 0,
-            'establishment_id' => ''            
-        ];
+        $this->establishment_id = $establishment->id;
         
         return $this;
-    }
-    // public function removeSuite(){
-    //     $this->establishment->removeSuite($this);
-    //     return $this->establishment;
-    // }
-    public function getLinks() :array{        
-        $em = new Entity($this);
-        return $em->getChilds(new Pictures);
-    }
+    }        
 
     public function setTitle($title){
         return $this->title = $title;

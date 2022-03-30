@@ -7,7 +7,7 @@ use DateInterval;
 class Bookings extends Entities
 {   
     // primary key
-    public string $id ='undefined';
+    public string $id;
     public string $booking_date;
     public string $user_id;
     public string $suite_id;
@@ -20,8 +20,7 @@ class Bookings extends Entities
     public array $datas;
 
     public function __construct()
-    {                          
-        $this->setEntityName(__CLASS__);        
+    {                             
             
     }
     /**
