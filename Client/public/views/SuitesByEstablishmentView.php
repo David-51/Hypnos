@@ -20,18 +20,24 @@
 <div class="mb-3">
     <?php
     foreach($list as $key => $data){
+        if(isset($data->pictures[0]->picture_link)){
+            $src_picture = $data->pictures[0]->picture_link;
+        }
+        else{
+            $src_picture = '#';
+        }
         ?>
     
     <div class="row border border-light shadow shadow-lg mt-3 rounded put-forward p-2 mx-1">
         <div class="row p-0 m-auto col-12 d-flex justify-content-between">
             <div class="col-9 my-auto p-0">
                 <h5 class="m-0 p-0">
-                    <?= $data->suites_title ?>
+                    <?= $data->title ?>
                 </h5>
             </div>
             <div class="col-3 my-auto p-0">
                 <p class="m-0 p-0 text-end">
-                    <?= $data->suites_price ?>
+                    <?= $data->price/100 ?> €
                 </p>
             </div>
         </div>
@@ -39,17 +45,20 @@
             <div class="col-12 mt-2 p-0" >
                 <p class="suites-description">
                     
-                        <img class="miniature ms-1 me-1 mb-0 p-0" src="#" alt="photo de la chambre" async lazy/>
+                        <img class="miniature ms-1 me-1 mb-0 p-0" 
+                        src="<?= $src_picture ?>" alt="photo de la chambre"/>
                     
-                    <b>Description : </b><?= $data->suites_description ?>
-                </p>        
+                    <b>Description : </b><?= $data->description ?>
+                    <br><a href="<?= $data->link_to_booking ?>">Réserver sur Booking</a>      
+                </p>
             </div>
         </div>
-        <div class="row mx-auto">
+        <div class="row mx-auto mt-2">
             <button type="button" class="btn btn-info col-auto mx-auto">Réserver Maintenant</button>
             <a class="text-info text-center text-sm mt-1" href="#">Plus d'informations</a>
         </div>
     </div>
     <?php
-}?>
+}
+?>
 </div>

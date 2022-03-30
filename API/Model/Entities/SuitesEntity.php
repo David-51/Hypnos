@@ -79,5 +79,5 @@ class Suites extends Entities
             return $req;
             break;
         }      
-    }
+    }    
 }

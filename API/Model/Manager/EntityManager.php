@@ -44,31 +44,7 @@ class Entity
             return 'error';
         }
     }
-
-    public function getEntitiesByClassName(string $class, string $where = null, string $cond = null, array $rows = []){
-        if(empty($rows)){
-            $rows = "*";
-        }
-        else {
-            $rows = implode(', ', $rows);
-        }
-        if(!isset($where)){
-            $query = "SELECT $rows FROM $class";
-        }else{
-            $query = "SELECT $rows FROM $class WHERE $where=\"$cond\"";
-        }                
-        $fetch_name = 'API\\Model\\Entity\\'.$class;
-        try{
-            $sth = $this->db->prepare($query);
-            $sth->setFetchMode(\PDO::FETCH_CLASS, $fetch_name);
-            $sth->execute();        
-            $response = $sth->fetchAll();
-            return ['success', $response];
-        }
-        catch(\PDOException $e){
-            return ['error', 'something goes wrong....'];
-        }
-    }
+    
     /**
      * ParentEn
      */
@@ -220,5 +196,30 @@ class Entity
             return ['error', $e];
         }        
         return ['success' ,'deleted'];
+    }
+
+    /**
+     * @param Entities $child Class of child you want to fetch
+     */
+    public function getChilds(Entities $child) :array{                     
+        
+        $where = substr($this->entity->getEntityName() , 0, -1).'_id';                            
+        $entity_id = $this->entity->id;        
+
+        $entity_name = $child->getEntityName();
+        $query = "SELECT * FROM $entity_name WHERE $where = \"$entity_id\"";
+        try{
+            $sth = $this->db->prepare($query);
+            $sth->execute();
+    
+            $sth->setFetchMode(\PDO::FETCH_CLASS, get_class($child));
+            $response = $sth->fetchAll();  
+
+            return $response;
+        }                      
+        catch(\PDOException $e){
+            return 'error';
+        }
+
     }
 }

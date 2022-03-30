@@ -10,5 +10,35 @@ INSERT
     VALUES (
         UUID(),
         (SELECT id FROM suites WHERE title="Eros"),
-        "https://picsum.photos/200/300"       
+        "https://picsum.photos/300/300"       
+    ),
+    (
+        UUID(),
+        (SELECT id FROM suites WHERE title="La Mariniere"),
+        "https://picsum.photos/300/300"       
+    ),
+    (
+        UUID(),
+        (SELECT id FROM suites WHERE title="La Cupidon"),
+        "https://picsum.photos/300/300"       
+    ),
+    (
+        UUID(),
+        (SELECT id FROM suites WHERE title="La Cupidon"),
+        "https://picsum.photos/300/300"       
+    ),
+    (
+        UUID(),
+        (SELECT id FROM suites WHERE title="La Cupidon"),
+        "https://picsum.photos/300/300"       
+    ),
+    (
+        UUID(),
+        (SELECT id FROM suites WHERE title="Eros"),
+        "https://picsum.photos/300/300"       
+    ),
+    (
+        UUID(),
+        (SELECT id FROM suites WHERE title="Eros"),
+        "https://picsum.photos/300/300"       
     );

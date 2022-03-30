@@ -98,8 +98,7 @@ a:hover {
     border: solid 1px black;    
 }
 
-.suites-description {
-    font-size: 0.8rem;
+.suites-description {    
     text-align: justify;
     text-justify: inter-character;
 }

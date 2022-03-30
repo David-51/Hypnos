@@ -62,8 +62,18 @@ class Establishments extends Entities
     }
 
     public function getSuites(){        
-              
-        
+        // récupérer les suite de l'établissement avec les pictures classé dans les suites
+        $suites = $this->setEntityManager()->getChilds(new Suites);
+        foreach($suites as $key => $value){
+            $value->pictures = $value->setEntityManager()->getChilds(new Pictures);
+        }
+        return $suites;
     }
-
+    public function getAllSuites(){
+        $suites = (new Suites)->setEntityManager()->getEntity();
+        foreach($suites as $value){
+            $value->pictures = $value->setEntityManager()->getChilds(new Pictures);
+        }
+        return $suites;
+    }
 }
