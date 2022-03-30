@@ -4,7 +4,7 @@ namespace API\Model\Entity;
 class Calendars extends Entities
 {   
     // primary key
-    public string $id;    
+    public string $id = 'undefined';    
     public string $user_id;
     public string $suite_id;
     public string $booking_id;

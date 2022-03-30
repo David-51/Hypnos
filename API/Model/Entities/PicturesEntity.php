@@ -4,7 +4,7 @@ namespace API\Model\Entity;
 class Pictures extends Entities
 {   
     // primary key
-    public string $id;
+    public string $id = 'undefined';
     public string $picture_link;
     public string $suite_id;
     public Suites $suite; 

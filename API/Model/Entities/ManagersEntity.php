@@ -8,7 +8,7 @@ namespace API\Model\Entity;
 class Managers extends Entities
 {   
     // primary key
-    public string $id;
+    public string $id= 'undefined';
     public string $establishment_id;
     public string $user_id;
     private Users $user;

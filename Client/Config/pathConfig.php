@@ -4,7 +4,11 @@ $path = [
     'Client/Assets',
     'Client/Controller',
     'Client/public/views',  
-    'Client/public/css'  
+    'Client/public/css',
+    'API/model/Entities',
+    'API/model/Manager',
+    'API/Model',
+    'API/Controller'
 ];
 
 function addpath($path){    

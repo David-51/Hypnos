@@ -7,12 +7,20 @@ require './Client/Assets/Autoloader.php';
 require './Client/Config/pathConfig.php';
 
 Autoloader::register();
+// var_dump($_GET);
 
-switch ($_GET['main']) {
+switch (strtolower($_GET['main'])) {
+    case 'test':
+        require './test/test.php';
+        break;
+
     case 'connect':
         require 'SignInController.php';
         break;
-        
-        default:
+    case 'establishments':
+        require 'EstablishmentsListController.php';
+        break;        
+
+    default:
         echo "<h1>Erreur Hypnos Home</h1> ";
     }

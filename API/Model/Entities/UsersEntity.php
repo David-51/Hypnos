@@ -6,7 +6,7 @@ use API\Model\Manager\Entity;
 class Users extends Entities
 {   
     // primary key
-    public string $id;
+    public string $id = 'undefined';
     public string $email;
     public string $firstname;
     public string $lastname;
@@ -41,7 +41,8 @@ class Users extends Entities
         ];
         
         return $this;
-    }
+    }    
+
     public function getMessages() :array{        
         $em = new Entity($this);
         return $em->getChilds(new Messages);

@@ -4,7 +4,6 @@ $start = microtime(true);
 // créer des entities à la racine conduit à double l'entité à cause de la redirection htaccess
 
 require './config/Autoloader.php';
-require_once './config/apiPathConfig.php';
 
 use API\Model\Entity\Administrators;
 use API\Model\Entity\Establishments;

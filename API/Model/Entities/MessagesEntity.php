@@ -7,7 +7,7 @@ namespace API\Model\Entity;
 class Messages extends Entities
 {   
     // primary key
-    public string $id;    
+    public string $id = 'undefined';    
     public string $user_id;
     public string $message;
 

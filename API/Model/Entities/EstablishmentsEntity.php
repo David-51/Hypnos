@@ -6,7 +6,7 @@ use API\Model\Manager\Entity;
 class Establishments extends Entities
 {   
     // primary key
-    public string $id; // first must be always primary key
+    public string $id ='undefined'; // first must be always primary key
     
     public string $name;
     public string $city;
@@ -42,8 +42,10 @@ class Establishments extends Entities
     }  
 
     public function getSuites() :array{        
-        $em = new Entity($this);
-        return $em->getChilds(new Suites);
+        $em = new Entity();
+        $response = $em->getEntitiesByClassName('Suites', 'establishment_id', $this->id);
+        var_dump($response);        
+        return $response[0] === 'success' ? $response[1] : $response[0];
     }
 
     public function setName($name) :string {

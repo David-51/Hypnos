@@ -1,7 +1,7 @@
 <h1>API</h1>
 <?php
 
-require_once '../config/apiPathConfig.php';
+require_once './Config/pathConfig.php';
 $request_uri = $_SERVER['REQUEST_URI'];
 
 var_dump($_GET);
@@ -15,7 +15,7 @@ $uri_table = array_slice(explode('/', $request_uri), 2);
 switch ($uri_table[0]){
     case 'establishments':
         echo 'establishments...';
-        // require './Controller/establishmentsController.php';
+        require './Controller/EstablishmentsController.php';
         // code
         break;
     case 'suites':

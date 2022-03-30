@@ -6,7 +6,7 @@ use API\Model\Manager\Entity;
 class Suites extends Entities
 {   
     // primary key
-    public string $id;
+    public string $id = 'undefined';
     public Establishments $establishment;
     public string $title;
     public string $link_to_booking;

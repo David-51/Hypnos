@@ -7,7 +7,7 @@ use DateInterval;
 class Bookings extends Entities
 {   
     // primary key
-    public string $id;
+    public string $id ='undefined';
     public string $booking_date;
     public string $user_id;
     public string $suite_id;

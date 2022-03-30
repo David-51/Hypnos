@@ -8,7 +8,7 @@ namespace API\Model\Entity;
 class Administrators extends Entities
 {   
     // primary key    
-    public string $id;
+    public string $id = 'undefined';
     public string $user_id;
     private Users $user;
     
@@ -17,16 +17,14 @@ class Administrators extends Entities
 
     public function __construct()
     {                          
-        $this->setEntityName(__CLASS__);
-        
+        $this->setEntityName(__CLASS__);        
     }
     
-    public function setEntity(Users $user){        
-        $this->id = $this->setUniqId();
-        $this->user = $user;
-                
-        $this->user_id = $user->getPrimaryKeyValue();
-        $user->setRole('adm');        
+    public function setEntity($user_id){        
+        $this->id = $this->setUniqId();        
+        $this->user = new Users;
+        $this->user_id = $user_id;                
+        $this->user->setRole('adm');        
 
         $this->datas = [  
             'id' => '',          
@@ -59,7 +57,7 @@ class Administrators extends Entities
         // set Role admin to user
         $this->user->setRole('adm');
         
-        // persist admin Entity
+        // persist user Entity
         $this->user->setEntityManager()->updateEntity();                
         
         return $this->user;

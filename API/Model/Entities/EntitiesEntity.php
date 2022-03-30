@@ -14,6 +14,10 @@ class Entities
         // Implement AP\Model\Manager\EntityManager to all Entity
         $this->em = new Entity($this);
     }
+
+    public function setId($id){
+        return $this->id = $id;
+    }
     public function getEntityName(){
         return $this->entity_name;
     }
@@ -35,20 +39,8 @@ class Entities
         }
     } 
 
-    public function getPrimaryKey(){    
-        echo '<h2>key this</h2>';
-        var_dump(key($this));    
-        return key($this);
-    }
-
-    public function getPrimaryKeyValue(){
-        $key = $this->getPrimaryKey();
-        return $this->$key;
-    }
-
     public function setEntityManager(){
-        $this->em = new Entity($this);
-        return $this->em;
+        return $this->em = new Entity($this);        
     }
 
     // UniqId is based on microsecond timestamp and the client's remote Ip, the last is random hexadecimal. If no Ip is detected, random Ip
@@ -106,7 +98,7 @@ class Entities
         return $result;
     }
     /**
-     * first digit are base on the current timestamp in micro second, and the last digit are the request IP.
+     * first digit are based on the current timestamp in micro second, and the last digit are the request IP.
      * all is converted on base 64 code
      */
     public function setUniqId(){
