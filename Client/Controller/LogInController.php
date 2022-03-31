@@ -8,6 +8,6 @@ $view->setFooter('footerTemplate');
 $view->setNavbar('navbarTemplate');
 
 
-$view->setBody('SignIn', []);
+$view->setBody('LogIn', []);
 echo $view->getContent();
 

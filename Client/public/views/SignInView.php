@@ -18,7 +18,7 @@
                 
             </div>
             <div class="form-group my-1">
-                <label for="Email">Email address</label>
+                <label for="Email">Votre email</label>
                 <input type="email" class="form-control" id="email" aria-describedby="email">
             </div>
             <div class="form-group my-1">

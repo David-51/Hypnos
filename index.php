@@ -13,7 +13,6 @@ switch (strtolower($_GET['main'])) {
     case 'test':
         require './test/test.php';
         break;
-
     case 'connect':
         require 'SignInController.php';
         break;
@@ -28,6 +27,18 @@ switch (strtolower($_GET['main'])) {
         break;
     case 'signin':
         require 'SignInController.php';
+        break;
+    case 'login':
+        require 'LogInController.php';
+        break;
+    case 'home':
+        require 'HomeController.php';
+        break;
+    case 'send':
+        echo "send message";
+        die();
+        require 'SendMessagesController.php';
+        break;
     default:
-        echo "<h1>Erreur Hypnos Home</h1> ";
+        require 'HomeController.php';    
     }
