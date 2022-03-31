@@ -34,9 +34,7 @@ switch (strtolower($_GET['main'])) {
     case 'home':
         require 'HomeController.php';
         break;
-    case 'send':
-        echo "send message";
-        die();
+    case 'send-messages':
         require 'SendMessagesController.php';
         break;
     default:
