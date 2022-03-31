@@ -17,43 +17,47 @@
         <a class="me-auto" href="#"><i class="fas fa-envelope"></i>&ensp;Contact</a>        
     </div>
 </div>
-<div class="mb-3">
+<div class="mb-3 put-forward p-3 rounded border border-light">
     <div class="row">
        <!-- debut carousel -->
        <div id="carousel" class="carousel slide" data-bs-ride="carousel">
 
         <!-- Indicators/dots -->
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#carousel" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#carousel" data-bs-slide-to="2"></button>
+            <div class="carousel-indicators">
+                <?php
+                $i=0;
+                foreach($props->pictures as $data){
+                    ?>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="<?= $i ?>" class="<?= $i === 0 ?'active': '' ?>"></button>
+                <?php 
+                $i++;
+                }
+
+                ?>                
+            </div>
+
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner mx-auto">
+                <?php
+                $j=0;
+                foreach($props->pictures as $data){
+                    ?>
+                <div class="carousel-item <?= $j === 0 ? 'active' : ''; ?>">
+                    <img src="<?= $data->picture_link ?>" alt="Los Angeles" class="d-block rounded mx-auto " style="width:80%">
+                </div>        
+                <?php $j++; } ?>
+            </div>
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
         </div>
-
-<!-- The slideshow/carousel -->
-        <div class="carousel-inner mx-auto">
-            <?php
-            $i=0;
-            foreach($props->pictures as $data){
-                ?>
-            <div class="carousel-item <?= $i === 0 ? 'active' : ''; ?>">
-                <img src="<?= $data->picture_link ?>" alt="Los Angeles" class="d-block mx-auto" style="width:50%">
-            </div>        
-            <?php $i++; } ?>
-        </div>
-
-<!-- Left and right controls/icons -->
-<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-  <span class="carousel-control-prev-icon"></span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-  <span class="carousel-control-next-icon"></span>
-</button>
-</div>
-
-
         <!-- fin du Carroussel -->
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <p>
             <?= $props->description ?>
             <br>

@@ -1,4 +1,4 @@
-@import './scss/bootstrap.css';
+@import 'http://hypnos.ecf/Client/public/css/scss/bootstrap.css';
 @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Raleway:wght@200;300;400;500&display=swap');
 
 h1 {
@@ -104,6 +104,14 @@ a:hover {
 }
 
 .picture-carousel {
-    max-width:250px;
+    max-width:300px;
     max-height:250px;
+}
+
+.carousel-indicators {
+    margin-bottom: 0;
+}
+
+.signin-logo {
+    height: 100px;    
 }

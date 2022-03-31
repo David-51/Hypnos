@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Nos hôtels accueillent les couples qui veulent entretenir la flamme dans un cadre luxueux et accueillant">
-    <script src="https://kit.fontawesome.com/3314838246.js" crossorigin="anonymous"></script>
-    <base href="/">
-    <link rel="stylesheet" href="Client/public/css/custom.css">
-    <script src="/Client/public/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/3314838246.js" crossorigin="anonymous"></script>   
+    
+    <link rel="stylesheet" href="http://hypnos.ecf/Client/public/css/custom.css">
+    <script type="module" src="http://hypnos.ecf/Client/public/js/bootstrap.js"></script>
     
     <title><?= $this->title ?></title>
 </head>
@@ -23,6 +23,6 @@
     <footer class="d-flex align-items-end justify-content-center text-light gradient fixed-bottom">
         <?= $this->footer ?>
     </footer>
-    <script src="Client/public/js/script.js"></script>
+    <script src="/Client/public/js/script.js"></script>
 </body>
 </html>

@@ -26,6 +26,8 @@ switch (strtolower($_GET['main'])) {
     case 'carousel':
         require 'test/carousel.html';
         break;
+    case 'signin':
+        require 'SignInController.php';
     default:
         echo "<h1>Erreur Hypnos Home</h1> ";
     }

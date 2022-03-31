@@ -7,9 +7,9 @@ RewriteBase /
 # Redirection API
 
 # RewriteRule ^api\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?$ api/index.php/?main=$1&level2=$2&level3=$3&level4=$4&level5=$5 [QSA,L]
-RewriteCond %{REQUEST_URI} !\.(?:css|js|jpeg|jpg|raw)$
+RewriteCond %{REQUEST_URI} !\.(?:css|scss|js|jpeg|jpg|raw)$
 RewriteRule ^api\/?([a-zA-Z0-9%\-_]+)?\/?([a-zA-Z0-9%\-_]+)?\/?([a-zA-Z0-9%\-_]+)?\/?([a-zA-Z0-9%\-_]+)?\/?([a-zA-Z0-9%\-_]+)?\/?$ api/index.php/?main=$1&level2=$2&level3=$3&level4=$4&level5=$5 [QSA,L]
 
 # Route Home
-RewriteCond %{REQUEST_URI} !\.(?:css|js|jpeg|jpg|raw)$
+RewriteCond %{REQUEST_URI} !\.(?:css|scss|js|jpeg|jpg|raw)$
 RewriteRule ^\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?(\w+)?\/?$ index.php/?main=$1&level2=$2&level3=$3&level4=$4&level5=$5 [QSA,L]

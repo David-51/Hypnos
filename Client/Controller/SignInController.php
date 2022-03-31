@@ -1,15 +1,16 @@
 <?php
 
-// définition des contents Header / Body / Footer
-
+use API\Model\Entity\Establishments;
+use API\Model\Entity\Suites;
+use API\Model\Manager\Entity;
 use Client\Controller\Template;
 
 $view = new Template;
+$view->setHeader('headerTemplate');
+$view->setFooter('footerTemplate');
+$view->setNavbar('navbarTemplate');
 
-// $view->setHeader('headerTemplate', []);
-// $view->setFooter('footerTemplate', []);
-// $view->setBody('')
-?>
-<?= $view->getContent(); ?>
 
+$view->setBody('SignIn', []);
+echo $view->getContent();
 
