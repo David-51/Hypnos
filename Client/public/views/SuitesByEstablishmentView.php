@@ -54,8 +54,8 @@
             </div>
         </div>
         <div class="row mx-auto mt-2">
-            <button type="button" class="btn btn-info col-auto mx-auto">Réserver Maintenant</button>
-            <a class="text-info text-center text-sm mt-1" href="#">Plus d'informations</a>
+            <a href="/suites?id=<?= $data->id ?>" type="button" class="btn btn-info col-auto mx-auto">Réserver Maintenant</a>
+            <a class="text-info text-center text-sm mt-1" href="/suites?id=<?= $data->id ?>">Plus d'informations</a>
         </div>
     </div>
     <?php

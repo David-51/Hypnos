@@ -19,8 +19,13 @@ switch (strtolower($_GET['main'])) {
         break;
     case 'establishments':
         require 'EstablishmentsListController.php';
-        break;        
-
+        break;
+    case 'suites':
+        require 'SuitesListController.php';
+        break;
+    case 'carousel':
+        require 'test/carousel.html';
+        break;
     default:
         echo "<h1>Erreur Hypnos Home</h1> ";
     }

@@ -1,8 +1,6 @@
 <?php
 namespace API\Model\Entity;
 
-use API\Model\Manager\Entity;
-
 class Suites extends Entities
 {   
     // primary key
@@ -27,7 +25,12 @@ class Suites extends Entities
         $this->establishment_id = $establishment->id;
         
         return $this;
-    }        
+    }
+    public function getSuite(){
+        $suite = $this->setEntityManager()->getEntity();
+        $suite->pictures = $suite->setEntityManager()->getChilds(new Pictures);
+        return $suite;
+    }
 
     public function setTitle($title){
         return $this->title = $title;

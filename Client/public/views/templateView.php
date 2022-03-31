@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/3314838246.js" crossorigin="anonymous"></script>
     <base href="/">
     <link rel="stylesheet" href="Client/public/css/custom.css">
+    <script src="/Client/public/js/bootstrap.bundle.min.js"></script>
     
     <title><?= $this->title ?></title>
 </head>

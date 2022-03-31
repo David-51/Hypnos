@@ -200,11 +200,19 @@ class Entity
 
     /**
      * @param Entities $child Class of child you want to fetch
+     * @param bool $bool, if set to true, the childs is the parent
      */
-    public function getChilds(Entities $child) :array{                     
+    public function getChilds(Entities $child, bool $bool = false) :array{                     
         
-        $where = substr($this->entity->getEntityName() , 0, -1).'_id';                            
-        $entity_id = $this->entity->id;        
+        if($bool){
+            $where = 'id';                            
+            $the_id = strtolower(substr($child->getEntityName() , 0, -1).'_id');
+            $entity_id = $this->entity->$the_id;
+        }
+        else{
+            $where = substr($this->entity->getEntityName() , 0, -1).'_id';                                        
+            $entity_id = $this->entity->id;        
+        }
 
         $entity_name = $child->getEntityName();
         $query = "SELECT * FROM $entity_name WHERE $where = \"$entity_id\"";
@@ -220,6 +228,5 @@ class Entity
         catch(\PDOException $e){
             return 'error';
         }
-
     }
 }

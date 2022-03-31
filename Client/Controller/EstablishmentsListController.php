@@ -1,8 +1,6 @@
 <?php
 
 use API\Model\Entity\Establishments;
-use API\Model\Entity\Pictures;
-use API\Model\Entity\Suites;
 use API\Model\Manager\Entity;
 use Client\Controller\Template;
 
