@@ -1,0 +1,52 @@
+:root {
+    --bs-primary: #270029 !important;    
+    --bs-primary-rgb: 39, 0, 41 !important;
+
+    --bs-info: #71c8ce !important;
+    --bs-info-rgb: 113, 200, 206 !important;
+
+    --bs-light: #C2C6A7 !important;
+    --bs-light-rgb: 194, 198, 167 !important;
+
+    --bs-dark: #130014 !important;
+    --bs-dark-rgb: 19, 0, 20 !important;
+
+}
+/* Background section */
+.bg-primary {
+    background-color: var(--bs-primary) !important;
+}
+.bg-bar {
+    background-color: var(--bs-dark) !important;
+}
+.btn-info {
+    background-color: var(--bs-info) !important;
+}
+
+/* text section */
+.text-light {
+    color: var(--bs-light) !important;
+}
+
+/* HTML Elements */
+a {
+    color: #9AC2C5;
+    text-decoration: none;    
+}
+a:hover {
+    filter:brightness(1.4);    
+}
+
+/* component section */
+
+.btn-info:disabled, .btn-info.disabled {
+    color: #000;
+    opacity: 0.4;
+  }
+
+.btn-info:hover {
+color: #000;
+/* background-color: #a9cbce; */
+border-color: #a4c8cb;
+filter: brightness(1.2)
+}

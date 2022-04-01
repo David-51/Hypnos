@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="col-4 ms-auto mt-auto mb-3 text-end">
-        <a class="me-auto" href="#"><i class="fas fa-envelope"></i>&ensp;Contact</a>        
+        <a class="me-auto" href="/send-messages"><i class="fas fa-envelope"></i>&ensp;Contact</a>        
     </div>
 </div>
 <div class="mb-3 put-forward p-3 rounded border border-light">
@@ -43,7 +43,7 @@
                 foreach($props->pictures as $data){
                     ?>
                 <div class="carousel-item <?= $j === 0 ? 'active' : ''; ?>">
-                    <img src="<?= $data->picture_link ?>" alt="Los Angeles" class="d-block rounded mx-auto " style="width:80%">
+                    <img src="<?= $data->picture_link ?>" alt="Los Angeles" class="d-block mx-auto" style="width:80%">
                 </div>        
                 <?php $j++; } ?>
             </div>

@@ -1,4 +1,119 @@
-body {
-    color: black;
-    background-color: blue;
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Raleway:wght@200;300;400;500&display=swap');
+@import '/Client/public/css/bootstrap-override.css';
+@import '/Client/public/css/sidebar.css';
+
+h1 {
+    letter-spacing: 0.2rem;
+    color: white;
+}
+header, footer {
+    height: 50px;
+    width:100%;
+}
+
+header {
+    z-index:100;
+    position: absolute;
+    width:100%;
+}
+footer {
+    z-index:100;
+    position: absolute;
+    font-size: 0.8rem;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    font-weight:400;
+}
+
+img {
+    border-radius: 30px;
+}
+
+.content {    
+    padding-top: 60px;
+    padding-bottom:35px;
+    height: 100vh;
+}
+
+.curve {
+    font-family: 'Courgette', cursive;
+}
+
+.font-light {
+    font-weight: 200;
+}
+
+.shadow-light {
+    box-shadow: 1px 1px 1px 1px #c2c6a77e;
+}
+.adress {
+    font-size: 0.8rem;
+}
+
+.gradient {
+    background: linear-gradient(#13001400 0%, #130014FF 25%)
+}
+
+.displaybar {
+    transform: translate(199px);
+}
+
+.burger {
+    border-top: solid 2px #F3E1B9;
+    width:25px;
+    margin: 6px;
+}
+#hamburgerMenu{
+    cursor: pointer;
+}
+
+
+.put-forward {
+    background-color: #3c0041;
+}
+
+.liner {
+    border-top: solid 1px #F3E1B9;
+    width: 120px;    
+}
+
+.miniature {
+    float:left;
+    width:100px;
+    height:100px;
+    border: solid 1px black;    
+}
+
+.suites-description {    
+    text-align: justify;
+    text-justify: inter-character;
+}
+
+.picture-carousel {
+    max-width:300px;
+    max-height:250px;
+}
+
+.carousel-indicators {
+    margin-bottom: 0;
+}
+
+.signin-logo {
+    height: 100px;
+    border-radius: 0;
+}
+
+.login-logo {
+    height: 200px;    
+
+}
+
+.disabled {
+    opacity: 0.3;
 }

@@ -1,7 +1,5 @@
-// toggle Hamburger Menu
-
-hamburgerMenu = document.getElementById('hamburgerMenu');
-shutter = document.getElementById('shutter');
+let hamburgerMenu = document.getElementById('hamburgerMenu');
+let shutter = document.getElementById('shutter');
 
 hamburgerMenu.addEventListener('click', () => {
     shutter.classList.toggle('displaybar');
@@ -10,4 +8,3 @@ hamburgerMenu.addEventListener('click', () => {
 shutter.addEventListener('click', () => {
     shutter.classList.toggle('displaybar');
 })
-
