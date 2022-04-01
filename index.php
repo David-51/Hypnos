@@ -2,6 +2,7 @@
 session_start();
 
 use Assets\Autoloader;
+use Client\Controller\Template;
 
 require './Client/Assets/Autoloader.php';
 require './Client/Config/pathConfig.php';

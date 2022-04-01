@@ -1,10 +1,11 @@
 <?php
 
 $path = [
-    'API/model/Entities',
-    'API/model/Manager',
-    'API/Model',
-    'API/Controller'
+    // need add ../ because the entry API/index is one level higher
+    '../API/model/Entities',
+    '../API/model/Manager',
+    './API/Model',
+    './API/Controller'
 ];
 
 function addpath($path){    
@@ -13,6 +14,7 @@ function addpath($path){
             get_include_path().PATH_SEPARATOR.$value
         );
     }
-    // echo get_include_path();
+    
 }
+
 addpath($path);

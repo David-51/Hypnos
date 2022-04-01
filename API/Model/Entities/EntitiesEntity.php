@@ -44,8 +44,8 @@ class Entities
         return implode('', $ip);
     }
     private function base64($id){
-        $base64 = '0123456789abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZé%à$';
-
+        $base64 = '0123456789abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ-_!%';
+        // éàù$
         $bin = [];
         for($i = 0; $i < strlen($id) ; $i++){            
             $bin[] = base_convert($id[$i], 16,2);
@@ -86,9 +86,9 @@ class Entities
     public function setUniqId(){
         
         $uniqid = uniqid(true);    
-        // return substr($uniqid, 0, 8). '-' . substr($uniqid, 8, 4) . '-' . substr($uniqid, 12, 2). bin2hex(random_bytes(1)) . '-' . bin2hex(random_bytes(2)) . '-' . bin2hex(random_bytes(2)) . $this->ipToHex();
-        $hex = substr($uniqid, 0, 8).substr($uniqid, 8, 4) . substr($uniqid, 12, 2). bin2hex(random_bytes(1)) . bin2hex(random_bytes(2)) .  bin2hex(random_bytes(2)) . $this->ipToHex();
-        return $this->base64($hex);
+        return substr($uniqid, 0, 8). '-' . substr($uniqid, 8, 4) . '-' . substr($uniqid, 12, 2). bin2hex(random_bytes(1)) . '-' . bin2hex(random_bytes(2)) . '-' . bin2hex(random_bytes(2)) . $this->ipToHex();
+        // $hex = substr($uniqid, 0, 8).substr($uniqid, 8, 4) . substr($uniqid, 12, 2). bin2hex(random_bytes(1)) . bin2hex(random_bytes(2)) .  bin2hex(random_bytes(2)) . $this->ipToHex();
+        // return $this->base64($hex);
     }
     public function getAll() {        
         return $this;

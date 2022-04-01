@@ -148,35 +148,37 @@ class Entity
     }
 
     /**
-     * @return array 
-     * if success ['succes', Entity]
-     * then ['error', 'message']
+     * @return bool true if persist is done and false if an error occured
+     * 
      */
-    public function persistEntity() :array{        
-                
-        $params = implode(", ", array_keys($this->entity->datas));
+    public function persistEntity(){        
+        
+        $data_keys = array_keys(get_class_vars(get_class($this->entity)));
+        $params = implode(", ", $data_keys);
+
         $valueToBind = implode(", ", array_map(function($value){
             return ':'.$value;
-        }, array_keys($this->entity->datas)));                                        
+        }, $data_keys));                                        
 
-            $query = "INSERT INTO $this->entity_name($params)
-            VALUES($valueToBind)";
+        $entity_name = $this->entity->getEntityName();
+
+        $query = "INSERT INTO $entity_name($params) VALUES($valueToBind)";
         try{
 
-            $sth = $this->db->prepare($query);                  
-            
+            $sth = $this->db->prepare($query);                              
 
-            foreach($this->entity->datas as $key => $value){                
+            foreach($this->entity as $key => $value){
                 $sth->bindValue(':'.$key, $value);
-            }
+            }            
+            $sth->execute();
             
-            if($sth->execute()){                                        
-                return ['success', $this->entity];
-            };
         }
         catch(\PDOException $e){                                    
-            return ['error', 'something goes wrong with establishments'];
+            // return 'une erreur est produite EM ligne '.$e.'<br>'.$this->entity->id;
+            return "<h1>Erreur 178 </h1>".$this->entity->id;
         }           
+        http_response_code(201);                                     
+        return $this->entity;
     }
     /**
      * Delete the current Entity 

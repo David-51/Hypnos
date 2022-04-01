@@ -14,8 +14,7 @@ class Calendars extends Entities
     public array $datas;
 
     public function __construct()
-    {                          
-        $this->setEntityName(__CLASS__);        
+    {                                    
             
     }
     /**

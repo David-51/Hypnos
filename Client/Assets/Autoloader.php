@@ -8,9 +8,8 @@ class Autoloader
     }
     static function autoload($class_name){
         $explode = array_reverse(explode('\\', $class_name));        
-        $class = implode('',array_slice($explode, 0, 2)); 
-                        
-        $result = substr($class_name, strrpos($class_name, '\\') + 1);
+        $class = implode('',array_slice($explode, 0, 2));                         
+        // $result = substr($class_name, strrpos($class_name, '\\') + 1);
         require_once $class . '.php';        
     }
 }

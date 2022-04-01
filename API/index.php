@@ -1,44 +1,25 @@
-<h1>API</h1>
 <?php
 
-require_once './Config/pathConfig.php';
-$request_uri = $_SERVER['REQUEST_URI'];
+use API\Assets\Autoloader;
+use API\Model\Entity\Users;
 
-var_dump($_GET);
+session_start();
 
-var_dump($request_uri);
+require './Assets/Autoloader.php';
+require './Config/pathConfig.php';
 
-$uri_table = array_slice(explode('/', $request_uri), 2);
+Autoloader::register();
 
-// Home Router
-
-switch ($uri_table[0]){
-    case 'establishments':
-        echo 'establishments...';
-        require './Controller/EstablishmentsController.php';
-        // code
+switch (strtolower($_GET['main'])) {
+    case 'create-account':
+        // if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            require './controller/CreateAccountController.php';
+        // }
+        // else{
+        //     echo 'Request Method Error';
+        // }
         break;
-    case 'suites':
-        echo 'suites...';
-        //code
-        break;
-    case 'admins':
-        //code
-        break;
-    case 'managers':
-        //code
-        break;
-    case 'users' :
-        // code
-        break;
-    case 'bookings':
-        // code
-        break;
-    case 'pictures':
-        // code
-        break;
-    case 'messages':
-        // code
-        break;
+    
     default:
-}
+        echo 'je suis une erreur';    
+    }
