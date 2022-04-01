@@ -1,3 +1,4 @@
+<i id="check" class="fa-regular fa-circle-check check"></i>                
 <div id="create_account bg-primary">  
     <div class="row">
         <div class="col-12 text-center mt-1">
@@ -7,30 +8,32 @@
     </div>
     <div class="row mb-3">
         <div class="col-12 mt-2">
-            <form class="mx-4 col" id="create-account-form">
+            <div id="validation" class="validation">                
+                </div>
+            <form class="mx-4 col form-animation" id="create-account-form">
                 <div class="form-group my-1">
                     <label for="firstname">Votre prénom</label>
-                    <input type="text" class="form-control" id="firstname" aria-describedby="name">                
+                    <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="name">                
                 </div>
                 <div class="form-group my-1">
                     <label for="lastname">Votre nom</label>
-                    <input type="text" class="form-control" id="lastname" aria-describedby="lastname">
+                    <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="lastname">
                     
                 </div>
                 <div class="form-group my-1">
                     <label for="Email">Votre email</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="email" required>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" required>
                 </div>
                 <div class="form-group my-1">
                     <label for="password">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" required>
+                    <input type="password" class="form-control" name="password" id="password" required>
                 </div>
                 <div class="form-group my-1">
                     <label for="confirm-password">Confirmez votre mot de passe</label>
-                    <input type="password" class="form-control" id="confirm-password" required>
+                    <input type="password" class="form-control" name="confirm-password" id="confirm-password" required>
                 </div>
                 <div class="form-check my-1">
-                    <input type="checkbox" class="form-check-input" id="cgu" required>
+                    <input type="checkbox" class="form-check-input" id="cgu" name="cgu" required>
                     <label class="cgu" for="exampleCheck1">J'ai lu et j'accepte les conditions d'utilisation</label>
                 </div>
                 <div>

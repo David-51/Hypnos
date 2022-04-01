@@ -40,13 +40,25 @@ export default function createAccount(){
         event.preventDefault();
 
        const formData = new FormData(form);
+       console.log(formData);
+
        fetch('/api/create-account', {
            method: "POST",
            body: formData
        })
-       .then(function(response){
-           console.log(response.text)
-       })            
+       .then((response) => {
+            if(response.status === 201){
+                const validation = document.getElementById('validation').classList.add('light-off');  
+                const check = document.getElementById('check').classList.add('check-in');
+                setTimeout(()=>{
+                    document.location.href='/'
+                },3000);
+            }
+            else{
+                helper.textContent = "Une erreur s'est produite ... Veuillez réessayer plus tard."
+            }
+       })
+                   
     })
     
     

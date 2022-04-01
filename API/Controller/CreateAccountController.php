@@ -23,9 +23,8 @@ if(isset(
             die();         
         }        
         http_response_code();
-        echo '<h1>ceci est ma réponse</h1>';
-        var_dump($response);        
-     
+        $json = json_encode($response);
+        echo $json;
  }
  else{
      echo 'You can\'t do that thing';

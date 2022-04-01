@@ -8,20 +8,20 @@
         <form class="mx-4 col">
             <div class="form-group my-1">
                 <label for="firstname">Votre prénom</label>
-                <input type="text" class="form-control" id="firstname" aria-describedby="name" required>                
+                <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="name" required>                
             </div>
             <div class="form-group my-1">
                 <label for="lastname">Votre nom</label>
-                <input type="text" class="form-control" id="lastname" aria-describedby="lastname" required>
+                <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="lastname" required>
                 
             </div>
             <div class="form-group my-1">
                 <label for="Email">Votre email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email" required>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="email" required>
             </div>            
             <div>
                 <label for="subject">Sujet</label>
-                <select class="form-select col me-1" aria-label="select-subject" id="subject">
+                <select class="form-select col me-1" aria-label="select-subject" id="subject" name="subject" required>
                     <option selected>Choisissez le sujet</option>
                     <option value="information">Je souhaite en savoir plus sur une suite</option>
                     <option value="service">Je souhaite commander un service supplémentaire</option>

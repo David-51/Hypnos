@@ -173,9 +173,8 @@ class Entity
             $sth->execute();
             
         }
-        catch(\PDOException $e){                                    
-            // return 'une erreur est produite EM ligne '.$e.'<br>'.$this->entity->id;
-            return "<h1>Erreur 178 </h1>".$this->entity->id;
+        catch(\PDOException $e){                                                
+            return 'error'.$e;
         }           
         http_response_code(201);                                     
         return $this->entity;

@@ -29,7 +29,7 @@ class Users extends Entities
             $this->role = $this->setRole($role);
         }
         catch(Exception $e){
-            echo $e;
+            return 'error'.$e;
         }
                 
         return $this;
@@ -107,10 +107,15 @@ class Users extends Entities
             if(!isset($this->$key)){
                 return 'Error, '.$key.' must be defined';
             }
-            else{
-                
-                return $this->setEntityManager()->persistEntity();
-                // return 'persist User';
+            else{       
+                $this->setEntityManager()->persistEntity();                
+                return [
+                    'id' => $this->id,
+                    'firstname' => $this->firstname,
+                    'lastname' => $this->lastname,
+                    'email' => $this->email,
+                    'role' => $this->role
+                ];
             }
         }        
     }
