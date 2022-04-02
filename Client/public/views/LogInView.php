@@ -4,18 +4,18 @@
         <p class="mt-4 mb-1">Connectez-vous</p>
     </div>
     <div class="row mt-2 mx-auto">
-        <form class="col-9 mx-auto">            
+        <form class="col-9 mx-auto" id="connexion">            
             <div class="form-group my-3">
                 <label for="Email">Votre email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email" required>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="email" required>
             </div>
             <div class="form-group my-3">
                 <label for="password">Mot de passe</label>
-                <input type="password" class="form-control" id="password" required>
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <small id="help-message">&ensp;</small>
+            <small class="text-danger" id="helper">&ensp;</small>
             <div class="d-grid">
-                <button type="submit" class="btn btn-info my-1 btn-block">Connexion</button>
+                <button type="submit" class="btn btn-info my-1 btn-block disabled" id="submit-button">Connexion</button>
             </div>
             <div class="text-center my-2">
                 <a class="text-danger" href="/signin">Créer un compte</a>
@@ -23,4 +23,6 @@
         </form>
     </div>    
 </div>
-
+<div id="validation" class="validation"></div>
+<i id="check" class="fa-regular fa-circle-check check"></i>
+<script type="module" src="Client/public/js/connexion.js"></script>

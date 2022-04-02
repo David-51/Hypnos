@@ -35,39 +35,7 @@ class Users extends Entities
         return $this;
     }    
 
-    public function getMessages() {        
-        // $em = new Entity();
-        // $response = $em->getEntitiesByClassName('Messages', 'user_id', $this->id);            
-        // return $response[0] === 'success' ? $response[1] : $response[0];
-    }
 
-    public function setEmail($email) :string {
-        $pattern = '/[\w+-?]+@[a-zA-Z_]{2,}?\.[a-zA-Z]{2,6}/';
-        if(preg_match($pattern, $email)){
-            return $this->email = $email;
-        }
-        else{
-            return throw new Exception("email pattern error");
-        }
-        return $this->email = $email;
-    }
-    public function getEmail() :string {
-        return $this->email;
-    }
-
-    public function setLastname($lastname) :string {
-        $pattern = '/[a-zA-Z-\']{2,}\s?[a-zA-Z-\']*/';
-        if(preg_match($pattern, $lastname)){
-            return $this->lastname = $lastname;
-        }
-        else{
-            return throw new Exception("lastname pattern error");
-        }
-    }
-
-    public function getLastname() :string {
-        return $this->lastname;
-    }
     public function setFirstname($firstname) :string {
         $pattern = '/[a-zA-Z-\']{2,}\s?[a-zA-Z-\']*/';
         if(preg_match($pattern, $firstname)){
@@ -81,6 +49,33 @@ class Users extends Entities
     public function getFirstname() :string {
         return $this->firstname;
     }
+    public function setLastname($lastname) :string {
+        $pattern = '/[a-zA-Z-\']{2,}\s?[a-zA-Z-\']*/';
+        if(preg_match($pattern, $lastname)){
+            return $this->lastname = $lastname;
+        }
+        else{
+            return throw new Exception("lastname pattern error");
+        }
+    }
+
+    public function getLastname() :string {
+        return $this->lastname;
+    }
+    public function setEmail($email) :string {
+        $pattern = '/[\w+-?]+@[a-zA-Z_]{2,}?\.[a-zA-Z]{2,6}/';
+        if(preg_match($pattern, $email)){
+            return $this->email = $email;
+        }
+        else{
+            return throw new Exception("email pattern error");
+        }        
+    }
+
+    public function getEmail() :string {
+        return $this->email;
+    }
+
     public function setPassword($password) :string {
         $pattern = '/.{8,}/';
         if(preg_match($pattern, $password)){
@@ -105,7 +100,7 @@ class Users extends Entities
     public function persistUser(){                
         foreach(get_class_vars(__CLASS__) as $key => $value){
             if(!isset($this->$key)){
-                return 'Error, '.$key.' must be defined';
+                return throw new \Exception('Error, '.$key.' must be defined');
             }
             else{       
                 $this->setEntityManager()->persistEntity();                
@@ -118,6 +113,9 @@ class Users extends Entities
                 ];
             }
         }        
+    }
+    public function GetUserByEmail(){
+        return $this->setEntityManager()->getEntity('email');
     }
     
 }

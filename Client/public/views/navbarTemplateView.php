@@ -16,7 +16,7 @@
             <a href="/establishments">Nos Hôtels</a>
         </li>
         <li class="sidebar-item">
-            <a href="/bookings">Vos réservation</a>
+            <a href="/bookings">Vos réservations</a>
         </li>
     </ul>
     <ul class="sidebar">

@@ -89,10 +89,12 @@ CREATE Table IF NOT EXISTS managers
 CREATE Table IF NOT EXISTS messages
 (
     id VARCHAR(36) NOT NULL UNIQUE PRIMARY KEY COLLATE utf8mb4_0900_as_cs DEFAULT (UUID()),
-    user_id VARCHAR(255) NOT NULL COLLATE utf8mb4_0900_as_cs,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    subject VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,
-    done INT NOT NULL DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    done INT NOT NULL DEFAULT 0    
 ) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 
 

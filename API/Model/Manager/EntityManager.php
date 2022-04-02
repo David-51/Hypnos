@@ -21,13 +21,19 @@ class Entity
     /**
      * @return objects matching with entity from database
      * if the Id of object is set, return the single Object from database
+     * @param string $search, you can insert the name of the column to get the Match Entity
      */
-    public function getEntity(){           
+    public function getEntity(string $search = null){           
         $entity_name = $this->entity->getEntityName();
-                
+                        
         if(isset($this->entity->id)){
             $entity_id = $this->entity->id;
             $query = "SELECT * FROM $entity_name WHERE id=\"$entity_id\"";
+        }
+        elseif(isset($search)){
+            $where = $search;
+            $entity_id = $this->entity->$where;
+            $query = "SELECT * FROM $entity_name WHERE $where=\"$entity_id\"";
         }
         else{
             $query = "SELECT * FROM $entity_name";            
@@ -37,7 +43,7 @@ class Entity
             $sth->setFetchMode(\PDO::FETCH_CLASS, get_class($this->entity));        
             $sth->execute();
              
-            $response = isset($this->entity->id) ? $sth->fetch() : $sth->fetchAll();
+            $response = isset($this->entity->id) || isset($search) ? $sth->fetch() : $sth->fetchAll();
             return $response;
         }
         catch(\PDOException $e){
