@@ -18,6 +18,7 @@ class Database
                 self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             }
             catch(\PDOException $e){
+                http_response_code(404);
                 echo "Error de connexion <br>". $e;
             }
             return self::$pdo;

@@ -31,9 +31,6 @@ class Calendars extends Entities
         $this->suite = $suite;
         $this->bookings = $booking;
 
-        $this->user_id = $user->getPrimaryKeyValue();
-        $this->suite_id = $suite->getPrimaryKeyValue();
-        $this->booking_id = $booking->getPrimaryKeyValue();
         
         $this->date = $date;        
 

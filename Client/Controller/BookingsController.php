@@ -15,7 +15,7 @@ $view->setNavbar('navbarTemplate');
 
 // Choose Establishments
 $establishement = new Establishments;
-$establishement_list = $establishement->getAll();
+// $establishement_list = $establishement->getAll();
 
 
 $view->setBody('Bookings', []);

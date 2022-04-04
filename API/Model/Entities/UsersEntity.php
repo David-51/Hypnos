@@ -20,8 +20,7 @@ class Users extends Entities
     
     public function setEntity(string $email, string $firstname, string $lastname, string $password, string $role = 'use'){
         try{
-            $this->id = $this->setUniqId();
-            // $this->id = 'àéù$123456789àéù$';
+            $this->id = $this->setUniqId();            
             $this->email = $this->setEmail($email);
             $this->firstname = $this->setFirstname($firstname);
             $this->lastname = $this->setLastname($lastname);
@@ -63,7 +62,7 @@ class Users extends Entities
         return $this->lastname;
     }
     public function setEmail($email) :string {
-        $pattern = '/[\w+-?]+@[a-zA-Z_]{2,}?\.[a-zA-Z]{2,6}/';
+        $pattern = '/[\w+0-9-?]+@[a-zA-Z_0-9]{2,}?\.[a-zA-Z]{2,6}/';
         if(preg_match($pattern, $email)){
             return $this->email = $email;
         }

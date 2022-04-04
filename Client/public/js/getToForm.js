@@ -12,13 +12,16 @@
         if(response.status !==200){
             return alert('Something goes wrong...');
         }
-        else{
-            return response.json()
+        else{            
+            return response.json();
         }
     })
-    .then((datas) => {             
-        array.forEach(element => {      
-            form[element].value = datas[element];
+    .then((datas) => {        
+        array.forEach(element => {    
+            
+            if(element !== 'undefined'){
+                form[element].value = datas[element];
+            } 
         });                
         callback;
     })

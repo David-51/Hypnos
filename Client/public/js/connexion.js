@@ -32,8 +32,8 @@ export default function connexion(){
                 case 200:
                     const validation = document.getElementById('validation').classList.add('light-off');  
                     const check = document.getElementById('check').classList.add('check-in');
-                    setTimeout(()=>{
-                       
+                    console.log(response.status);
+                    setTimeout(()=>{                       
                     redirectFromParameters('./')                                                
                         
                     },3000);

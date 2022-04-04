@@ -31,8 +31,17 @@
             || $_SESSION['role'] === 'man')){?>
         
     <ul class="sidebar">
-        <li class="sidebar-item">
-            <a href="/admin">Administration</a>           
+        <li class="nav-item sidebar-item sidebar-subtitle">
+            <p class="sidebar-item">Administration</p>                
+        </li>
+        <li class="nav-item sidebar-item">
+            <a href="/admin/establishments">Etablissements</a>
+        </li>
+        <li class="nav-item sidebar-item">
+            <a href="/admin/managers">Gérants</a>
+        </li>
+        <li class="nav-item sidebar-item">
+            <a href="/admin/messages">Messages</a>
         </li>
     </ul>
         <?php } ?>

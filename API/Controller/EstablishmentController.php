@@ -8,8 +8,9 @@ if(!isset($_GET['id'])){
 
 $id = htmlspecialchars($_GET['id']);
 
-$establishement = new Establishments;
-$establishement->setId($id);
-$result = $establishement->setEntityManager()->getEntity();
+$establishment = new Establishments;
+$establishment->setId($id);
+$result = $establishment->setEntityManager()->getEntity();
+
 http_response_code(200);
 echo json_encode($result);

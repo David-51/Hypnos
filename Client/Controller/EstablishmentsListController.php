@@ -20,8 +20,8 @@ switch ($_GET['level2']) {
 
             $list = $establishment->getSuites();
             
-            $em = new Entity($establishment);            
-            $entity = $em->getEntity();           
+            $entity = $establishment->setEntityManager()->getEntity();
+            
             
             $view->setBody('SuitesByEstablishment', [$entity->name, $entity->city, $list]);                        
         }

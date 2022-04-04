@@ -41,25 +41,5 @@ class Administrators extends Entities
     public function getEmail() :string {        
         return $this->user->email;
     }
-    public function persistAdmin(){
-        
-       // set Role admin to user
-       $this->user->setRole('adm');
-        
-       // persist admin Entity
-       $this->setEntityManager()->persistEntity();
-       
-       // update User's role
-       $this->user->setEntityManager()->updateEntity($this->user->id, ['role']);
-    }
-    public function updateAdmin(){
-        
-        // set Role admin to user
-        $this->user->setRole('adm');
-        
-        // persist user Entity
-        $this->user->setEntityManager()->updateEntity();                
-        
-        return $this->user;
-    }
+    
 }

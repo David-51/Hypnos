@@ -1,11 +1,13 @@
-import { VerifyName, VerifyTextarea } from "./fieldsVerification.js";
+import { VerifyMail, VerifyName, VerifyPassword, VerifySelect } from "./fieldsVerification.js";
 import getToForm from "./getToForm.js";
 import redirectFromParameters from "./redirectFromParameter.js";
 
-export default function adminEstablishment(){
+export default function adminManager(){
     
-    const addEstablishment = document.getElementById('add-establishment');
-    const editEstablishment = document.getElementById('establishments-list')
+    const addManager = document.getElementById('add-managers');
+    const editManager = document.getElementById('managers-list');
+    const passwordField = document.getElementById('password-field');
+    const confirmPasswordField = document.getElementById('confirm-password-field');
     
     const modal = new bootstrap.Modal(document.getElementById('modal'));
     const form = document.getElementById('form-crud')
@@ -36,11 +38,12 @@ export default function adminEstablishment(){
     }
 
     // Button Add 
-    addEstablishment.addEventListener('click', (event) => {
+    addManager.addEventListener('click', (event) => {
         event.preventDefault();
-
-        //enabme form fields
-        disableFormFields(['name', 'city', 'adress', 'description'], false);
+        passwordField.style.display = 'block'; 
+        confirmPasswordField.style.display = 'block'; 
+        //enable form fields
+        disableFormFields(['firstname', 'lastname', 'establishment', 'email', 'password', 'confirm-password'], false);
 
         modalSubmitButton.classList.remove('btn-danger');
         modalSubmitButton.classList.add('btn-info');
@@ -50,15 +53,19 @@ export default function adminEstablishment(){
         form.reset();
         targetId = "";
         targetAction = "add";
-        modalTitle.textContent = "Ajouter un établissement";
+        modalTitle.textContent = "Ajouter un gérant";
         modalSubmitButton.textContent = "Ajouter";
         modal.show();
     })
 
     // detect id and action
-    editEstablishment.addEventListener('click', (event) => {
-        disableFormFields(['name', 'city', 'adress', 'description'], false);
+    editManager.addEventListener('click', (event) => {        
         event.preventDefault();
+        disableFormFields(['firstname', 'lastname', 'establishment', 'email', 'password', 'confirm-password'], false);
+        
+        passwordField.style.display = 'none'; 
+        confirmPasswordField.style.display = 'none'; 
+
         modalSubmitButton.classList.remove('btn-danger');
         modalSubmitButton.classList.add('btn-info');
 
@@ -80,22 +87,23 @@ export default function adminEstablishment(){
                 targetId = eventParentId[2]                        
                 form.id.value = targetId;
             }
-            const request = "/api/establishment?id="+targetId;            
+            const request = "/api/manager?id="+targetId;  
+            
             if(targetAction === 'edit'){
                 modalSubmitButton.textContent = 'Modifier';
-                modalTitle.textContent = "Modifier un établissement"                                
+                modalTitle.textContent = "Modifier un gérant"                                
             }
             else{
                 modalSubmitButton.textContent = 'Supprimer';
                 modalSubmitButton.classList.remove('btn-info');
                 modalSubmitButton.classList.add('btn-danger');
 
-                disableFormFields(['name', 'city', 'adress', 'description'], true);
+                disableFormFields(['firstname', 'lastname', 'establishment', 'email', 'password', 'confirm-password'], true);
                 modalSubmitButton.classList.remove('disabled');                                
 
                 modalTitle.textContent = "Confirmer la suppression"
             }
-            getToForm(request, form, ['name', 'city', 'adress', 'description'], modal.show()); 
+            getToForm(request, form, ['firstname', 'lastname', 'establishment', 'email'], modal.show());             
         }
 
         // Submit Gestion
@@ -105,23 +113,35 @@ export default function adminEstablishment(){
         const formData = new FormData(form);        
         
         if(targetAction === 'edit'){
-            const request = "/api/establishment/update";
+            const request = "/api/manager/update";
             
             fetch(request, {
                 method: "POST",
                 body: formData
             })
-            .then(response => response.json())
-            .then((datas) => {                
-                document.getElementById(`name-${targetId}`).textContent = datas.name;
-                document.getElementById(`city-${targetId}`).textContent = datas.city;
-                document.getElementById(`adress-${targetId}`).textContent = datas.adress;
-                document.getElementById(`description-${targetId}`).textContent = datas.description;
+            .then((response) => {
+                if(response.status === 201){
+                    response.json()
+                    .then((datas) => {
+                        console.log(targetId);
+                        console.log(datas);
+                        document.getElementById(`firstname-${targetId}`).textContent = datas.firstname;
+                        document.getElementById(`lastname-${targetId}`).textContent = datas.lastname.toUpperCase();
+                        document.getElementById(`establishment-${targetId}`).textContent = datas.name;
+                        document.getElementById(`email-${targetId}`).textContent = datas.email;
+                    })
+                }
             })
+            // .then((datas) => {                
+            //     document.getElementById(`firstname-${targetId}`).textContent = datas.firstname;
+            //     document.getElementById(`lastname-${targetId}`).textContent = datas.lastname;
+            //     document.getElementById(`establishment-${targetId}`).textContent = datas.establishment;
+            //     document.getElementById(`email-${targetId}`).textContent = datas.email;
+            // })
             .catch((error) => console.log(error))
             
         }else if(targetAction === "delete"){            
-            const request = "/api/establishment/delete";
+            const request = "/api/manager/delete";
             fetch(request, {
                 method: "POST",
                 body: formData
@@ -134,7 +154,7 @@ export default function adminEstablishment(){
             })           
             .catch((error) => console.log(error))
         }else if(targetAction === "add"){
-            const request = "/api/establishment/add";
+            const request = "/api/manager/add";
             fetch(request, {
                 method: "POST",
                 body: formData
@@ -144,26 +164,37 @@ export default function adminEstablishment(){
                     const validation = document.getElementById('validation').classList.add('light-off');  
                     const check = document.getElementById('check').classList.add('check-in');                    
                     setTimeout(()=>{                       
-                    redirectFromParameters('./admin/establishments')                                                                        
+                    redirectFromParameters('./admin/managers')                                                                        
                     },2000);
                 }
             })
             .catch((error) => console.log('error'+ error.status))
             
-        }                        
+        }                              
     }) 
 
     // valid fields
     form.addEventListener('input', () => {         
         // submit button is disabled by default      
-        
-        if(VerifyName('name') 
-            && VerifyName('city') 
-            && VerifyTextarea('adress')            
-            && VerifyTextarea('description')){
-                modalSubmitButton.classList.remove('disabled');            
-        }        
+        if(targetId === 'add'){
+            if(VerifyName('firstname') 
+                && VerifyName('lastname') 
+                && VerifyMail('email') 
+                && VerifySelect('establishment') 
+                && VerifyPassword('password')
+                && VerifyPassword('confirm-password')){
+                    modalSubmitButton.classList.remove('disabled');            
+            }
+        }else{
+            if(VerifyName('firstname') 
+                && VerifyName('lastname') 
+                && VerifyMail('email') 
+                && VerifySelect('establishment')){
+                    modalSubmitButton.classList.remove('disabled');            
+            }
+
+        }    
     }) 
 }
 
-adminEstablishment();
+adminManager();

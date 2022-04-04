@@ -24,6 +24,6 @@ if(isset($_POST['name'], $_POST['city'], $_POST['description'], $_POST['adress']
     echo json_encode($establishement->setEntityManager()->getEntity());
 
 }else {
-    // http_response_code(403);
+    http_response_code(403);
     echo json_encode('Invalid parameters numbers ...');
 }

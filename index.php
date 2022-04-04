@@ -54,7 +54,9 @@ switch (strtolower($_GET['main'])) {
             case 'establishments':
                 require 'AdminEstablishmentsController.php';
                 break;
-                
+            case 'managers':
+                require 'AdminManagersController.php';
+                break; 
             default :
             require 'AdminEstablishmentsController.php';
         

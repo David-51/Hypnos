@@ -4,8 +4,9 @@ $path = [
     // need add ../ because the entry API/index is one level higher
     '../API/model/Entities',
     '../API/model/Manager',
-    './API/Model',
-    './API/Controller'
+    '../API/Model',
+    '../API/Controller',
+    '../API/Assets'
 ];
 
 function addpath($path){    
@@ -16,5 +17,4 @@ function addpath($path){
     }
     
 }
-
 addpath($path);

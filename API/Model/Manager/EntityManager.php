@@ -52,8 +52,25 @@ class Entity
     }
     
     /**
-     * ParentEn
+     * @param string $query, the SQL query to execute
+     * @param string $entity_class, the name of the entity
      */
+    public function getWithQuery(string $query){
+        // $fetch_name = 'API\\Model\\Entity\\'.$entity_class;
+        try{
+            $sth = $this->db->prepare($query);
+            $sth->setFetchMode(\PDO::FETCH_CLASS, get_class($this->entity));
+            $sth->execute();        
+            $response = $sth->fetchAll();
+            http_response_code(200);
+            return $response;
+        }
+        catch(\PDOException $e){
+            http_response_code(403);
+            return 'error'.$e;
+        }
+    }
+
     public function getJoinEntity (Entities $child_entity, Entities $second_child_entity = null)       
     {            
         if(!isset($this->entity)){
@@ -151,7 +168,7 @@ class Entity
         }
         catch(\PDOException $e){
             error_log('update error :'.$e, 0, '/error_log.log');
-            return 'Update error';
+            return false;
         }
     }
 
@@ -179,20 +196,21 @@ class Entity
                 $sth->bindValue(':'.$key, $value);
             }            
             $sth->execute();
+            http_response_code(201);                                     
+            return $this->entity;
             
         }
-        catch(\PDOException $e){                                                
-            return 'error'.$e;
+        catch(\PDOException $e){ 
+            http_response_code(400);                                                      
+            return false;
         }           
-        http_response_code(201);                                     
-        return $this->entity;
     }
     /**
      * Delete the current Entity 
      * @param string $entity the entity name to delete
      * @param string $where the condition
      * @param string $condition the "where is equal to"
-     * @return array [Success, deleted] if ok whereas [error + message]
+     * @return array deleted if ok whereas bool false
      */
     public function deleteEntity(string $entity, string $where, string $condition){              
         
@@ -200,11 +218,11 @@ class Entity
         try{
             $sth = $this->db->prepare($query);
             $sth->execute();
+            return 'deleted';
         }
         catch(\PDOException $e){
-            return ['error', $e];
+            return false;
         }        
-        return 'deleted';
     }
 
     /**
@@ -230,12 +248,11 @@ class Entity
             $sth->execute();
     
             $sth->setFetchMode(\PDO::FETCH_CLASS, get_class($child));
-            $response = $sth->fetchAll();  
-
+            $response = $sth->fetchAll();              
             return $response;
         }                      
         catch(\PDOException $e){
-            return 'error';
+            return false;
         }
     }
 }

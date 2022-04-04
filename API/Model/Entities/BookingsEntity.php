@@ -34,9 +34,6 @@ class Bookings extends Entities
         
         $this->user = $user;
         $this->suite = $suite;
-
-        $this->user_id = $user->getPrimaryKeyValue();
-        $this->suite_id = $suite->getPrimaryKeyValue();
         
         $this->date_checkin = $date_checkin;
         $this->date_checkout = $date_checkout;
