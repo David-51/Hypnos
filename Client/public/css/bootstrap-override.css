@@ -30,7 +30,7 @@
 
 /* HTML Elements */
 a {
-    color: #9AC2C5;
+    color: var(--bs-info);
     text-decoration: none;    
 }
 a:hover {

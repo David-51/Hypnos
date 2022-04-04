@@ -1,8 +1,6 @@
 <?php
 namespace API\Model\Entity;
 
-use API\Model\Manager\Entity;
-
 class Establishments extends Entities
 {   
     // primary key

@@ -64,6 +64,6 @@
             <a href="<?= $props->link_to_booking ?>">Lien Booking</a>
             
         </p>
-        <a class="btn btn-info col-auto mx-auto" type="button" href="http://">Réserver maintenant</a>
+        <a class="btn btn-info col-auto mx-auto" type="button" href="./bookings?suites=<?= $props->id ?>">Réserver maintenant</a>
     </div>
 </div>

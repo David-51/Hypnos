@@ -1,4 +1,5 @@
 import { VerifyMail, VerifyName, VerifyPassword } from "./fieldsVerification.js";
+import redirectFromParameters from "./redirectFromParameter.js";
 
 export default function createAccount(){
     const password = document.getElementById('password');
@@ -51,7 +52,7 @@ export default function createAccount(){
                 const validation = document.getElementById('validation').classList.add('light-off');  
                 const check = document.getElementById('check').classList.add('check-in');
                 setTimeout(()=>{
-                    document.location.href='/'
+                    redirectFromParameters('./');
                 },3000);
             }
             else{

@@ -34,6 +34,24 @@ switch (strtolower($_GET['main'])) {
             echo json_encode('Request Method Error');
         }
         break;
+    case 'establishment':
+        switch ($_GET['level2']){
+            case 'update':
+                if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
+                    require './controller/EstablishmentUpdateController.php';
+                }
+                break;
+            case 'delete':
+                if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
+                    require './controller/EstablishmentDeleteController.php';
+                }
+                break;
+                    
+            default:
+                require './controller/EstablishmentController.php';        
+                break;
+        }
+        break;
     default:
         echo json_encode('Mauvaise route...');
     }

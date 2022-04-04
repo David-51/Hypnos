@@ -15,13 +15,35 @@
         <li class="sidebar-item">
             <a href="/establishments">Nos Hôtels</a>
         </li>
-        <li class="sidebar-item">
-            <a href="/bookings">Vos réservations</a>
-        </li>
-    </ul>
+        <?php if(isset($_SESSION['role'])
+                && ($_SESSION['role'] === 'use' 
+                || $_SESSION['role'] === 'adm'
+                || $_SESSION['role'] === 'man')){?>
+
+            <li class="sidebar-item">
+                <a href="/bookings">Vos réservations</a>
+            </li>
+            <?php } ?>
+        </ul>
+    
+    <?php if(isset($_SESSION['role'])
+            && ($_SESSION['role'] === 'adm'
+            || $_SESSION['role'] === 'man')){?>
+        
     <ul class="sidebar">
         <li class="sidebar-item">
+            <a href="/admin">Administration</a>           
+        </li>
+    </ul>
+        <?php } ?>
+    <ul class="sidebar">
+        <li class="sidebar-item">
+            <?php
+            if(isset($_SESSION['firstname'])){?>
+                <a href="/logout">Se déconnecter</a>
+        <?php }else{?>
             <a href="/login">Se connecter</a>
+        <?php } ?>
         </li>
         <li class="sidebar-item">
             <a href="/send-messages">Envoyer un message</a>

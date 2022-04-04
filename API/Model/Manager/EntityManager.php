@@ -132,24 +132,26 @@ class Entity
      * @param array $rows = [key => value, ....];
      */
     public function updateEntity(string $where, string $cond, array $rows) {
-        
-        $entity = $this->entity_name;
+                
+        $entity_name = $this->entity->getEntityName();
 
         $rows_keys = array_keys($rows);
         $set_rows_keys = implode(', ', array_map(function($value){
             return "$value=:$value";
         },$rows_keys));        
 
-        $query = "UPDATE $entity SET $set_rows_keys WHERE $where=\"$cond\"";
+        $query = "UPDATE $entity_name SET $set_rows_keys WHERE $where=\"$cond\"";
         try{
             $sth = $this->db->prepare($query);
             foreach($rows as $key => $value){
                 $sth->bindValue(":$key", $value);
             }
             $sth->execute();
+            http_response_code(201);
         }
         catch(\PDOException $e){
-            return ['error', 'message : '.$e];
+            error_log('update error :'.$e, 0, '/error_log.log');
+            return 'Update error';
         }
     }
 
@@ -202,7 +204,7 @@ class Entity
         catch(\PDOException $e){
             return ['error', $e];
         }        
-        return ['success' ,'deleted'];
+        return 'deleted';
     }
 
     /**

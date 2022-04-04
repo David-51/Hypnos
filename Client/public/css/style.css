@@ -85,6 +85,7 @@ img {
     margin: 6px;
 }
 #hamburgerMenu{
+    width:40px;
     cursor: pointer;
 }
 
@@ -175,10 +176,36 @@ img {
     font-size:200px;
 }
 
+.header-nav a {
+    color: var(--bs-light);
+    margin-left: 1rem;
+    font-weight: bold;    
+}
 
+.header-nav a:hover {
+    color : var(--bs-info);
+}
 
-/* .check-in{
-    font-size:200px;
-    
-    z-index:11; 
-} */
+.hello-user {
+    position: absolute;
+    right : 60px;
+}
+
+.card-city {
+    font-size: 1rem;
+    font-style: italic;    
+}
+
+.icone {    
+    font-size : 1.2rem;
+}
+
+.custom-card {
+    position: relative;
+}
+
+.custom-card-container {
+    position: absolute;
+    right : 10px;
+    top : 10px;
+}

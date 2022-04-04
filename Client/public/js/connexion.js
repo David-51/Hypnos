@@ -1,6 +1,9 @@
 import { VerifyMail, VerifyPassword } from "./fieldsVerification.js";
+import redirectFromParameters from "./redirectFromParameter.js";
 
 export default function connexion(){    
+    
+
     const helper = document.getElementById('helper');
     const form = document.getElementById('connexion');
     const submitButton = document.getElementById('submit-button');
@@ -30,7 +33,9 @@ export default function connexion(){
                     const validation = document.getElementById('validation').classList.add('light-off');  
                     const check = document.getElementById('check').classList.add('check-in');
                     setTimeout(()=>{
-                        document.location.href='/'
+                       
+                    redirectFromParameters('./')                                                
+                        
                     },3000);
                     break;
                 case 403:

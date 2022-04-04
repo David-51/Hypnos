@@ -1,14 +1,14 @@
 <?php
 session_start();
 
+use API\Model\Entity\Administrators;
 use Assets\Autoloader;
-use Client\Controller\Template;
 
 require './Client/Assets/Autoloader.php';
 require './Client/Config/pathConfig.php';
 
 Autoloader::register();
-// var_dump($_GET);
+
 
 switch (strtolower($_GET['main'])) {
     case 'test':
@@ -32,12 +32,36 @@ switch (strtolower($_GET['main'])) {
     case 'login':
         require 'LogInController.php';
         break;
+    case 'logout':
+        session_destroy();
+        header('Location: /login');        
+        break;
     case 'home':
         require 'HomeController.php';
         break;
     case 'send-messages':
         require 'SendMessagesController.php';
         break;
+    case 'bookings':
+        require 'BookingsController.php';
+        break;
+    // Administrators
+    case 'admin':
+        if($_SESSION['role'] !== 'adm'){
+            header('Location: /');            
+        }
+        switch ($_GET['level2']){
+            case 'establishments':
+                require 'AdminEstablishmentsController.php';
+                break;
+                
+            default :
+            require 'AdminEstablishmentsController.php';
+        
+
+        }
+    break;
+        
     default:
         require 'HomeController.php';    
     }

@@ -105,13 +105,13 @@ CREATE Table IF NOT EXISTS bookings
     id VARCHAR(36) NOT NULL UNIQUE PRIMARY KEY COLLATE utf8mb4_0900_as_cs DEFAULT (UUID()),
     booking_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     user_id VARCHAR(255) NOT NULL COLLATE utf8mb4_0900_as_cs,
-    suite_id VARCHAR(36) NOT NULL COLLATE utf8mb4_0900_as_cs,
+    suite_id VARCHAR(36) COLLATE utf8mb4_0900_as_cs,
     date_checkin DATE NOT NULL,
     date_checkout DATE NOT NULL,
     number_of_nights INT GENERATED ALWAYS AS ( DATEDIFF(date_checkout, date_checkin)) STORED,    
     price INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
-    FOREIGN KEY (suite_id) REFERENCES suites(id) ON UPDATE CASCADE    
+    FOREIGN KEY (suite_id) REFERENCES suites(id) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 
 -- Create table 'calendar
