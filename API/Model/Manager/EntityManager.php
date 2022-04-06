@@ -96,9 +96,10 @@ class Entity
             }
             $sth->execute();
             http_response_code(201);
+            return true;
         }
         catch(\PDOException $e){
-            error_log('update error :'.$e, 0, '/error_log.log');
+            error_log('update error :'.$e, 0, '/Client/error_log.log');
             return false;
         }
     }
@@ -149,7 +150,7 @@ class Entity
         try{
             $sth = $this->db->prepare($query);
             $sth->execute();
-            return 'deleted';
+            return true;
         }
         catch(\PDOException $e){
             return false;

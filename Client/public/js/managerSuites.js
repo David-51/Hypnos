@@ -1,7 +1,8 @@
 import disableFormFields from "./disableFormFields.js";
 import { VerifyLink, VerifyName, VerifyNumber, VerifyTextarea } from "./fieldsVerification.js";
-import getToForm from "./getToForm.js";
+// import getToForm from "./getToForm.js";
 import redirectFromParameters from "./redirectFromParameter.js";
+import removeFadeOut from "./removeFadeOut.js";
 
 export default function managerSuites(){
     
@@ -9,7 +10,7 @@ export default function managerSuites(){
     const editManager = document.getElementById('suites-list');        
     
     const modal = new bootstrap.Modal(document.getElementById('modal'));
-    const form = document.getElementById('form-crud')
+    const form = document.getElementById('form-crud');
     const helper = document.getElementById('helper');
     
     const modalTitle = document.getElementById('modal-title');
@@ -22,7 +23,7 @@ export default function managerSuites(){
         event.preventDefault();
         
         //enable form fields
-        disableFormFields(form, ['title', 'description', 'link', 'price'], false);
+        disableFormFields(form, ['title', 'description', 'link_to_booking', 'price'], false);
 
         modalSubmitButton.classList.remove('btn-danger');
         modalSubmitButton.classList.add('btn-info');
@@ -40,10 +41,7 @@ export default function managerSuites(){
     // detect id and action
     editManager.addEventListener('click', (event) => {        
         event.preventDefault();
-        disableFormFields(form, ['title', 'description', 'link', 'price'], false);
-        
-        passwordField.style.display = 'none'; 
-        confirmPasswordField.style.display = 'none'; 
+        disableFormFields(form, ['title', 'description', 'link_to_booking', 'price'], false);                
 
         modalSubmitButton.classList.remove('btn-danger');
         modalSubmitButton.classList.add('btn-info');
@@ -55,7 +53,7 @@ export default function managerSuites(){
         
 
         if(eventId || eventParentId){
-                if(eventId !== null){
+            if(eventId !== null){
                 targetAction = eventId[1];
                 targetId = eventId[2]
                 form.id.value = targetId;
@@ -63,60 +61,83 @@ export default function managerSuites(){
             }
             if(eventParentId !== null){
                 targetAction = eventParentId[1];
-                targetId = eventParentId[2]                        
+                targetId = eventParentId[2]                                 
                 form.id.value = targetId;
             }
-            const request = "/api/manager?id="+targetId;  
+            const request = "/api/suites?id="+targetId;  
             
             if(targetAction === 'edit'){
                 modalSubmitButton.textContent = 'Modifier';
-                modalTitle.textContent = "Modifier un gérant"                                
+                modalTitle.textContent = "Modifier une suite"                                
             }
             else{
                 modalSubmitButton.textContent = 'Supprimer';
                 modalSubmitButton.classList.remove('btn-info');
                 modalSubmitButton.classList.add('btn-danger');
 
-                disableFormFields(form, ['title', 'description', 'link', 'price'], true);
+                disableFormFields(form, ['title', 'description', 'link_to_booking', 'price'], true);
                 modalSubmitButton.classList.remove('disabled');                                
 
                 modalTitle.textContent = "Confirmer la suppression"
             }
-            getToForm(request, form, ['title', 'description', 'link', 'price'], modal.show());             
+            fetch(request)
+                .then((response) => {
+                    if(response.status !==200){
+                        return console.log('Something goes wrong...');
+                    }
+                    else{            
+                        return response.json();
+                    }
+                })
+                .then((datas) => {        
+                    form.title.value = datas.title;
+                    form.description.value = datas.description;
+                    form.price.value = datas.price/100;
+                    form.link_to_booking.value = datas.link_to_booking;
+                    modal.show();
+                })
+
+
+            // getToForm(request, form, ['title', 'description', 'link_to_booking', 'price'], modal.show());            
         }
 
         // Submit Gestion
     })
     modalSubmitButton.addEventListener('click', (event) => {
         event.preventDefault();
-        const formData = new FormData(form);        
-        
+        const formData = new FormData(form);  
+        // formData.set('price', formData.get('price')/100);
+
         if(targetAction === 'edit'){
-            const request = "/api/manager/update";
+            const request = "/api/suites/update";
             
             fetch(request, {
                 method: "POST",
                 body: formData
             })
             .then((response) => {
-                if(response.status === 201){
+                if(response.status === 201){    
+                    console.log(response.status)                                    
                     response.json()
-                    .then((datas) => {
-                        console.log(targetId);
-                        console.log(datas);
+                    .then((datas) => {                        
                         document.getElementById(`title-${targetId}`).textContent = datas.title;
                         document.getElementById(`description-${targetId}`).textContent = datas.description;
-                        document.getElementById(`link-${targetId}`).textContent = datas.link;
-                        document.getElementById(`email-${targetId}`).textContent = datas.email;
+                        document.getElementById(`link_to_booking-${targetId}`).href = datas.link_to_booking;                        
+                        document.getElementById(`price-${targetId}`).textContent = datas.price/100;
+                        if(datas.pictures[0] && datas.pictures[0].picture_link){
+                            document.getElementById(`picture-${targetId}`).src = datas.pictures[0].picture_link;
+                        }                
                     })
                 }
-            })
-            // .then((datas) => {                
-            //     document.getElementById(`firstname-${targetId}`).textContent = datas.firstname;
-            //     document.getElementById(`lastname-${targetId}`).textContent = datas.lastname;
-            //     document.getElementById(`establishment-${targetId}`).textContent = datas.establishment;
-            //     document.getElementById(`email-${targetId}`).textContent = datas.email;
-            // })
+                else{
+                    console.log('something goes wrong...');
+                    // return response.text()
+                    // .then((text) => {
+                    //     console.log(text);
+                    //     document.getElementById('debug').textContent = text;
+                    }                    
+                }
+            )            
             .catch((error) => console.log(error))
             
         }else if(targetAction === "delete"){            
@@ -124,12 +145,17 @@ export default function managerSuites(){
             fetch(request, {
                 method: "POST",
                 body: formData
-            })
-            .then(response => response.json())
+            })            
             .then((response) => {
-                const cardId = 'card-'+targetId;
-
-                document.getElementById(cardId).remove();
+                if(response.status === 200){
+                    const cardId = 'card-'+targetId;
+                    // console.log(cardId);
+                    removeFadeOut(document.getElementById(cardId), 1500);
+                }
+                else{
+                    console.log(response.status);
+                    console.log(response.text());
+                }                
             })           
             .catch((error) => console.log(error))
         }else if(targetAction === "add"){
@@ -157,7 +183,7 @@ export default function managerSuites(){
         // submit button is disabled by default      
         if(VerifyName('title') 
             && VerifyTextarea('description') 
-            && VerifyLink('link') 
+            && VerifyLink('link_to_booking') 
             && VerifyNumber('price')){
                 modalSubmitButton.classList.remove('disabled');            
         }        

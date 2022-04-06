@@ -101,12 +101,24 @@ switch (strtolower($_GET['main'])) {
         switch ($_GET['level2']){
             case 'add':
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
-                    require './controller/SuiteAddController.php';
+                    require './controller/SuitesAddController.php';
                 }
                 break;
+            case 'delete':
+                if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
+                    require './controller/SuitesDeleteController.php';
+                }
+                break;
+            case 'update':
+                if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
+                    require './controller/SuitesUpdateController.php';
+                }
+                break;
+
+
             default:
-            http_response_code(403);
-            echo json_encode('invalid parameters');
+            require './controller/SuitesController.php';
+            
         }
         break;
     default:

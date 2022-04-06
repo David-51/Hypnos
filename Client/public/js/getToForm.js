@@ -10,7 +10,7 @@
     fetch(request)
     .then((response) => {
         if(response.status !==200){
-            return alert('Something goes wrong...');
+            return console.log('Something goes wrong...');
         }
         else{            
             return response.json();

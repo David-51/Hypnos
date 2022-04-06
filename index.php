@@ -71,13 +71,14 @@ switch (strtolower($_GET['main'])) {
         if($_SESSION['role'] !== 'man'){
             header('Location: /');
         }
-        switch ($_GET['level2']){
-            case 'test':
-                break;
-
-            default:
-                require 'ManagerSuitesController.php';                
-
+        else{
+            switch ($_GET['level2']){
+                case 'test':
+                    break;
+    
+                default:
+                    require 'ManagerSuitesController.php';
+            }
         }   
         break;     
         

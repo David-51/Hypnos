@@ -23,22 +23,22 @@
                 </div>
                 <div class="row">
                     <div class="row col-10">
-                        <h2 class="curve ms-1 mb-2 col-auto pe-0" id="name-<?= $element->id ?>">
+                        <h2 class="curve ms-1 mb-2 col-auto pe-0" id="title-<?= $element->id ?>">
                             <?= $element->title ?>
                         </h2>                                                                               
                     </div>         
                 </div>
                 <div class="row">
                     <div>
-                        <img class="miniature ms-1 me-2 mb-0 p-0 rounded" src="<?= @$element->pictures[0] ?>" alt="chambre <?= $element->title ?>">             
+                        <img class="miniature ms-1 me-2 mb-0 p-0 rounded" id="picture-<?= $element->id ?>" src="<?= @$element->pictures[0] ?>" alt="chambre <?= $element->title ?>">             
                         <p id="description-<?= $element->id ?>">
                             <?= $element->description ?>
                         </p>
                         <p>
-                            prix : <span id="price-<?= $element->id ?>"></span><?= $element->price/100?> €
+                            prix : <span id="price-<?= $element->id ?>"><?= $element->price/100?></span> €
                         </p>
-                        <div class="text-center" id="link-<?= $element->id ?>">
-                            <a href="<?= $element->link_to_booking ?>">Lien Booking.com</a>             
+                        <div class="text-center">
+                            <a id="link_to_booking-<?= $element->id ?>" href="<?= $element->link_to_booking ?>">Lien Booking.com</a>             
                         </div>
                     </div>
                 </div>                     
@@ -62,7 +62,7 @@
       <div class="modal-body">
         <!--- form --->
         <form class="mx-4 col form-animation" id="form-crud" name="form-crud">
-            <input type="hidden" name="manager_id" id="manager_id" value="" />
+            <input type="hidden" name="id" id="id" value="" />
             <div class="form-group my-1">
                 <label for="title">Titre de la suite</label>
                 <input type="text" class="form-control" id="title" name="title" aria-describedby="title" value="" required>                
@@ -72,14 +72,13 @@
                 <textarea class="form-control" id="description" name="description" style="height: 5rem" required></textarea>                    
             </div>
             <div class="form-group my-2">
-                <label for="link">Lien Booking</label>
-                <input type="text" class="form-control" id="link" name="link" aria-describedby="link" required>
-                
+                <label for="link_to_booking">Lien Booking</label>
+                <input type="text" class="form-control" id="link_to_booking" name="link_to_booking" aria-describedby="link_to_booking" required>                
             </div>                
             <div class="form-group my-2">
                 <label for="price">Prix</label>
-                <textarea class="form-control" id="price" name="price" style="height: 3rem" required></textarea>                    
-            </div>            
+                <input type="number" step=".01" class="form-control" id="price" name="price" aria-describedby="price" required>                
+            </div>                            
             <div>
                 <small class="text-danger" id="helper">&ensp;</small>
             </div>
@@ -91,6 +90,9 @@
       </div>     
     </div>
   </div>
+</div>
+<div id="debug">
+
 </div>
 <div id="validation" class="validation"></div>
 <i id="check" class="fa-regular fa-circle-check check"></i>
