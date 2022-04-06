@@ -81,7 +81,7 @@ class Managers extends Entities
         if(!isset($user_id)){
             $user_id = $this->user_id;
         }
-        $query = "SELECT users.*, establishments.name, establishments.id as establishment 
+        $query = "SELECT users.*, establishments.name, establishments.id as establishment_id
                     FROM Users 
                     JOIN managers 
                     ON managers.user_id = users.id 

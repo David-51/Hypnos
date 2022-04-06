@@ -2,10 +2,10 @@
 
 use API\Model\Entity\Users;
 
-// if(!isset($_SESSION['role']) && $_SESSION['role'] !== 'adm'){
-//     http_response_code(403);
-//     echo json_encode('No permission');
-// }
+if(!isset($_SESSION['role']) && $_SESSION['role'] !== 'adm'){
+    http_response_code(403);
+    echo json_encode('No permission');
+}
 
 if(isset($_POST['id'])){
      

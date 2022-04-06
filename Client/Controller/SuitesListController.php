@@ -17,7 +17,8 @@ if(isset($_GET['id'])){
     $id = $_GET['id'];
     $suite = new Suites;
     $suite->setId($id);
-    $props = $suite->getSuite();
+    $props = $suite->getSuite();    
+
     $establishment_name = $props->setEntityManager()->getChilds(new Establishments, true)[0]->name;    
     $view->setBody('Suites', [$establishment_name, $props]);
 }else{

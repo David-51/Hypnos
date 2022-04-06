@@ -76,9 +76,10 @@ switch (strtolower($_GET['main'])) {
                 break;
 
             default:
-                require 'ManagerSuitesController.php';
+                require 'ManagerSuitesController.php';                
 
-        }        
+        }   
+        break;     
         
     default:
         require 'HomeController.php';    

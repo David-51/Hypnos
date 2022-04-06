@@ -11,11 +11,13 @@ if(isset(
     $_POST['password'],
     $_POST['confirm-password']) 
     && $_POST['password'] === $_POST['confirm-password']){
-        
+
+        // security for datas
+        $_POST = CleanArray($_POST);
         $user = new Users;
         try{
             $user->setEntity($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['password'], 'use');
-            $response = $user->persistUser();
+            $response = $user->persistUser();            
         }
         catch(Exception $e){
             $status = http_response_code(403);

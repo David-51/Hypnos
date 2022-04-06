@@ -74,7 +74,6 @@ switch (strtolower($_GET['main'])) {
                     require './controller/ManagerDeleteController.php';
                 }
                 break;
-
             default:
             if(isset($_GET['id'])){
                 require './controller/ManagerGetController.php';            
@@ -92,6 +91,18 @@ switch (strtolower($_GET['main'])) {
                 break;
             case 'delete':
                 require './controller/MessagesDeleteController.php';
+                break;
+            default:
+            http_response_code(403);
+            echo json_encode('invalid parameters');
+        }
+        break;
+    case 'suites':
+        switch ($_GET['level2']){
+            case 'add':
+                if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
+                    require './controller/SuiteAddController.php';
+                }
                 break;
             default:
             http_response_code(403);

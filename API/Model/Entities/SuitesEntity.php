@@ -33,7 +33,7 @@ class Suites extends Entities
     }
 
     public function getManagerSuites(string $user_id){   
-        $query = "SELECT suites.*
+        $query = "SELECT suites.*, managers.id as manager_id
                     FROM Suites 
                     JOIN establishments 
                     ON suites.establishment_id = establishments.id                    
