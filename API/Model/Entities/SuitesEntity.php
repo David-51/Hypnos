@@ -32,6 +32,36 @@ class Suites extends Entities
         return $suite;
     }
 
+    public function getManagerSuites(string $user_id){   
+        $query = "SELECT suites.*
+                    FROM Suites 
+                    JOIN establishments 
+                    ON suites.establishment_id = establishments.id                    
+                    JOIN managers
+                    ON managers.establishment_id = suites.establishment_id
+                    WHERE managers.user_id=\"$user_id\"";
+        $response = $this->setEntityManager()->getWithQuery($query);
+
+        foreach($response as $element){
+            $query2 = "SELECT pictures.picture_link FROM pictures WHERE suite_id=\"$element->id\"";
+            $response2 = $this->setEntityManager()->getWithQuery($query2);
+            
+            $picture_table = [];
+            foreach($response2 as $pictures){
+                $picture_table[] = $pictures->picture_link;                
+            }
+            $element->pictures = $picture_table;
+        }        
+        if(empty($response)){
+            $response = ['no suites ...'];
+        }        
+        return $response;        
+    }
+
+    public function getHotel(){
+        
+    }
+
     public function setTitle($title){
         return $this->title = $title;
     }

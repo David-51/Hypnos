@@ -1,7 +1,7 @@
-    <div class="row mb-3">  
+<div class="row mb-3">  
         <div class="col-auto text-center">
             <h1>
-                Etablissements
+                Gestion des suites
             </h1>
         </div>
         <div class="col-auto ms-auto">
@@ -22,23 +22,24 @@
             </div>
             <div class="row">
                 <div class="row col-10">
-                    <h2 class="curve mb-0 col-auto pe-0" id="name-<?= $element->id ?>">
-                        <?= $element->name ?>
-                    </h2>                
-                    <h3 class="card-city mb-0 mt-auto ps-2 col-auto" id="city-<?= $element->id ?>">
-                        (<?= $element->city ?>)
-                    </h3>                                            
+                    <h2 class="curve ms-1 mb-2 col-auto pe-0" id="name-<?= $element->id ?>">
+                        <?= $element->title ?>
+                    </h2>                                                                               
                 </div>         
             </div>
             <div class="row">
-                <p class="font-light adress mb-1" id="adress-<?= $element->id ?>">
-                    <?= $element->adress ?>
-                </p>                    
-            </div>
-            <div class="row">                
-                <p id="description-<?= $element->id ?>">
-                    <?= $element->description ?>
-                </p>                
+                <div>
+                    <img class="miniature ms-1 me-2 mb-0 p-0 rounded" src="<?= $element->pictures[0] ?>" alt="chambre <?= $element->title ?>">             
+                    <p id="description-<?= $element->id ?>">
+                        <?= $element->description ?>
+                    </p>
+                    <p id="price-<?= $element->id ?>">
+                        <?= $element->price/100?> €
+                    </p>
+                    <div class="text-center">
+                        <a href="<?= $element->link_to_booking ?>">Lien Booking.com</a>             
+                    </div>
+                </div>
             </div>                     
         </div>
     <?php
@@ -89,4 +90,4 @@
 </div>
 <div id="validation" class="validation"></div>
 <i id="check" class="fa-regular fa-circle-check check"></i>
-<script type="module" src="Client/public/js/adminEstablishments.js"></script>
+<script type="module" src="Client/public/js/managerSuites.js"></script>

@@ -17,7 +17,6 @@ class Entity
         $this->db = Database::getConnection();                
     }
 
-    
     /**
      * @return objects matching with entity from database
      * if the Id of object is set, return the single Object from database
@@ -71,75 +70,7 @@ class Entity
         }
     }
 
-    public function getJoinEntity (Entities $child_entity, Entities $second_child_entity = null)       
-    {            
-        if(!isset($this->entity)){
-            throw new Exception('You must set the parent entity in EntityManager');
-            die();
-        }
-        // defined parent variables
-        $parent_entity_name = $this->entity->getEntityName();
-        $parent_entity_id = $parent_entity_name.'.id';
-        
-        // defined child variables
-        $child_entity_name = $child_entity->getEntityName();        
-        $child_entity_fkid = $child_entity_name.'.'.substr($parent_entity_name, 0, -1).'_id';
-        
-        // get the rows from the entity
-        function createRows(Entities $child_entity){
-            $rows_table = array_keys(get_class_vars(get_class($child_entity)));                
-            $rows_table_format = [];
-            foreach($rows_table as $key => $value){
-                $rows_table_format[] = $child_entity->getEntityName().'.'.$value.' AS '.strtolower($child_entity->getEntityName().'_'.$value);
-            }
-            return $rows_child = implode(', ', $rows_table_format);
-        }
-
-        $rows_child = createRows($child_entity);
-        
-        $rows_parent = $parent_entity_name.'.*';
-        
-        if(isset($this->entity->id)){
-            $where = $child_entity_fkid;
-            $cond = $this->entity->id;
-        }
-        if(!isset($where)){            
-            $query = "SELECT $rows_parent, $rows_child FROM $parent_entity_name 
-                        LEFT JOIN $child_entity_name 
-                        ON $parent_entity_id=$child_entity_fkid";
-        }
-        else if(isset($second_child_entity)){
-            $rows_second_child = createRows($second_child_entity);
-            $second_child_entity_name = $second_child_entity->getEntityName();
-            $second_child_entity_fkid = $second_child_entity_name.'.'.substr($child_entity_name, 0, -1).'_id';
-
-            $query = " SELECT $rows_parent, $rows_child, $rows_second_child 
-                            FROM $parent_entity_name  
-                            LEFT JOIN $child_entity_name
-                            ON $parent_entity_id=$child_entity_fkid
-                            LEFT JOIN $second_child_entity_name
-                            ON $child_entity_name.id=$second_child_entity_fkid
-                            WHERE $where=\"$cond\"";
-        }
-
-        else{            
-            $query = "SELECT $rows_parent, $rows_child FROM $parent_entity_name  
-                        LEFT JOIN $child_entity_name
-                        ON $parent_entity_id=$child_entity_fkid
-                        WHERE $where=\"$cond\"";            
-        }
-        $fetch_name = 'API\\Model\\Entity\\'.$parent_entity_name;
-        try{
-            $sth = $this->db->prepare($query);
-            $sth->setFetchMode(\PDO::FETCH_CLASS, $fetch_name);
-            $sth->execute();        
-            $response = $sth->fetchAll();
-            return $response;
-        }
-        catch(\PDOException $e){
-            return 'error'.$e;
-        }
-    }
+    
     /**
      * To update Entity, you need to create an entity and set the id
      * 

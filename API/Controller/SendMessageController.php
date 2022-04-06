@@ -12,12 +12,12 @@ if(isset(
     $_POST['subject'],
     $_POST['message'])){
         
-        $message = new Messages;
+    $message = new Messages;
 
-        try{
-            
+        try{            
             $message->setEntity($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['subject'], $_POST['message']);
-            $response = $message->persistMessage();
+            // $response = $message->persistMessage();
+            $response = $message->setEntityManager()->persistEntity();
         }
         catch(Exception $e){
             json_encode($e);            

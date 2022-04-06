@@ -57,12 +57,28 @@ switch (strtolower($_GET['main'])) {
             case 'managers':
                 require 'AdminManagersController.php';
                 break; 
+            case 'messages':
+                require 'AdminMessagesController.php';
+                break;
+
             default :
             require 'AdminEstablishmentsController.php';
         
 
         }
     break;
+    case 'manager':
+        if($_SESSION['role'] !== 'man'){
+            header('Location: /');
+        }
+        switch ($_GET['level2']){
+            case 'test':
+                break;
+
+            default:
+                require 'ManagerSuitesController.php';
+
+        }        
         
     default:
         require 'HomeController.php';    

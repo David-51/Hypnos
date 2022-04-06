@@ -85,7 +85,20 @@ switch (strtolower($_GET['main'])) {
             }
         }
         break;
+    case 'messages':
+        switch ($_GET['level2']){
+            case 'done':
+                require './controller/MessagesDoneController.php';
+                break;
+            case 'delete':
+                require './controller/MessagesDeleteController.php';
+                break;
+            default:
+            http_response_code(403);
+            echo json_encode('invalid parameters');
+        }
+        break;
     default:
+    echo json_encode('Mauvaise route...');
     http_response_code(403);
-        echo json_encode('Mauvaise route...');
     }

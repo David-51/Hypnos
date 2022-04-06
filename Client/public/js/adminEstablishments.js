@@ -1,6 +1,7 @@
 import { VerifyName, VerifyTextarea } from "./fieldsVerification.js";
 import getToForm from "./getToForm.js";
 import redirectFromParameters from "./redirectFromParameter.js";
+import removeFadeOut from "./removeFadeOut.js";
 
 export default function adminEstablishment(){
     
@@ -63,7 +64,8 @@ export default function adminEstablishment(){
         modalSubmitButton.classList.add('btn-info');
 
         modalSubmitButton.classList.add('disabled');
-        const regex = new RegExp(/(edit|delete)-(.*)/);                  
+        const regex = new RegExp(/(edit|delete)-(.*)/);
+
         const eventId = regex.exec(event.target.id);
         const eventParentId = regex.exec(event.target.parentNode.id);
         
@@ -129,8 +131,7 @@ export default function adminEstablishment(){
             .then(response => response.json())
             .then((response) => {
                 const cardId = 'card-'+targetId;
-
-                document.getElementById(cardId).remove();
+                removeFadeOut(document.getElementById(cardId), 1000);                
             })           
             .catch((error) => console.log(error))
         }else if(targetAction === "add"){

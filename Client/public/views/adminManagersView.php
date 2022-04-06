@@ -1,7 +1,7 @@
 <?php
 [$list, $hotels] = $props;
 ?>
-<div class="row">  
+    <div class="row mb-2">  
         <div class="col-auto text-center">
             <h1>
                 Gérants
@@ -14,7 +14,7 @@
     <div id="managers-list">
     <?php    
     foreach($list as $key => $element){ ?>
-        <div class="mt-2 mb-3 p-2 border border-light rounded shadow-light put-forward custom-card" id="card-<?= $element->id ?>">        
+        <div class="border border-light rounded shadow-light put-forward custom-card" id="card-<?= $element->id ?>">        
             <div class="col-auto ms-auto my-auto custom-card-container">                
                 <button class="btn m-0 p-0 text-light edit" type="button" id="edit-<?= $element->id ?>">
                     <i class="fa-solid fa-pen-to-square icone"></i>

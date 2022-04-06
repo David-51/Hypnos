@@ -5,7 +5,8 @@ INSERT
         establishment_id
     )
     VALUES         
-        ((SELECT id FROM users WHERE email="bruce@example.com"), (SELECT id FROM establishments WHERE name="La rose d'or")),
+        ((SELECT id FROM users WHERE email="david@example.com"), (SELECT id FROM establishments WHERE name="La rose d'or")),
+        -- ((SELECT id FROM users WHERE email="bruce@example.com"), (SELECT id FROM establishments WHERE name="La rose d'or")),
         ((SELECT id FROM users WHERE email="frodon@example.com"), (SELECT id FROM establishments WHERE name="Le palace")),
         ((SELECT id FROM users WHERE email="sauron@example.com"), (SELECT id FROM establishments WHERE name="Burj Al Arib")),
         ((SELECT id FROM users WHERE email="gandalf@example.com"), (SELECT id FROM establishments WHERE name="Miou Luxury Spa")),

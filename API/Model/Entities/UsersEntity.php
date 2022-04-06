@@ -62,7 +62,7 @@ class Users extends Entities
         return $this->lastname;
     }
     public function setEmail($email) :string {
-        $pattern = '/[\w+0-9-?]+@[a-zA-Z_0-9]{2,}?\.[a-zA-Z]{2,6}/';
+        $pattern = '/[A-Za-z0-9-?]+@[a-zA-Z_0-9]{2,}?\.[a-zA-Z]{2,6}/';
         if(preg_match($pattern, $email)){
             return $this->email = $email;
         }

@@ -23,12 +23,14 @@ if(isset($_POST['email'], $_POST['password'])){
             $_SESSION['lastname'] = htmlspecialchars($find_user->lastname);
             $_SESSION['email'] = htmlspecialchars($find_user->email);
             $_SESSION['role'] = htmlspecialchars($find_user->role);
+            $_SESSION['id'] = $find_user->id;
             
             $information = [
                 'firstname' => htmlspecialchars($find_user->firstname),
                 'lastname' => htmlspecialchars($find_user->lastname),
                 'email' => htmlspecialchars($find_user->email),
-                'role' => htmlspecialchars($find_user->role)
+                'role' => htmlspecialchars($find_user->role),
+                'id' => $find_user->id
             ];
             echo json_encode($information);
         }

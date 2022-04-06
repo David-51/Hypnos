@@ -24,10 +24,10 @@
                 <label for="subject">Sujet</label>
                 <select class="form-select col me-1" aria-label="select-subject" id="subject" name="subject" required>
                     <option selected>Choisissez le sujet</option>
-                    <option value="information">Je souhaite en savoir plus sur une suite</option>
-                    <option value="service">Je souhaite commander un service supplémentaire</option>
-                    <option value="complaint">Je souhaite poser une réclamation</option>
-                    <option value="application">J'ai un souci avec cette application</option>
+                    <option value="Je souhaite en savoir plus sur une suite">Je souhaite en savoir plus sur une suite</option>
+                    <option value="Je souhaite commander un service supplémentaire">Je souhaite commander un service supplémentaire</option>
+                    <option value="Je souhaite poser une réclamation">Je souhaite poser une réclamation</option>
+                    <option value="J'ai un souci avec cette application">J'ai un souci avec cette application</option>
                 </select>
             </div>
             <div class="form-floating my-2">

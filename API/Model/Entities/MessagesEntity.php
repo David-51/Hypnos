@@ -55,7 +55,7 @@ class Messages extends Entities
         return $this->lastname;
     }
     public function setEmail($email) :string {
-        $pattern = '/[\w+-?]+@[a-zA-Z_]{2,}?\.[a-zA-Z]{2,6}/';
+        $pattern = '/[A-Za-z0-9-?]+@[a-zA-Z_0-9]{2,}?\.[a-zA-Z]{2,6}/';
         if(preg_match($pattern, $email)){
             return $this->email = $email;
         }
@@ -91,22 +91,22 @@ class Messages extends Entities
             return throw new \Exception("Message pattern error");
         }          
     }
-    public function persistMessage(){                
-        foreach(get_class_vars(__CLASS__) as $key => $value){
-            if(!isset($this->$key)){
-                return throw new \Exception('Error, '.$key.' must be defined');
-            }
-            else{       
-                $this->setEntityManager()->persistEntity();                
-                return [
-                    'id' => $this->id,
-                    'firstname' => $this->firstname,
-                    'lastname' => $this->lastname,
-                    'email' => $this->email,
-                    'subject' => $this->subject,
-                    'message' => $this->message
-                ];
-            }
-        }        
-    }
+    // public function persistMessage(){                
+    //     foreach(get_class_vars(__CLASS__) as $key => $value){
+    //         if(!isset($this->$key)){
+    //             return throw new \Exception('Error, '.$key.' must be defined');
+    //         }
+    //         else{       
+    //             $this->setEntityManager()->persistEntity();                
+    //             return [
+    //                 'id' => $this->id,
+    //                 'firstname' => $this->firstname,
+    //                 'lastname' => $this->lastname,
+    //                 'email' => $this->email,
+    //                 'subject' => $this->subject,
+    //                 'message' => $this->message
+    //             ];
+    //         }
+    //     }        
+    // }
 }
