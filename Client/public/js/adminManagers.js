@@ -140,9 +140,7 @@ export default function adminManager(){
             .then((response) => {
                 if(response.status === 201){
                     response.json()
-                    .then((datas) => {
-                        console.log(targetId);
-                        console.log(datas);
+                    .then((datas) => {                        
                         document.getElementById(`firstname-${targetId}`).textContent = datas.firstname;
                         document.getElementById(`lastname-${targetId}`).textContent = datas.lastname.toUpperCase();
                         document.getElementById(`establishment-${targetId}`).textContent = datas.name;
