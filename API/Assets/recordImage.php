@@ -2,9 +2,9 @@
 /**
  * @param $picture = $_FILES['name']
  * $pictures is the array containine ['name' 'type' 'tmp_name' 'error' 'size']
- * 
+ * @param $path to record pictures
  */
-function record_image($picture){ // Origine et destination de l'enregsitrement
+function record_image($picture, $path){ // Origine et destination de l'enregsitrement
         
     $fromUrl = $picture['tmp_name'];
     // définition du nom de fichier original.
@@ -13,11 +13,11 @@ function record_image($picture){ // Origine et destination de l'enregsitrement
     
     $ext = explode('/', $picture['type'])[1];
     $new_name = 'suite'.$timestamp.'.'.$ext;
-    
+    $dest_name = 'suite'.$timestamp.'-640x426.'.$ext;
     // destination des fichiers et leurs noms
     
-    $source_url = __DIR__.'/../../Client/public/images/temp/'.$new_name.'.'.$ext;
-    $destination_url = __DIR__.'/../../Client/public/images/'.'suite'.$timestamp.'-640x426.'.$ext;
+    $source_url = __DIR__.'/../../'.$path.'/'.'temp/'.$new_name.'.'.$ext;
+    $destination_url = __DIR__.'/../../'.$path.'/'.$dest_name;
     
     // retourne une valeur qui correspond au type de fichier.
 
@@ -51,5 +51,5 @@ function record_image($picture){ // Origine et destination de l'enregsitrement
     else{
         http_response_code(404);                           
     }
-    return $new_name; // nom de l'image     
+    return $dest_name; // nom de l'image     
 }

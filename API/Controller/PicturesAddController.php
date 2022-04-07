@@ -5,6 +5,7 @@ require 'recordImage.php';
 // Verify datas
 
 use API\Model\Entity\Managers;
+use API\Model\Entity\Pictures;
 use API\Model\Entity\Suites;
 
 
@@ -42,19 +43,21 @@ if(Permission('man')){
             // record picture and record url in database
             
             // create image at 640x426px                     
-            $image_name = record_image($_FILES['addPicture']);
+            $image_name = record_image($_FILES['addPicture'], 'Client/public/images');
 
-            // enregistrer l'image de la BDD
+            $picture_link = '/Client/public/images/'.$image_name;
+            $picture = new Pictures;
+            $picture->setEntity($suite, $picture_link);
 
-            // ne pas faire l'envoie si il n'y pas d'image de charger
-
-            if($image_name){
-                echo $image_name;
+            try{
+                $picture->setEntityManager()->persistEntity();
+                http_response_code(201);
+                echo json_encode($picture);
             }
-            else{
-                echo 'wrong';
-            }
-            error_log('message', 3, __DIR__.'/../../error_log.log');
+            catch(\Exception $e){
+                http_response_code(400);
+                error_log($e, 3, '../../error_log.log');
+            }                  
         }
     }else{        
         http_response_code(400);

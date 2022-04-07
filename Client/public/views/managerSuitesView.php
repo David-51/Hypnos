@@ -88,15 +88,13 @@
         </form>
         <!--- end of form --->
         <!-- Pictures -->
-        <div id="pictures-table" class="mt-2 mx-2 d-flex flex-row flex-wrap">            
-            <div class="col-auto my-1 mx-1 picture-item">
-                <button type="button" class="btn-close btn-close-white picture-close" aria-label="close"></button>
-                item 1
-            </div>    
+        <div id="pictures-table" class="mt-2 mx-2 d-flex flex-row flex-wrap">
+            <!-- <div id="pictures-current" class="d-flex flex-row flex-wrap">                
+            </div>-->          
             <form action="" enctype="multipart/form-data" id="form-picture">
                 <input type="hidden" name="id" id="idPicture" required>
-                <label for="addPicture" class="col-auto my-1 mx-1 picture-item p-0 d-flex justify-content-center" enctype="multipart/form-data">
-                    <p class="picture-add text-center align-self-center">+</p>
+                <label for="addPicture" class="col-auto my-1 mx-1 picture-item p-0 d-flex justify-content-center picture-add" enctype="multipart/form-data">
+                    <p class="picture-add-text text-center align-self-center">+</p>
                 </input>
             </label>
             <input type="file" name="addPicture" id="addPicture" class="d-none">

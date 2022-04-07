@@ -1,26 +1,27 @@
+import addMiniatureForm from "./addMiniatureForm.js";
+
 export default function addPicture(){
     const addPicture = document.getElementById('addPicture');
-    console.log('load');
     const formPicture = document.getElementById('form-picture')
-
-    addPicture.addEventListener('change', ()=> {
+    
+    addPicture.addEventListener('change', ()=> {        
 
         const file = new FormData(formPicture);
-        if(file.get('addPicture')){
+        const datafile = file.get('addPicture');
+
+        if(datafile.name !== ''){
             const request = '/api/pictures/add';
             fetch(request, {
                 method: "POST",
                 body: file
             })
-            .then((response) => {
-                return response.text()                        
+            .then(response => response.json())
+            .then((data) => {                
+                let data_array = [data];
+                addMiniatureForm(data_array);
             })
-            .then((text) => document.getElementById('debug').textContent = text)
-        }
-        else{
-            console.log('non pas maintenant')
+            
+            .catch(error => console.log('error recording file'+error))
         }
     })
 }
-
-addPicture();

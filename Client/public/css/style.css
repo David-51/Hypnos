@@ -258,11 +258,9 @@ img {
 
 .picture-item {
     position:relative;
-    width : 100px;
-    height: 100px;
-    border: solid 1px var(--bs-light);
+    width : 150px;
+    height: 100px;    
     color: var(--bs-light);
-    border-radius: 2px;
 }
 
 .picture-close {
@@ -270,11 +268,19 @@ img {
     right:3px;
     top: 3px;
 }
-.picture-add {
-    /* position: absolute; */
+.picture-add-text {   
     font-size:50px;    
-    /* top:50px; */
     margin:0;
-    padding:0;
-    
+    padding:0;       
+}
+.picture-add {
+    width:150px;
+    height:100px;    
+    border: solid 1px var(--bs-light);
+    border-radius: 5px;
+}
+.picture-label {
+    overflow: hidden;
+    border: solid 1px var(--bs-light);
+    border-radius: 5px;
 }

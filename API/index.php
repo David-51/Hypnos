@@ -13,9 +13,17 @@ switch (strtolower($_GET['main'])) {
     case 'pictures':
         switch ($_GET['level2']){
             case 'add':                       
-                require './controller/AddPictureController.php';
+                require './controller/PicturesAddController.php';
                 break;
-
+            case 'update':
+                require './controller/PicturesUpdateController.php';
+                break;
+            case 'delete':
+                require './controller/PicturesDeleteController.php';
+                break;
+                default:
+                http_response_code(400);
+                echo json_encode('Pictures bad request');
         }
         break;
     case 'create-account':
@@ -122,13 +130,14 @@ switch (strtolower($_GET['main'])) {
                     require './controller/SuitesUpdateController.php';
                 }
                 break;
-
-
             default:
             require './controller/SuitesController.php';            
         }
-        break;
+    break;
     default:
-    echo json_encode('Mauvaise route...');
-    http_response_code(403);
-    }
+echo json_encode('Mauvaise route...');
+http_response_code(403);
+}
+if(isset($message)){
+    logger($message);
+}
