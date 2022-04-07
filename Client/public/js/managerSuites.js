@@ -1,6 +1,6 @@
 import disableFormFields from "./disableFormFields.js";
 import { VerifyLink, VerifyName, VerifyNumber, VerifyTextarea } from "./fieldsVerification.js";
-// import getToForm from "./getToForm.js";
+import addPicture from "./managerSuitesPictures.js";
 import redirectFromParameters from "./redirectFromParameter.js";
 import removeFadeOut from "./removeFadeOut.js";
 
@@ -11,6 +11,7 @@ export default function managerSuites(){
     
     const modal = new bootstrap.Modal(document.getElementById('modal'));
     const form = document.getElementById('form-crud');
+    const formFile = document.getElementById('form-picture');
     const helper = document.getElementById('helper');
     
     const modalTitle = document.getElementById('modal-title');
@@ -57,12 +58,13 @@ export default function managerSuites(){
                 targetAction = eventId[1];
                 targetId = eventId[2]
                 form.id.value = targetId;
-    
+                formFile.idPicture.value = targetId;                    
             }
             if(eventParentId !== null){
                 targetAction = eventParentId[1];
                 targetId = eventParentId[2]                                 
                 form.id.value = targetId;
+                formFile.idPicture.value = targetId;                    
             }
             const request = "/api/suites?id="+targetId;  
             
@@ -93,7 +95,7 @@ export default function managerSuites(){
                     form.title.value = datas.title;
                     form.description.value = datas.description;
                     form.price.value = datas.price/100;
-                    form.link_to_booking.value = datas.link_to_booking;
+                    form.link_to_booking.value = datas.link_to_booking;                    
                     modal.show();
                 })
 
@@ -191,3 +193,4 @@ export default function managerSuites(){
 }
 
 managerSuites();
+addPicture();

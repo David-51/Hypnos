@@ -34,15 +34,23 @@
         <li class="nav-item sidebar-item sidebar-subtitle">
             <p class="sidebar-item">Administration</p>                
         </li>
-        <li class="nav-item sidebar-item">
-            <a href="/admin/establishments">Etablissements</a>
-        </li>
-        <li class="nav-item sidebar-item">
-            <a href="/admin/managers">Gérants</a>
-        </li>
-        <li class="nav-item sidebar-item">
-            <a href="/admin/messages">Messages</a>
-        </li>
+        <?php if($_SESSION['role']=== 'adm'){
+            ?>
+            <li class="nav-item sidebar-item">
+                <a href="/admin/establishments">Etablissements</a>
+            </li>
+            <li class="nav-item sidebar-item">
+                <a href="/admin/managers">Gérants</a>
+            </li>
+            
+            <?php   }else if($_SESSION['role'] === 'man'){
+                ?>
+                <li class="nav-item sidebar-item">
+                    <a href="/manager">Gestion des suites</a>
+                </li>
+
+         <?php
+     } ?>
     </ul>
         <?php } ?>
     <ul class="sidebar">

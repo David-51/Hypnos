@@ -255,3 +255,26 @@ img {
     margin:0;
     padding:0; 
 }
+
+.picture-item {
+    position:relative;
+    width : 100px;
+    height: 100px;
+    border: solid 1px var(--bs-light);
+    color: var(--bs-light);
+    border-radius: 2px;
+}
+
+.picture-close {
+    position: absolute;
+    right:3px;
+    top: 3px;
+}
+.picture-add {
+    /* position: absolute; */
+    font-size:50px;    
+    /* top:50px; */
+    margin:0;
+    padding:0;
+    
+}

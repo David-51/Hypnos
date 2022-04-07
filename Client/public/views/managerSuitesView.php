@@ -61,7 +61,7 @@
       </div>
       <div class="modal-body">
         <!--- form --->
-        <form class="mx-4 col form-animation" id="form-crud" name="form-crud">
+        <form class="mx-2 col form-animation" id="form-crud" name="form-crud">
             <input type="hidden" name="id" id="id" value="" />
             <div class="form-group my-1">
                 <label for="title">Titre de la suite</label>
@@ -87,6 +87,21 @@
             </div>
         </form>
         <!--- end of form --->
+        <!-- Pictures -->
+        <div id="pictures-table" class="mt-2 mx-2 d-flex flex-row flex-wrap">            
+            <div class="col-auto my-1 mx-1 picture-item">
+                <button type="button" class="btn-close btn-close-white picture-close" aria-label="close"></button>
+                item 1
+            </div>    
+            <form action="" enctype="multipart/form-data" id="form-picture">
+                <input type="hidden" name="id" id="idPicture" required>
+                <label for="addPicture" class="col-auto my-1 mx-1 picture-item p-0 d-flex justify-content-center" enctype="multipart/form-data">
+                    <p class="picture-add text-center align-self-center">+</p>
+                </input>
+            </label>
+            <input type="file" name="addPicture" id="addPicture" class="d-none">
+            </form>    
+        </div>
       </div>     
     </div>
   </div>

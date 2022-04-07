@@ -10,6 +10,14 @@ http_response_code(202);
 Autoloader::register();
 
 switch (strtolower($_GET['main'])) {
+    case 'pictures':
+        switch ($_GET['level2']){
+            case 'add':                       
+                require './controller/AddPictureController.php';
+                break;
+
+        }
+        break;
     case 'create-account':
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             require './controller/CreateAccountController.php';
@@ -117,8 +125,7 @@ switch (strtolower($_GET['main'])) {
 
 
             default:
-            require './controller/SuitesController.php';
-            
+            require './controller/SuitesController.php';            
         }
         break;
     default:
