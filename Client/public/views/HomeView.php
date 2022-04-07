@@ -5,15 +5,17 @@
     </div>
     
         <div class="col-12 mx-auto"> 
-            <form class="row mx-auto">
-                <select class="form-select col me-1" aria-label="select-destination">
+            <form class="row mx-auto" id="form-destination">
+                <select class="form-select col me-1" aria-label="select-destination" name="destination">
                     <option selected>destination</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php
+                    foreach($props as $element){?>
+                    <option value="<?= $element->id ?>"><?= $element->city ?></option>
+                    <?php } ?>                    
                 </select>
                 <button type="submit" class="btn btn-info col-auto py-0 my-0 ms-1">Go !</button>            
             </form>
         </div>
         <a href="/establishments" class="text-info text-center mt-2 mb-4">Voir la liste de nos Hôtels</a> 
 </div>
+<script type="module" src="/Client/public/js/home.js"></script>

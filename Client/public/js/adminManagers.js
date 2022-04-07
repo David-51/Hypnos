@@ -103,7 +103,25 @@ export default function adminManager(){
 
                 modalTitle.textContent = "Confirmer la suppression"
             }
-            getToForm(request, form, ['firstname', 'lastname', 'establishment', 'email'], modal.show());             
+            
+            // getToForm(request, form, ['firstname', 'lastname', 'establishment', 'email'], modal.show());
+            fetch(request)
+            .then((response) => {
+                if(response.status !==200){
+                    return console.log('Something goes wrong...');
+                }
+                else{            
+                    return response.json();
+                }
+            })
+            .then((datas) => {        
+                form.firstname.value = datas.firstname;
+                form.lastname.value = datas.lastname;
+                form.email.value = datas.email;
+                form.establishment.value = datas.establishment_id;
+
+                modal.show();
+            })
         }
 
         // Submit Gestion

@@ -135,8 +135,8 @@ switch (strtolower($_GET['main'])) {
         }
     break;
     default:
-echo json_encode('Mauvaise route...');
-http_response_code(403);
+    echo json_encode('Mauvaise route...');
+    http_response_code(403);
 }
 if(isset($message)){
     logger($message);
