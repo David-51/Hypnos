@@ -8,7 +8,7 @@
     <?php
     foreach($props as $key => $element){ ?>
 <div class="mt-2 mb-3 p-2 border border-light rounded shadow-light put-forward">        
-    <form class="row p-2 booking-form" id="bookings-list">
+    <form class="row p-2 booking-form">
         <input type="hidden" name="id" id="id" value="<?= $element->booking_id ?>">
         <div class="col">
             <h2 class="curve">
@@ -22,7 +22,7 @@
             </p>                  
         </div>
         <div class="ms-auto col-auto text-center my-auto">
-            <button type="submit" class="btn btn-annulation put-forward border-none" href="#" id="annulation">Annuler</button> 
+            <button class="btn btn-annulation put-forward border-none">Annuler</button> 
         </div>                                
     </form>            
 </div>
@@ -30,13 +30,28 @@
     };
     ?>
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
-  <div class="modal-dialog modal-fullscreen-sm-down">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content put-forward text-light border border-light">
       <div class="modal-header">
         <h5 class="modal-title" id="modal-title">Confirmation d'annulation</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+          <p class="text-center">
+          Êtes vous sûr de vouloir annuler votre réservation ?
+          </p>
+          <div class="row">
+              <div class="col text-center my-auto">
+                  <button class="btn btn-annulation" id="confirmation">
+                        Oui, j'annule
+                  </button>
+              </div>
+              <div class="col text-center my-auto">
+                  <button class="btn btn-danger" id="annulation">
+                        Non, je me suis trompé(e)
+                  </button>
+              </div>
+          </div>
         
       </div>     
     </div>
