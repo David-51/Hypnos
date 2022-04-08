@@ -36,3 +36,30 @@ export function VerifyNumber(div){
 export function VerifyTextarea(div){
     return (document.getElementById(div).value !== (null || '') ? true : false);
 }
+/**
+ * 
+ * @param {String} checkin 
+ * @param {String} checkout 
+ * @param {HTMLElement} helper 
+ * @returns 
+ */
+export function VerifyDate(checkin, checkout, helper){
+    // const helper = document.getElementById(helperId);
+    helper.textContent = '';
+    const check_in = new Date(document.getElementById(checkin).value);
+    const check_out = new Date(document.getElementById(checkout).value);
+    const now = new Date();
+
+    if(check_in < now){
+        helper.textContent = 'Votre date d\'arrivée doit être supérieur à la date du jour';
+    }
+    if(check_out <= check_in){
+        helper.textContent = 'Votre date de départ doit être supérieur à votre date d\'arrivée';
+    }
+    if(check_in > now && check_out > check_in){
+        return true
+    }
+    else{
+        return false;
+    }
+}

@@ -10,6 +10,9 @@ http_response_code(202);
 Autoloader::register();
 
 switch (strtolower($_GET['main'])) {
+    case 'booking':                
+        require './controller/BookingController.php';
+        break;
     case 'pictures':
         switch ($_GET['level2']){
             case 'add':                       
@@ -67,7 +70,11 @@ switch (strtolower($_GET['main'])) {
                     require './controller/EstablishmentAddController.php';
                 }
                 break;
-                    
+            case 'suites':                                            
+                require './controller/EstablishmentSuitesController.php';
+                
+                break;
+
             default:
                 require './controller/EstablishmentController.php';        
                 break;
@@ -129,7 +136,7 @@ switch (strtolower($_GET['main'])) {
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
                     require './controller/SuitesUpdateController.php';
                 }
-                break;
+                break;                
             default:
             require './controller/SuitesController.php';            
         }

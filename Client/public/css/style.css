@@ -284,3 +284,11 @@ img {
     border: solid 1px var(--bs-light);
     border-radius: 5px;
 }
+
+.helper {
+    min-height: 18px;
+}
+.helper>*{
+    margin: 0;
+    padding:0;
+}

@@ -52,13 +52,18 @@ class Entity
     
     /**
      * @param string $query, the SQL query to execute
-     * @param string $entity_class, the name of the entity
+     * @param bool true FETCH_CLASS whereas FETCH
+     * 
      */
-    public function getWithQuery(string $query){
+    public function getWithQuery(string $query, $bool = true){
         // $fetch_name = 'API\\Model\\Entity\\'.$entity_class;
         try{
             $sth = $this->db->prepare($query);
-            $sth->setFetchMode(\PDO::FETCH_CLASS, get_class($this->entity));
+            if($bool === true){
+                $sth->setFetchMode(\PDO::FETCH_CLASS, get_class($this->entity));
+            }else{
+                $sth->setFetchMode(\PDO::FETCH_ASSOC);
+            }
             $sth->execute();        
             $response = $sth->fetchAll();
             http_response_code(200);
@@ -129,13 +134,14 @@ class Entity
             }            
             $sth->execute();
             http_response_code(201);                                     
-            return $this->entity;
             
         }
         catch(\PDOException $e){ 
-            http_response_code(400);                                                      
+            http_response_code(400);
+            echo json_encode($e);                                                    
             return false;
         }           
+        return $this->entity;
     }
     /**
      * Delete the current Entity 

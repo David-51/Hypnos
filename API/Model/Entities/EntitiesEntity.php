@@ -13,7 +13,8 @@ class Entities
     }
 
     public function setId($id){
-        return $this->id = $id;
+        $this->id = $id;
+        return $this;
     }    
 
     public function getEntityName(){
