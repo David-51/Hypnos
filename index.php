@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-use API\Model\Entity\Administrators;
 use Assets\Autoloader;
 
 require './Client/Assets/Autoloader.php';
@@ -43,7 +42,13 @@ switch (strtolower($_GET['main'])) {
         require 'SendMessagesController.php';
         break;
     case 'bookings':
-        require 'BookingsController.php';
+        switch ($_GET['level2']){
+            case 'list':
+                require 'BookingsListController.php';
+                break;
+            default:
+            require 'BookingsController.php';            
+        }        
         break;
     // Administrators
     case 'admin':

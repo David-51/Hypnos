@@ -14,7 +14,7 @@
             <?php 
             if(isset($_SESSION['role']) 
                 && ($_SESSION['role'] === 'use' || $_SESSION['role'] === 'adm' || $_SESSION['role'] === 'man')){?>
-            <li class="nav-item text-light header-nav"><a href="./bookings">Réservations</a></li>                                    
+            <li class="nav-item text-light header-nav"><a href="./bookings/list">Réservations</a></li>                                    
             <?php } ?>
             <li class="nav-item text-light header-nav"><a href="./send-messages">Nous contacter</a></li>
 

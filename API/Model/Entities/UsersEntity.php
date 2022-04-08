@@ -116,5 +116,21 @@ class Users extends Entities
     public function GetUserByEmail(){
         return $this->setEntityManager()->getEntity('email');
     }
+
+    public function getBookingsList(){
+         
+        $query = "SELECT users.id as user_id, bookings.id as booking_id, establishments.name, suites.title, bookings.date_checkin, bookings.date_checkout 
+        FROM Bookings 
+        JOIN users
+        ON users.id = bookings.user_id
+        JOIN suites
+        ON bookings.suite_id=suites.id
+        JOIN establishments
+        ON suites.establishment_id=establishments.id
+        WHERE users.id=\"$this->id\"";
+
+        return $this->setEntityManager()->getWithQuery($query);
+        
+    }
     
 }

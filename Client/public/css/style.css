@@ -292,3 +292,11 @@ img {
     margin: 0;
     padding:0;
 }
+.btn-annulation {
+    background-color: #3c0041;
+    color: rgb(255, 94, 94);
+    border: none;
+}
+.btn-annulation:hover {
+    color: red    
+}

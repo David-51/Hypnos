@@ -21,7 +21,7 @@
                 || $_SESSION['role'] === 'man')){?>
 
             <li class="sidebar-item">
-                <a href="/bookings">Vos réservations</a>
+                <a href="/bookings/list">Vos réservations</a>
             </li>
             <?php } ?>
         </ul>

@@ -95,7 +95,7 @@ export default function booking(){
                 const validation = document.getElementById('validation').classList.add('light-off');  
                 const check = document.getElementById('check').classList.add('check-in');
                 setTimeout(()=>{
-                    redirectFromParameters('./')
+                    redirectFromParameters('./bookings/list')
                 },3000);
             }
             else if(response.status === 202){
