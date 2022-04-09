@@ -21,8 +21,23 @@
             <?php if(isset($_SESSION['role'])                     
                     && ($_SESSION['role'] === 'adm' 
                     || $_SESSION['role'] ==='man')){?>
-                <li class="nav-item text-light header-nav"><a href="./admin">Administration</a></li>
-                <?php } ?>
+                    <div class="dropdown">
+                        <li class="nav-item text-light header-nav">
+                            <a class="dropdown-toggle" id="admin-menu" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false">Administration</a>
+                            <ul class="dropdown-menu bg-bar" aria-labelledby="admin-menu">
+                                <?php if($_SESSION['role'] === 'adm'){
+                                    ?>
+                                <li><a class="bg-bar" href="/admin/establishments">Etablissements</a></li>
+                                <li><a class="bg-bar" href="/admin/managers">Gérants</a></li>                                
+                                <?php } else { ?>
+                                    <li><a class="bg-bar" href="/manager/suites">Suites</a></li>
+
+                                <?php } ?>
+                            </ul>
+                        </li>
+                            
+                        <?php } ?>
+                    </div>
         </ul>
     </div>
     <div class="ms-auto hello-user">
