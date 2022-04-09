@@ -40,8 +40,7 @@ export default function createAccount(){
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-       const formData = new FormData(form);
-       console.log(formData);
+       const formData = new FormData(form);       
 
        fetch('/api/create-account', {
            method: "POST",

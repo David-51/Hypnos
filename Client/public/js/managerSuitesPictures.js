@@ -21,7 +21,7 @@ export default function addPicture(){
                 addMiniatureForm(data_array);
             })
             
-            .catch(error => console.log('error recording file'+error))
+            .catch(error => console.error('error recording file'))
         }
     })
 }

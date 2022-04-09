@@ -1,6 +1,5 @@
 <?php
 
-// var_dump('autoaloader');
 namespace API\Assets;
 
 class Autoloader

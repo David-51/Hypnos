@@ -91,22 +91,4 @@ class Messages extends Entities
             return throw new \Exception("Message pattern error");
         }          
     }
-    // public function persistMessage(){                
-    //     foreach(get_class_vars(__CLASS__) as $key => $value){
-    //         if(!isset($this->$key)){
-    //             return throw new \Exception('Error, '.$key.' must be defined');
-    //         }
-    //         else{       
-    //             $this->setEntityManager()->persistEntity();                
-    //             return [
-    //                 'id' => $this->id,
-    //                 'firstname' => $this->firstname,
-    //                 'lastname' => $this->lastname,
-    //                 'email' => $this->email,
-    //                 'subject' => $this->subject,
-    //                 'message' => $this->message
-    //             ];
-    //         }
-    //     }        
-    // }
 }

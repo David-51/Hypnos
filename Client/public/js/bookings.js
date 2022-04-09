@@ -31,8 +31,7 @@ export default function booking(){
             }
         })
     }
-    selectEstablishment.addEventListener('change', (event) => {
-        console.log(event.target.value)
+    selectEstablishment.addEventListener('change', (event) => {        
         if(event.target.value){
             const formData = new FormData(form);
             const request = '/api/establishment/suites?id='+event.target.value;
@@ -53,8 +52,7 @@ export default function booking(){
                             option.innerText = element.title;
                             option.classList.add('dynamic-item');
                             selectSuites.appendChild(option);
-                        });
-                        console.log(data)
+                        });                        
                     })
                 }
                 else{
@@ -63,10 +61,7 @@ export default function booking(){
             })
 
         }
-    })
-    document.getElementById('checkin').addEventListener('change', (event) => {
-        // console.log(event.target.value)
-    })
+    })    
     
     form.addEventListener('input', () => {         
         
@@ -106,15 +101,12 @@ export default function booking(){
                     }
                 })
             }
-            else{
-                console.log(response.status);
+            else{                
                 // inclure disponibilité des dates
-                helper.textContent = "Une erreur s'est produite ... Veuillez réessayer plus tard."
-                response.json()
-                .then(data => console.log(data));                
+                helper.textContent = "Une erreur s'est produite ... Veuillez réessayer plus tard."                             
             }
        })
-       .catch(error => console.log(error));
+       .catch(error => console.error(error));
     })    
 }
 

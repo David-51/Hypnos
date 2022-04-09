@@ -15,7 +15,17 @@ if(!isset($_SESSION['id'])){
 }
 
 $list = (new Users)->setId($_SESSION['id'])->getBookingsList();
-                 
+
+// condition d'annulation
+foreach($list as $element){
+    $today = new DateTime(date('Y-m-d'));
+    $check_in = new DateTime($element->date_checkin);
+    $check_out = new DateTime($element->date_checkout);
+    $element->annulation = $today->diff($check_in)->format('%r%a') >= 3 ? true : false;
+    $element->done = $today->diff($check_out)->format('%r%a') <= 0 ? true : false;
+
+}
+
 $view->setBody('bookingsList', $list);
 
 echo $view->getContent();

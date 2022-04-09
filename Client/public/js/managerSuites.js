@@ -94,7 +94,7 @@ export default function managerSuites(){
             fetch(request)
                 .then((response) => {
                     if(response.status !==200){
-                        return console.log('Something goes wrong...');
+                        return console.error('Something goes wrong...');
                     }
                     else{            
                         return response.json();
@@ -128,11 +128,10 @@ export default function managerSuites(){
                         .then((response) => {                            
                             return response.json()
                         })
-                        .then((data) => {
-                            console.log(data)
+                        .then((data) => {                            
                             pictureImg.src = data.picture_link;
                         })
-                        .catch(error => console.log(error))
+                        .catch(error => console.error(error))
                     }))
 
                     // Cross to Delete Pictures
@@ -155,7 +154,7 @@ export default function managerSuites(){
                         .then((data) => {
                             pictureForm.remove();                            
                         })
-                        .catch(error => console.log(error))
+                        .catch(error => console.error(error))
                     }))                    
                     modal.show();
                 })
@@ -177,8 +176,7 @@ export default function managerSuites(){
                 body: formData
             })
             .then((response) => {
-                if(response.status === 201){    
-                    console.log(response.status)                                    
+                if(response.status === 201){                                                         
                     response.json()
                     .then((datas) => {                        
                         document.getElementById(`title-${targetId}`).textContent = datas.title;
@@ -191,15 +189,11 @@ export default function managerSuites(){
                     })
                 }
                 else{
-                    console.log('something goes wrong...');
-                    // return response.text()
-                    // .then((text) => {
-                    //     console.log(text);
-                    //     document.getElementById('debug').textContent = text;
+                    console.error('something goes wrong...');                    
                     }                    
                 }
             )            
-            .catch((error) => console.log(error))
+            .catch((error) => console.error(error))
             
         }else if(targetAction === "delete"){            
             const request = "/api/suites/delete";
@@ -209,16 +203,11 @@ export default function managerSuites(){
             })            
             .then((response) => {
                 if(response.status === 200){
-                    const cardId = 'card-'+targetId;
-                    // console.log(cardId);
+                    const cardId = 'card-'+targetId;                    
                     removeFadeOut(document.getElementById(cardId), 1500);
-                }
-                else{
-                    console.log(response.status);
-                    console.log(response.text());
-                }                
+                }                                       
             })           
-            .catch((error) => console.log(error))
+            .catch((error) => console.error('Somethings goes wrong...'))
         }else if(targetAction === "add"){
             const request = "/api/suites/add";
             fetch(request, {
@@ -234,7 +223,7 @@ export default function managerSuites(){
                     },2000);
                 }
             })
-            .catch((error) => console.log('error'+ error.status))
+            .catch((error) => console.error('error'+ error.status))
             
         }                              
     })

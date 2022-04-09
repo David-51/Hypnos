@@ -5,11 +5,13 @@
         </h1>
     </div>        
 </div>
+<div id="booking-list">
     <?php
+
     foreach($props as $key => $element){ ?>
-<div class="mt-2 mb-3 p-2 border border-light rounded shadow-light put-forward">        
-    <form class="row p-2 booking-form">
-        <input type="hidden" name="id" id="id" value="<?= $element->booking_id ?>">
+<div class="mt-2 mb-3 p-2 border border-light rounded shadow-light put-forward <?= $element->done ? 'card-done' : '' ?>" 
+    id="booking-<?= $element->booking_id ?>">        
+    <div class="row p-2">        
         <div class="col">
             <h2 class="curve">
                 <?= $element->name ?>
@@ -22,13 +24,17 @@
             </p>                  
         </div>
         <div class="ms-auto col-auto text-center my-auto">
-            <button class="btn btn-annulation put-forward border-none">Annuler</button> 
+            <button class="btn btn-annulation put-forward border-none 
+            <?= $element->annulation ? '' : 'disabled' ?>         
+            " id="annulation-<?= $element->booking_id ?>" >Annuler</button> 
         </div>                                
-    </form>            
+    </div>            
 </div>
     <?php
     };
     ?>
+
+</div>
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content put-forward text-light border border-light">
@@ -42,9 +48,12 @@
           </p>
           <div class="row">
               <div class="col text-center my-auto">
-                  <button class="btn btn-annulation" id="confirmation">
-                        Oui, j'annule
-                  </button>
+                  <form id="form-modal">
+                    <input type="hidden" name="id" value="">
+                    <button type="submit" class="btn btn-annulation" id="confirmation">
+                          Oui, j'annule
+                    </button>
+                  </form>
               </div>
               <div class="col text-center my-auto">
                   <button class="btn btn-danger" id="annulation">
@@ -52,7 +61,9 @@
                   </button>
               </div>
           </div>
-        
+          <div class="helper">
+              <small class="text-danger" id="helper">&ensp;</small>
+          </div>
       </div>     
     </div>
   </div>

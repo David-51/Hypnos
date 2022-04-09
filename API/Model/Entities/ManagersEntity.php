@@ -45,18 +45,16 @@ class Managers extends Entities
     public function getEmail() :string {
         return $this->user->email;        
     }
-    public function persistManager(){
+    // public function persistManager(){
+                
+    //     // persist admin Entity
         
-        var_dump($this);
-        // persist admin Entity
-        var_dump('persist manager');
-        $this->setEntityManager()->persistEntity();
-        
-        var_dump('persist user');
-        // update User's role
-        $this->user->setEntityManager()->persistEntity();
-        return $this->user;
-    }
+    //     $this->setEntityManager()->persistEntity();
+                
+    //     // update User's role
+    //     $this->user->setEntityManager()->persistEntity();
+    //     return $this->user;
+    // }
 
     public function updateManager(){                                       
         

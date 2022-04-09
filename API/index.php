@@ -11,7 +11,14 @@ Autoloader::register();
 
 switch (strtolower($_GET['main'])) {
     case 'booking':                
-        require './controller/BookingController.php';
+        switch ($_GET['level2']){
+            case 'delete':
+                http_response_code(400);
+                require './controller/BookingDeleteController.php';
+                break;
+            default:
+            require './controller/BookingController.php';
+        }        
         break;
     case 'pictures':
         switch ($_GET['level2']){

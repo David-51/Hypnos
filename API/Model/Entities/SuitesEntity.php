@@ -94,8 +94,7 @@ class Suites extends Entities
 
     public function getDates(){
         $calendar = new Calendars;
-        $req = $this->setEntityManager()->getChilds($calendar);
-        var_dump($req);
+        $req = $this->setEntityManager()->getChilds($calendar);        
 
         switch ($req[0]){
             case 'success':

@@ -67,7 +67,7 @@ class Bookings extends Entities
         return $this->date_checkout;
     }
     public function getCheckout(){
-        return $this->date_checkin;
+        return $this->date_checkout;
     }
 
     public function getNumbersOfNights(){
@@ -111,5 +111,5 @@ class Bookings extends Entities
             $date[] = $element['date'];
         }
         return $date;
-    } 
+    }
 }

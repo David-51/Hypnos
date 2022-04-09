@@ -1,13 +1,52 @@
+import removeFadeOut from "./removeFadeOut.js";
+
 const modal = new bootstrap.Modal(document.getElementById('modal'));
 
-const bookingsForms = document.getElementsByClassName('booking-form');
-const btnAnnnulation = document.getElementsByClassName('btn-annulation');
-const btnConfirmation = document.getElementById('confirmation')
-const btnAnnulation = document.getElementById('annulation')
+const bookingsList = document.getElementById('booking-list');
+const btnAnnulation = document.getElementById('annulation');
+const form = document.getElementById('form-modal');
+const helper = document.getElementById('helper');
 
-Array.from(bookingsForms).forEach(element => element.addEventListener('submit', (event) => {
+bookingsList.addEventListener('click', (event) => {
+    helper.textContent ='';
     event.preventDefault();
-    console.log(event.target);
-    modal.show();
+    const regex = new RegExp(/(annulation)-(.*)/);
+    if(regex.test(event.target.id)){
+        modal.show();
+        form.id.value = (regex.exec(event.target.id))[2]
+    }
+})
+btnAnnulation.addEventListener('click', () => {
+    modal.hide();
+})
 
-}))
+form.addEventListener('click', (event) => {
+    event.preventDefault();
+    const FD = new FormData(form);
+    const request = '/api/booking/delete';
+    fetch(request, {
+        method: "POST",
+        body: FD
+    })
+    .then((response) => {
+        if(response.status === 200){
+            response.json()
+            .then(data => {
+                if(data !== 'deleted'){                    
+                    helper.textContent = 'Impossible d\'annuler, veuillez contacter l\'hôtel';
+                    setTimeout(()=> {
+                        modal.hide()
+                    }, 3000)
+                }
+                else{                    
+                    removeFadeOut('booking-'+FD.get('id'), 1500);
+                    modal.hide();
+                }
+            })            
+        }
+        else{            
+            helper.textContent = 'une erreur s\'est produite, veuillez contacter l\'hôtel';            
+        }
+    })
+    .catch(error => console.error(error))
+})

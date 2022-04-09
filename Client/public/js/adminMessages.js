@@ -43,7 +43,7 @@ export default function adminMessages(){
                     card.classList.toggle('card-done');
                 }
             })
-            .catch(error => console.log(error));
+            .catch(error => console.error(error));
         }
         if(targetAction === 'delete'){        
             const request = '/api/messages/delete';
@@ -53,14 +53,10 @@ export default function adminMessages(){
             })
             .then((response) => {
                 if(response.status === 200){
-                    removeFadeOut(document.getElementById('card-'+targetId), 750);
-                    // document.getElementById('card-'+targetId).remove();
-                }
-                else{
-                    console.log(response.status)
-                }
+                    removeFadeOut(document.getElementById('card-'+targetId), 1000);                    
+                }                
             })
-            .catch((error) => console.log('delete error' + error))
+            .catch((error) => console.error('delete error'))
         }
     })
 }

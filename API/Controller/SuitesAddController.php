@@ -40,7 +40,7 @@ if(Permission('man')){
             $suite = new Suites;
             $suite->setEntity($establishment_entity, $_POST['title'], $_POST['link_to_booking'], $_POST['description'], $_POST['price']);
             $response = $suite->setEntityManager()->persistEntity();
-            var_dump($response);
+            
         }
         catch(Exception $e){
             json_encode($e);            
