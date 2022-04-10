@@ -1,6 +1,7 @@
 import { VerifyMail, VerifyName, VerifyPassword, VerifySelect } from "./fieldsVerification.js";
 import getToForm from "./getToForm.js";
 import redirectFromParameters from "./redirectFromParameter.js";
+import removeFadeOut from "./removeFadeOut.js"
 
 export default function adminManager(){
     
@@ -154,7 +155,7 @@ export default function adminManager(){
             //     document.getElementById(`establishment-${targetId}`).textContent = datas.establishment;
             //     document.getElementById(`email-${targetId}`).textContent = datas.email;
             // })
-            .catch((error) => console.log(error))
+            .catch((error) => console.error(error))
             
         }else if(targetAction === "delete"){            
             const request = "/api/manager/delete";
@@ -165,8 +166,8 @@ export default function adminManager(){
             .then(response => response.json())
             .then((response) => {
                 const cardId = 'card-'+targetId;
-
-                document.getElementById(cardId).remove();
+                removeFadeOut(document.getElementById(cardId), 1500);
+                
             })           
             .catch((error) => console.log(error))
         }else if(targetAction === "add"){
@@ -176,9 +177,14 @@ export default function adminManager(){
                 body: formData
             })
             .then((response) => {
+                console.log(response.status);
                 if(response.status === 201){
                     const validation = document.getElementById('validation').classList.add('light-off');  
-                    const check = document.getElementById('check').classList.add('check-in');                    
+                    const check = document.getElementById('check').classList.add('check-in');
+                    response.json()
+                    .then(data => {
+
+                    })               
                     setTimeout(()=>{                       
                     redirectFromParameters('./admin/managers')                                                                        
                     },2000);

@@ -28,8 +28,9 @@ if(isset($_POST['firstname'], $_POST['lastname'], $_POST['establishment'], $_POS
         echo json_encode('Something goes wrong');
     }
     else{
-        echo json_encode($manager->getManager());
-        http_response_code(201);        
+        $return = json_encode($manager->getManager());        
+        http_response_code(201);
+        echo $return;
     }        
 
 }else {
