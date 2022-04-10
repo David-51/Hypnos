@@ -39,7 +39,8 @@ form.addEventListener('click', (event) => {
                     }, 3000)
                 }
                 else{                    
-                    removeFadeOut('booking-'+FD.get('id'), 1500);
+                    const deleteTarget = document.getElementById('booking-'+form.id.value);
+                    removeFadeOut(deleteTarget, 1500);
                     modal.hide();
                 }
             })            

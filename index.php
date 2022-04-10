@@ -10,9 +10,6 @@ Autoloader::register();
 
 
 switch (strtolower($_GET['main'])) {
-    case 'test':
-        require './test/test.php';
-        break;
     case 'connect':
         require 'SignInController.php';
         break;

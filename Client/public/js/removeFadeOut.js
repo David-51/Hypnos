@@ -1,5 +1,10 @@
-export default function removeFadeOut( el, speed ) {
-    
+/**
+ * 
+ * @param {el} document.Element 
+ * @param {*} speed in ms
+ */
+export default function removeFadeOut(el, speed) {
+
     const elHeight = el.offsetHeight;
     const seconds = speed/2000;
     el.style.overflow = 'hidden';

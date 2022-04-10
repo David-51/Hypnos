@@ -9,7 +9,7 @@
     <?php
 
     foreach($props as $key => $element){ ?>
-<div class="mt-2 mb-3 p-2 border border-light rounded shadow-light put-forward <?= $element->done ? 'card-done' : '' ?>" 
+<div class="border border-light rounded shadow-light put-forward custom-card<?= $element->done ? 'card-done' : '' ?>" 
     id="booking-<?= $element->booking_id ?>">        
     <div class="row p-2">        
         <div class="col">
