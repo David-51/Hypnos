@@ -139,7 +139,7 @@ export default function adminManager(){
                 body: formData
             })
             .then((response) => {
-                if(response.status === 201){
+                if(response.status === 200){
                     response.json()
                     .then((datas) => {                        
                         document.getElementById(`firstname-${targetId}`).textContent = datas.firstname;
@@ -147,6 +147,9 @@ export default function adminManager(){
                         document.getElementById(`establishment-${targetId}`).textContent = datas.name;
                         document.getElementById(`email-${targetId}`).textContent = datas.email;
                     })
+                }
+                else{
+                    console.error(response.status);
                 }
             })
             // .then((datas) => {                
@@ -180,11 +183,7 @@ export default function adminManager(){
                 console.log(response.status);
                 if(response.status === 201){
                     const validation = document.getElementById('validation').classList.add('light-off');  
-                    const check = document.getElementById('check').classList.add('check-in');
-                    response.json()
-                    .then(data => {
-
-                    })               
+                    const check = document.getElementById('check').classList.add('check-in');                               
                     setTimeout(()=>{                       
                     redirectFromParameters('./admin/managers')                                                                        
                     },2000);
