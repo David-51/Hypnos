@@ -23,7 +23,7 @@ class Entity
      * @param string $search, you can insert the name of the column to get the Match Entity
      */
     public function getEntity(string $search = null){           
-        $entity_name = $this->entity->getEntityName();
+        $entity_name = strtolower($this->entity->getEntityName());
                         
         if(isset($this->entity->id)){
             $entity_id = $this->entity->id;
@@ -86,7 +86,7 @@ class Entity
      */
     public function updateEntity(string $where, string $cond, array $rows) {
                 
-        $entity_name = $this->entity->getEntityName();
+        $entity_name = strtolower($this->entity->getEntityName());
 
         $rows_keys = array_keys($rows);
         $set_rows_keys = implode(', ', array_map(function($value){
@@ -175,11 +175,11 @@ class Entity
             $entity_id = $this->entity->$the_id;
         }
         else{
-            $where = substr($this->entity->getEntityName() , 0, -1).'_id';                                        
+            $where = strtolower(substr($this->entity->getEntityName() , 0, -1)).'_id';                                        
             $entity_id = $this->entity->id;        
         }
 
-        $entity_name = $child->getEntityName();
+        $entity_name = strtolower($child->getEntityName());
         $query = "SELECT * FROM $entity_name WHERE $where = \"$entity_id\"";
         try{
             $sth = $this->db->prepare($query);
