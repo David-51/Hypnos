@@ -5,6 +5,8 @@ use API\Assets\Autoloader;
 
 require './Config/pathConfig.php';
 require './Assets/Autoloader.php';
+require '../configenv.php';
+
 
 http_response_code(202);
 Autoloader::register();
@@ -54,7 +56,7 @@ switch (strtolower($_GET['main'])) {
         break;
     case 'login':
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            require './controller/LoginController.php';
+            require './Controller/LoginController.php';
         }
         else{
             echo json_encode('Request Method Error');

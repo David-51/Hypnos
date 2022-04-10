@@ -2,8 +2,8 @@
 
 $path = [
     // need add ../ because the entry API/index is one level higher
-    '../API/model/Entities',
-    '../API/model/Manager',
+    '../API/Model/Entities',
+    '../API/Model/Manager',
     '../API/Model',
     '../API/Controller',
     '../API/Assets'

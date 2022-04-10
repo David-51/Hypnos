@@ -5,8 +5,8 @@ $path = [
     'Client/Controller',
     'Client/public/views',  
     'Client/public/css',
-    'API/model/Entities',
-    'API/model/Manager',
+    'API/Model/Entities',
+    'API/Model/Manager',
     'API/Model',
     'API/Controller'
 ];
