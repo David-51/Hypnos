@@ -20,10 +20,10 @@ if(isset($_GET['id'])){
     $props = $suite->getSuite();    
 
     $establishment_name = $props->setEntityManager()->getChilds(new Establishments, true)[0]->name;    
-    $view->setBody('Suites', [$establishment_name, $props]);
+    $view->setBody('suites', [$establishment_name, $props]);
 }else{
     $list = (new Establishments)->getAllSuites();                       
-    $view->setBody('SuitesByEstablishment', ['Toute les suites...', '', $list]);
+    $view->setBody('suitesByEstablishment', ['Toute les suites...', '', $list]);
 }
 echo $view->getContent();
 

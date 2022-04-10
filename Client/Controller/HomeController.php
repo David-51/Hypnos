@@ -8,10 +8,10 @@ $view->setHeader('headerTemplate');
 $view->setFooter('footerTemplate');
 $view->setNavbar('navbarTemplate');
 
+$establishments = new Establishments;
+$list = $establishments->setEntityManager()->getEntity();
 
-$list = (new Establishments)->setEntityManager()->getEntity();              
-$view->setBody('adminEstablishments', $list);
 
+
+$view->setBody('Home', $list);
 echo $view->getContent();
-
-

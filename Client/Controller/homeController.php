@@ -13,5 +13,5 @@ $list = $establishments->setEntityManager()->getEntity();
 
 
 
-$view->setBody('Home', $list);
+$view->setBody('home', $list);
 echo $view->getContent();

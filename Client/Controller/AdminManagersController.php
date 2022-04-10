@@ -13,7 +13,7 @@ $view->setNavbar('navbarTemplate');
 $list = (new Managers)->getManagers();
 $hotels = (new Establishments)->setEntityManager()->getEntity();
 
-$view->setBody('AdminManagers', [$list, $hotels]);
+$view->setBody('adminManagers', [$list, $hotels]);
 
 echo $view->getContent();
 

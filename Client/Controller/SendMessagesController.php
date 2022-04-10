@@ -8,6 +8,6 @@ $view->setFooter('footerTemplate');
 $view->setNavbar('navbarTemplate');
 
 
-$view->setBody('SendMessages', []);
+$view->setBody('sendMessages', []);
 echo $view->getContent();
 

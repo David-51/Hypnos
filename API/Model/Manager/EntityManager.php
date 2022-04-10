@@ -60,7 +60,7 @@ class Entity
         try{
             $sth = $this->db->prepare($query);
             if($bool === true){
-                $sth->setFetchMode(\PDO::FETCH_CLASS, get_class($this->entity));
+                $sth->setFetchMode(\PDO::FETCH_CLASS, strtolower(get_class($this->entity)));
             }else{
                 $sth->setFetchMode(\PDO::FETCH_ASSOC);
             }
@@ -159,7 +159,7 @@ class Entity
             return true;
         }
         catch(\PDOException $e){
-            return false;
+            return $e;
         }        
     }
 

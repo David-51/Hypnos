@@ -23,18 +23,18 @@ switch ($_GET['level2']) {
             $entity = $establishment->setEntityManager()->getEntity();
             
             
-            $view->setBody('SuitesByEstablishment', [$entity->name, $entity->city, $list]);                        
+            $view->setBody('suitesByEstablishment', [$entity->name, $entity->city, $list]);                        
         }
         else{                        
             $list = (new Establishments)->getAllSuites();                       
-            $view->setBody('SuitesByEstablishment', ['Toute les suites...', '', $list]);            
+            $view->setBody('suitesByEstablishment', ['Toute les suites...', '', $list]);            
         }                
         break;
         
     default:
     
     $list = (new Establishments)->setEntityManager()->getEntity();                  
-    $view->setBody('EstablishmentsList', $list);
+    $view->setBody('establishmentsList', $list);
 }
 echo $view->getContent();
 

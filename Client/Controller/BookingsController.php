@@ -30,5 +30,5 @@ $list_hotel = $establishments->setEntityManager()->getEntity();
 
 // $establishement_list = $establishement->getAll();
 
-$view->setBody('Bookings', $list_hotel);
+$view->setBody('bookings', $list_hotel);
 echo $view->getContent();

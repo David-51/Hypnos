@@ -31,6 +31,7 @@ if(Permission('man')){
             $manager_establishment_id = $current_manager[0]->establishment_id;
         }
         else{
+            var_dump($current_manager);
             http_response_code(403);
             die();
         }        

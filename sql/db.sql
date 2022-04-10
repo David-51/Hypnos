@@ -121,11 +121,11 @@ CREATE Table IF NOT EXISTS bookings
 CREATE Table IF NOT EXISTS calendars
 (
     id VARCHAR(36) NOT NULL UNIQUE PRIMARY KEY COLLATE utf8mb4_0900_as_cs DEFAULT (UUID()),
-    suite_id VARCHAR(36) NOT NULL COLLATE utf8mb4_0900_as_cs,
-    user_id VARCHAR(255) NOT NULL COLLATE utf8mb4_0900_as_cs,
+    suite_id VARCHAR(36) COLLATE utf8mb4_0900_as_cs,
+    user_id VARCHAR(255) COLLATE utf8mb4_0900_as_cs,
     booking_id VARCHAR(36) NOT NULL COLLATE utf8mb4_0900_as_cs,
     date DATE NOT NULL,
-    FOREIGN KEY (suite_id) REFERENCES suites(id),
-    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (suite_id) REFERENCES suites(id) ON DELETE SET NULL ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL ON UPDATE CASCADE,
     FOREIGN KEY (booking_id) REFERENCES bookings(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;

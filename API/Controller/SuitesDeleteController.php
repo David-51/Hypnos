@@ -38,17 +38,20 @@ if(Permission('man')){
             die();
         }
 
-        if($manager_establishment_id === $suite_establishment_id){
+        if($manager_establishment_id === $suite_establishment_id){            
+            
             $response = $suite->setEntityManager()->deleteEntity('suites', 'id', $_POST['id']);        
             // info user
-            if($response){
+            if($response === true){
                 http_response_code(200);
                 echo json_encode('deleted');
             }
             else{            
-                http_response_code(202);
-                echo json_encode('Error on delete');
-            }
+                // 202
+                http_response_code(403);
+                echo json_encode($response);
+            }                
+            
         }
         else{
             http_response_code(403);

@@ -189,7 +189,7 @@ export default function managerSuites(){
                     })
                 }
                 else{
-                    response.json().then(data => console.log(data));
+                    response.text().then(data => console.log(data));
                     // console.error('something goes wrong...');                    
                     }                    
                 }
@@ -206,7 +206,10 @@ export default function managerSuites(){
                 if(response.status === 200){
                     const cardId = 'card-'+targetId;                    
                     removeFadeOut(document.getElementById(cardId), 1500);
-                }                                       
+                }
+                else{
+                    response.text().then(data => console.error(data))
+                }                              
             })           
             .catch((error) => console.error('Somethings goes wrong...'))
         }else if(targetAction === "add"){

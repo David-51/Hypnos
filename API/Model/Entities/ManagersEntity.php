@@ -80,7 +80,7 @@ class Managers extends Entities
             $user_id = $this->user_id;
         }
         $query = "SELECT users.*, establishments.name, establishments.id as establishment_id
-                    FROM Users 
+                    FROM users 
                     JOIN managers 
                     ON managers.user_id = users.id 
                     LEFT JOIN establishments

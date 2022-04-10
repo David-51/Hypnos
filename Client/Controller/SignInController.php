@@ -7,5 +7,5 @@ $view->setHeader('headerTemplate');
 $view->setFooter('footerTemplate');
 $view->setNavbar('navbarTemplate');
 
-$view->setBody('SignIn', []);
+$view->setBody('signIn', []);
 echo $view->getContent();
