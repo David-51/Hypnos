@@ -122,7 +122,7 @@ class Entity
             return ':'.$value;
         }, $data_keys));                                        
 
-        $entity_name = $this->entity->getEntityName();
+        $entity_name = strtolower($this->entity->getEntityName());
 
         $query = "INSERT INTO $entity_name($params) VALUES($valueToBind)";
         try{

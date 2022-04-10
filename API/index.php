@@ -5,8 +5,6 @@ use API\Assets\Autoloader;
 
 require './Config/pathConfig.php';
 require './Assets/Autoloader.php';
-require '../configenv.php';
-
 
 http_response_code(202);
 Autoloader::register();

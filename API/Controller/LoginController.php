@@ -22,7 +22,7 @@ if(isset($_POST['email'], $_POST['password'])){
             $_SESSION['firstname'] = htmlspecialchars($find_user->firstname);
             $_SESSION['lastname'] = htmlspecialchars($find_user->lastname);
             $_SESSION['email'] = htmlspecialchars($find_user->email);
-            $_SESSION['role'] = htmlspecialchars($find_user->role);
+            $_SESSION['role'] = strtolower(htmlspecialchars($find_user->role));
             $_SESSION['id'] = $find_user->id;
             
             $information = [
