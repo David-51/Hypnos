@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 use Assets\Autoloader;
 
 require './Client/Assets/Autoloader.php';
@@ -47,7 +46,7 @@ switch (strtolower($_GET['main'])) {
     // Administrators
     case 'admin':
         if($_SESSION['role'] !== 'adm'){
-            header('Location: /');            
+            header('Location: /home');            
         }
         switch ($_GET['level2']){
             case 'establishments':
@@ -68,7 +67,7 @@ switch (strtolower($_GET['main'])) {
     break;
     case 'manager':
         if($_SESSION['role'] !== 'man'){
-            header('Location: /');
+            header('Location: /home');
         }
         else{
             switch ($_GET['level2']){

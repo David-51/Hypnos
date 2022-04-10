@@ -18,6 +18,7 @@ if(isset($_POST['email'], $_POST['password'])){
             echo json_encode('Unknown user or password');            
         }
         else{
+            
             http_response_code(200);
             $_SESSION['firstname'] = htmlspecialchars($find_user->firstname);
             $_SESSION['lastname'] = htmlspecialchars($find_user->lastname);

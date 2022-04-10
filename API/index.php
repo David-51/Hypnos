@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 use API\Assets\Autoloader;
 
 require './Config/pathConfig.php';
