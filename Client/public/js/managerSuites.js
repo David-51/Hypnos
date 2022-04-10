@@ -189,7 +189,8 @@ export default function managerSuites(){
                     })
                 }
                 else{
-                    console.error('something goes wrong...');                    
+                    response.json().then(data => console.log(data));
+                    // console.error('something goes wrong...');                    
                     }                    
                 }
             )            
