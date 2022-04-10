@@ -120,7 +120,7 @@ class Users extends Entities
     public function getBookingsList(){
          
         $query = "SELECT users.id as user_id, bookings.id as booking_id, establishments.name, suites.title, bookings.date_checkin, bookings.date_checkout 
-        FROM Bookings 
+        FROM bookings 
         JOIN users
         ON users.id = bookings.user_id
         JOIN suites
