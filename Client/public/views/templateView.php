@@ -20,7 +20,7 @@
     <header class="fixed-top">
         <?= $this->header ?> 
     </header>
-    <div class="container content bg-primary text-light mt-0 mb-0 col-12 col-md-8 col-lg-6 overflow-scroll content fadein">
+    <div class="container content bg-primary text-light mt-0 mb-0 col-12 col-md-8 col-lg-6 overflow-scroll fadein" id="mainContent">
         <?= $this->body ?>
     </div>
     <footer class="d-flex align-items-end justify-content-center text-light gradient fixed-bottom">

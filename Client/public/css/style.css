@@ -61,6 +61,7 @@ img {
     padding-top: 60px;
     padding-bottom:35px;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
 }
 
 .curve {

@@ -6,17 +6,10 @@ class Database
 {
 
     const DSN = 'mysql:dbname=hypnos;host:127.0.0.1;charset=UTF8';
-<<<<<<< HEAD
     const USERNAME = 'administrator';
     const PASSWORD = 'administrator';
     // const USERNAME = 'admin';
     // const PASSWORD = 'admin';
-=======
-    // const USERNAME = 'administrator';
-    // const PASSWORD = 'administrator';
-    const USERNAME = 'admin';
-    const PASSWORD = 'admin';
->>>>>>> da7ebbab69d00a3f285c7fda621dc3782e306a13
     
     
     public static $pdo = null;
