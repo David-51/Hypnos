@@ -42,6 +42,9 @@
             <li class="nav-item sidebar-item">
                 <a href="/admin/managers">Gérants</a>
             </li>
+            <li class="nav-item sidebar-item">
+                <a href="/admin/messages">Messages</a>
+            </li>
             
             <?php   }else if($_SESSION['role'] === 'man'){
                 ?>

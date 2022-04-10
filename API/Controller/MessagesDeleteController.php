@@ -1,23 +1,31 @@
 <?php
+require 'CleanArray.php';
+require 'Permission.php';
 
 use API\Model\Entity\Messages;
 
-if(!isset($_SESSION['role'])){
-    http_response_code(403);
-    echo json_encode('No permission');
-}else if($_SESSION['role'] !== 'adm'){
-    http_response_code(403);
-    echo json_encode('No permission');
+if(Permission('adm')){
+
+    if(!isset($_POST['id'])){
+        echo json_encode('bad Id request');
+        die();
+    }else{
+        CleanArray($_POST);
+        $id = htmlspecialchars($_POST['id']);
+        
+        $message = new Messages;
+        $response = $message->setEntityManager()->deleteEntity('messages', 'id', $_POST['id']);
+        
+        if($response){
+            http_response_code(200);
+            echo json_encode('delete');
+        }
+        else{
+            http_response_code(202);
+            echo json_encode('something goes wrong');
+        }
+    }
 }
-
-if(!isset($_GET['id'])){
-    echo json_encode('bad Id request');
+else{
+    echo json_encode('bad permission');
 }
-
-$id = htmlspecialchars($_POST['id']);
-
-$message = new Messages;
-$response = $message->setEntityManager()->deleteEntity('messages', 'id', $_POST['id']);
-
-http_response_code(200);
-echo json_encode($response);

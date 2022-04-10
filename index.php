@@ -9,10 +9,7 @@ require './Client/Config/pathConfig.php';
 Autoloader::register();
 
 
-switch (strtolower($_GET['main'])) {
-    case 'connect':
-        require 'SignInController.php';
-        break;
+switch (strtolower($_GET['main'])) {    
     case 'establishments':
         require 'EstablishmentsListController.php';
         break;

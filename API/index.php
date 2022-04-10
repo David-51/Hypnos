@@ -152,6 +152,3 @@ switch (strtolower($_GET['main'])) {
     echo json_encode('Mauvaise route...');
     http_response_code(403);
 }
-if(isset($message)){
-    logger($message);
-}

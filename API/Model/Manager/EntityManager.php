@@ -159,7 +159,7 @@ class Entity
             return true;
         }
         catch(\PDOException $e){
-            return $e;
+            return false;
         }        
     }
 
@@ -185,7 +185,7 @@ class Entity
             $sth = $this->db->prepare($query);
             $sth->execute();
     
-            $sth->setFetchMode(\PDO::FETCH_CLASS, get_class($child));
+            $sth->setFetchMode(\PDO::FETCH_CLASS, strtolower(get_class($child)));
             $response = $sth->fetchAll();              
             return $response;
         }                      

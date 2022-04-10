@@ -28,7 +28,8 @@
                                 <?php if($_SESSION['role'] === 'adm'){
                                     ?>
                                 <li><a class="bg-bar" href="/admin/establishments">Etablissements</a></li>
-                                <li><a class="bg-bar" href="/admin/managers">Gérants</a></li>                                
+                                <li><a class="bg-bar" href="/admin/managers">Gérants</a></li>
+                                <li><a class="bg-bar" href="/admin/messages">Messages</a></li>
                                 <?php } else { ?>
                                     <li><a class="bg-bar" href="/manager/suites">Suites</a></li>
 

@@ -26,7 +26,7 @@ export default function adminMessages(){
         const cardId = 'card-'+targetId;
         const card = document.getElementById(cardId);
         const formData = new FormData;
-        formData.append('id', targetId);
+        formData.append('id', targetId);        
     
         if(targetAction === 'done' || targetAction === 'undone'){
             const request = '/api/messages/done';
@@ -36,11 +36,14 @@ export default function adminMessages(){
                 method: "POST",
                 body: formData
             })
-            .then((response) => {
-                if(response.status === 200){   
+            .then((response) => {                
+                if(response.status === 200){
                     const prefixId = targetAction === 'done' ? 'undone' : 'done';
                     document.getElementById(targetAction+'-'+targetId).id = prefixId+'-'+targetId;
-                    card.classList.toggle('card-done');
+                    card.classList.toggle('card-done');                    
+                }
+                else{
+                    console.error(response.status)                    
                 }
             })
             .catch(error => console.error(error));
@@ -54,7 +57,10 @@ export default function adminMessages(){
             .then((response) => {
                 if(response.status === 200){
                     removeFadeOut(document.getElementById('card-'+targetId), 1000);                    
-                }                
+                }
+                else{
+                    console.error(response.status);                    
+                }            
             })
             .catch((error) => console.error('delete error'))
         }
