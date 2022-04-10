@@ -14,22 +14,22 @@ switch (strtolower($_GET['main'])) {
         switch ($_GET['level2']){
             case 'delete':
                 http_response_code(400);
-                require './controller/BookingDeleteController.php';
+                require './Controller/BookingDeleteController.php';
                 break;
             default:
-            require './controller/BookingController.php';
+            require './Controller/BookingController.php';
         }        
         break;
     case 'pictures':
         switch ($_GET['level2']){
             case 'add':                       
-                require './controller/PicturesAddController.php';
+                require './Controller/PicturesAddController.php';
                 break;
             case 'update':
-                require './controller/PicturesUpdateController.php';
+                require './Controller/PicturesUpdateController.php';
                 break;
             case 'delete':
-                require './controller/PicturesDeleteController.php';
+                require './Controller/PicturesDeleteController.php';
                 break;
                 default:
                 http_response_code(400);
@@ -38,7 +38,7 @@ switch (strtolower($_GET['main'])) {
         break;
     case 'create-account':
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            require './controller/CreateAccountController.php';
+            require './Controller/CreateAccountController.php';
         }
         else{
             echo json_encode('Request Method Error');
@@ -46,7 +46,7 @@ switch (strtolower($_GET['main'])) {
         break;
     case 'send-message':
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            require './controller/SendMessageController.php';
+            require './Controller/SendMessageController.php';
         }
         else{
             echo json_encode('Request Method Error');
@@ -64,26 +64,26 @@ switch (strtolower($_GET['main'])) {
         switch ($_GET['level2']){
             case 'update':
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
-                    require './controller/EstablishmentUpdateController.php';
+                    require './Controller/EstablishmentUpdateController.php';
                 }
                 break;
             case 'delete':
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
-                    require './controller/EstablishmentDeleteController.php';
+                    require './Controller/EstablishmentDeleteController.php';
                 }
                 break;
             case 'add':
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                              
-                    require './controller/EstablishmentAddController.php';
+                    require './Controller/EstablishmentAddController.php';
                 }
                 break;
             case 'suites':                                            
-                require './controller/EstablishmentSuitesController.php';
+                require './Controller/EstablishmentSuitesController.php';
                 
                 break;
 
             default:
-                require './controller/EstablishmentController.php';        
+                require './Controller/EstablishmentController.php';        
                 break;
         }
         break;
@@ -91,22 +91,22 @@ switch (strtolower($_GET['main'])) {
         switch ($_GET['level2']){
             case 'add':
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
-                    require './controller/ManagerAddController.php';
+                    require './Controller/ManagerAddController.php';
                 }
                 break;
             case 'update':                
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
-                    require './controller/ManagerUpdateController.php';
+                    require './Controller/ManagerUpdateController.php';
                 }
                 break;
             case 'delete':
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
-                    require './controller/ManagerDeleteController.php';
+                    require './Controller/ManagerDeleteController.php';
                 }
                 break;
             default:
             if(isset($_GET['id'])){
-                require './controller/ManagerGetController.php';            
+                require './Controller/ManagerGetController.php';            
             }
             else{
                 echo json_encode('no enough parameters');                
@@ -117,10 +117,10 @@ switch (strtolower($_GET['main'])) {
     case 'messages':
         switch ($_GET['level2']){
             case 'done':
-                require './controller/MessagesDoneController.php';
+                require './Controller/MessagesDoneController.php';
                 break;
             case 'delete':
-                require './controller/MessagesDeleteController.php';
+                require './Controller/MessagesDeleteController.php';
                 break;
             default:
             http_response_code(403);
@@ -131,21 +131,21 @@ switch (strtolower($_GET['main'])) {
         switch ($_GET['level2']){
             case 'add':
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
-                    require './controller/SuitesAddController.php';
+                    require './Controller/SuitesAddController.php';
                 }
                 break;
             case 'delete':
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
-                    require './controller/SuitesDeleteController.php';
+                    require './Controller/SuitesDeleteController.php';
                 }
                 break;
             case 'update':
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){                    
-                    require './controller/SuitesUpdateController.php';
+                    require './Controller/SuitesUpdateController.php';
                 }
                 break;                
             default:
-            require './controller/SuitesController.php';            
+            require './Controller/SuitesController.php';            
         }
     break;
     default:
