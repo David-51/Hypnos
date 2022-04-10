@@ -66,7 +66,7 @@ class Managers extends Entities
     }
     public function getManagers(){        
         $query = "SELECT users.*, establishments.name 
-                    FROM Users 
+                    FROM users 
                     JOIN managers 
                     ON managers.user_id = users.id 
                     LEFT JOIN establishments
