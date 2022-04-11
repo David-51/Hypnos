@@ -1,3 +1,6 @@
+import deletePicture from "./deletePicture.js";
+import updatePicture from "./updatePicture.js";
+
 export default function addMiniatureForm(datasPictures){
     datasPictures.forEach(element => {
         const addPicture = document.getElementById('form-picture')
@@ -7,6 +10,8 @@ export default function addMiniatureForm(datasPictures){
         pictureForm.id = 'form-'+element.id;
         pictureForm.enctype = "multipart/form-data";                        
         pictureTable.insertBefore(pictureForm, addPicture);
+        //Add EventListener on picture for update
+        pictureForm.addEventListener('change', updatePicture);
 
         // Delete Button
         const button = document.createElement('button');
@@ -15,6 +20,10 @@ export default function addMiniatureForm(datasPictures){
         button.ariaLabel = 'close';
         button.id = 'delete-'+element.id;
         pictureForm.appendChild(button);
+        // Add Event listener on button for delete
+        button.addEventListener('click', deletePicture);
+        
+        
         
         // input hidden with picture Id
         const inputPictureId = document.createElement('input');

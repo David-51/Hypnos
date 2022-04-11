@@ -1,10 +1,12 @@
 import addMiniatureForm from "./addMiniatureForm.js";
+import deletePicture from "./deletePicture.js";
 import disableFormFields from "./disableFormFields.js";
 import { VerifyLink, VerifyName, VerifyNumber, VerifyTextarea } from "./fieldsVerification.js";
 import addPicture from "./managerSuitesPictures.js";
 import redirectFromParameters from "./redirectFromParameter.js";
 import removeElementsByClass from "./removeElementByClass.js";
 import removeFadeOut from "./removeFadeOut.js";
+import updatePicture from "./updatePicture.js";
 
 export default function managerSuites(){
     
@@ -18,6 +20,8 @@ export default function managerSuites(){
     const form = document.getElementById('form-crud');
     const formFile = document.getElementById('form-picture');
     const helper = document.getElementById('helper');
+ 
+    const regex = new RegExp(/(edit|delete)-(.*)/); 
     
     const modalTitle = document.getElementById('modal-title');
     const modalSubmitButton = document.getElementById('modal-submit-button');    
@@ -57,7 +61,7 @@ export default function managerSuites(){
         modalSubmitButton.classList.add('btn-info');
 
         modalSubmitButton.classList.add('disabled');
-        const regex = new RegExp(/(edit|delete)-(.*)/);                  
+                         
         const eventId = regex.exec(event.target.id);
         const eventParentId = regex.exec(event.target.parentNode.id);
         
@@ -107,55 +111,13 @@ export default function managerSuites(){
                     form.link_to_booking.value = datas.link_to_booking;
 
                     addMiniatureForm(datas.pictures);
-                    
+                                        
                     // event UPDATE and Delete on Pictures
-                    Array.from(picturesUpdateTable).forEach(element => element.addEventListener('change', (event) => {
-                        
-                        const pictureRegex = new RegExp(/(update|delete)-(.*)/);    
-                        
-                        const pictureData = pictureRegex.exec(event.target.id)
-                        const pictureId = pictureData[2];
-
-                        const pictureForm = document.getElementById('form-'+pictureId);
-                        const pictureImg = document.getElementById('updatePicture-'+pictureId);
-                        const updateForm = new FormData(pictureForm);
-                        const request = '/api/pictures/update';
-                        
-                        fetch(request, {
-                            method: "POST",
-                            body: updateForm
-                        })
-                        .then((response) => {                            
-                            return response.json()
-                        })
-                        .then((data) => {                            
-                            pictureImg.src = data.picture_link;
-                        })
-                        .catch(error => console.error(error))
-                    }))
-
+                    Array.from(picturesUpdateTable).forEach(element => element.addEventListener('change', updatePicture))
+                    
                     // Cross to Delete Pictures
-                    Array.from(picturesDeleteTable).forEach(element => element.addEventListener('click', (event) => {
-                        const pictureRegex = new RegExp(/(delete)-(.*)/);                        
-                        const pictureIdToDelete = (pictureRegex.exec(event.target.id))[2]
-                        
-                        const pictureForm = document.getElementById('form-'+pictureIdToDelete);
-                        const deleteForm = new FormData(pictureForm);
-
-                        const request = '/api/pictures/delete';
-
-                        fetch(request, {
-                            method: "POST",
-                            body: deleteForm
-                        })
-                        .then((response)=> {                            
-                            return response.json()
-                        })
-                        .then((data) => {
-                            pictureForm.remove();                            
-                        })
-                        .catch(error => console.error(error))
-                    }))                    
+                    Array.from(picturesDeleteTable).forEach(element => element.addEventListener('click', deletePicture));
+                                     
                     modal.show();
                 })
             // getToForm(request, form, ['title', 'description', 'link_to_booking', 'price'], modal.show());            
@@ -249,4 +211,6 @@ export default function managerSuites(){
 }
 
 managerSuites();
+
+//Ajouter les events des Arrays ici
 addPicture();
