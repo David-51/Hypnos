@@ -6,7 +6,7 @@
 </div>
 <div class="row">
     <div class="col-12 mt-2">
-        <form class="mx-4 col" id="send-message">
+        <form class="mx-4 col" id="send-message" spellcheck="false">
             <div class="form-group my-1">
                 <label for="firstname">Votre prénom</label>
                 <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="name" required>                
@@ -18,7 +18,7 @@
             </div>
             <div class="form-group my-1">
                 <label for="Email">Votre email</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="email" required>
+                <input spellcheck="false" type="email" class="form-control" id="email" name="email" aria-describedby="email" required>
             </div>            
             <div>
                 <label for="subject">Sujet</label>
@@ -31,7 +31,7 @@
                 </select>
             </div>
             <div class="form-floating my-2">
-                <textarea class="form-control p-1" placeholder="Ecrivez votre message ici" id="message" name="message" style="height: 150px"></textarea>
+                <textarea spellcheck="true" class="form-control p-1" placeholder="Ecrivez votre message ici" id="message" name="message" style="height: 150px"></textarea>
                 <label for="message">Comments</label>
             </div>
             <small class="text-danger" id="helper">&ensp;</small>

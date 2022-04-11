@@ -4,7 +4,7 @@
         <p class="mt-4 mb-1">Connectez-vous</p>
     </div>
     <div class="row mt-2 mx-auto">
-        <form class="col-9 mx-auto" id="connexion">            
+        <form class="col-9 mx-auto" id="connexion" spellcheck="false">            
             <div class="form-group my-3">
                 <label for="Email">Votre email</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="email" required>

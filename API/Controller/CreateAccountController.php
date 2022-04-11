@@ -1,6 +1,6 @@
 <?php
 // Verify datas
-
+require 'CleanArray.php';
 use API\Model\Entity\Users;
 
 // $_POST verification

@@ -61,7 +61,7 @@
       </div>
       <div class="modal-body">
         <!--- form --->
-        <form class="mx-2 col form-animation" id="form-crud" name="form-crud">
+        <form class="mx-2 col form-animation" id="form-crud" name="form-crud" spellcheck="true">
             <input type="hidden" name="id" id="id" value="" />
             <div class="form-group my-1">
                 <label for="title">Titre de la suite</label>
@@ -91,7 +91,7 @@
         <div id="pictures-table" class="mt-2 mx-2 d-flex flex-row flex-wrap">
             <!-- <div id="pictures-current" class="d-flex flex-row flex-wrap">                
             </div>-->          
-            <form action="" enctype="multipart/form-data" id="form-picture">
+            <form action="" enctype="multipart/form-data" id="form-picture" spellcheck="false">
                 <input type="hidden" name="id" id="idPicture" required>
                 <label for="addPicture" class="col-auto my-1 mx-1 picture-item p-0 d-flex justify-content-center picture-add" enctype="multipart/form-data">
                     <p class="picture-add-text text-center align-self-center">+</p>
