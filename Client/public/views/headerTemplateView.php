@@ -9,29 +9,29 @@
     </div>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
-            <li class="nav-item text-light header-nav"><a href="./">Accueil</a></li>
-            <li class="nav-item text-light header-nav"><a href="./establishments">Hôtels</a></li>                                                 
+            <li class="nav-item text-light header-nav"><a href="./"><i class="fa-solid fa-house"></i>&ensp;Accueil</a></li>
+            <li class="nav-item text-light header-nav"><a href="./establishments"><i class="fa-solid fa-hotel"></i>&ensp;Hôtels</a></li>                                                 
             <?php 
             if(isset($_SESSION['role']) 
                 && ($_SESSION['role'] === 'use' || $_SESSION['role'] === 'adm' || $_SESSION['role'] === 'man')){?>
-            <li class="nav-item text-light header-nav"><a href="./bookings/list">Réservations</a></li>                                    
+            <li class="nav-item text-light header-nav"><a href="./bookings/list"><i class="fa-solid fa-suitcase"></i>&ensp;Réservations</a></li>                                    
             <?php } ?>
-            <li class="nav-item text-light header-nav"><a href="./send-messages">Nous contacter</a></li>
+            <li class="nav-item text-light header-nav"><a href="./send-messages"><i class="fa-solid fa-envelope"></i>&ensp;Nous contacter</a></li>
 
             <?php if(isset($_SESSION['role'])                     
                     && ($_SESSION['role'] === 'adm' 
                     || $_SESSION['role'] ==='man')){?>
                     <div class="dropdown">
                         <li class="nav-item text-light header-nav">
-                            <a class="dropdown-toggle" id="admin-menu" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false">Administration</a>
+                            <a class="dropdown-toggle" id="admin-menu" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-gear"></i>&ensp;Administration</a>
                             <ul class="dropdown-menu bg-bar" aria-labelledby="admin-menu">
                                 <?php if($_SESSION['role'] === 'adm'){
                                     ?>
-                                <li><a class="bg-bar" href="/admin/establishments">Etablissements</a></li>
-                                <li><a class="bg-bar" href="/admin/managers">Gérants</a></li>
-                                <li><a class="bg-bar" href="/admin/messages">Messages</a></li>
+                                <li><a class="bg-bar" href="/admin/establishments"><i class="fa-solid fa-hotel"></i>&ensp;Etablissements</a></li>
+                                <li><a class="bg-bar" href="/admin/managers"><i class="fa-solid fa-user-group"></i>&ensp;Gérants</a></li>
+                                <li><a class="bg-bar" href="/admin/messages"><i class="fa-solid fa-message"></i>&ensp;Messages</a></li>
                                 <?php } else { ?>
-                                    <li><a class="bg-bar" href="/manager/suites">Suites</a></li>
+                                    <li><a class="bg-bar" href="/manager/suites"><i class="fa-solid fa-bed"></i>&ensp;Suites</a></li>
 
                                 <?php } ?>
                             </ul>
