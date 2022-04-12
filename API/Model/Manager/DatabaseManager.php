@@ -2,16 +2,15 @@
 
 namespace API\Model\Manager;
 
+use dbConnection\DbConnection;
+
 class Database
 {
 
-    const DSN = 'mysql:dbname=hypnos;host:127.0.0.1;charset=UTF8';
-    const USERNAME = 'administrator';
-    const PASSWORD = 'administrator';
-    // const USERNAME = 'admin';
-    // const PASSWORD = 'admin';
-    
-    
+    const DSN = DbConnection::DSN;
+    const USERNAME = DbConnection::USERNAME;
+    const PASSWORD = DbConnection::PASSWORD;
+     
     public static $pdo = null;
     
     private static function connect() :\PDO
