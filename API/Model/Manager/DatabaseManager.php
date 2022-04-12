@@ -1,5 +1,4 @@
 <?php
-
 namespace API\Model\Manager;
 
 use dbConnection\DbConnection;

@@ -6,7 +6,8 @@ $path = [
     '../API/Model/Manager',
     '../API/Model',
     '../API/Controller',
-    '../API/Assets'
+     '../API/Assets',
+     '../'
 ];
 
 function addpath($path){    
