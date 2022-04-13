@@ -33,21 +33,21 @@ PDF Technical documentation : You can find this PDF document in the folder "/doc
 Clone the repository at the Racine of your DocumentRoot Directory. The index.php must to be at the racine.
 for exemple if your directory is var/www/html
 
-#       /var/www/html
-#       |-- index.php
-#       |      
-#       |-- Client
-#       |       |-- Assets
-#       |       |-- Config
-#       |       |-- Controller
-#       |       `-- public
-#       |-- API
-#       |     |-- Assets
-#       |     |-- Config
-#       |     |-- Controller
-#       |     |-- Model
-#       |     `-- public
-#       `-- Sql
+       /var/www/html
+       |-- index.php
+       |      
+       |-- Client
+       |       |-- Assets
+       |       |-- Config
+       |       |-- Controller
+       |       `-- public
+       |-- API
+       |     |-- Assets
+       |     |-- Config
+       |     |-- Controller
+       |     |-- Model
+       |     `-- public
+       `-- Sql
 
 Maybe you have to create a Virtualhost
 You can follow the step on the official website [Apache VirtualHost](https://httpd.apache.org/docs/2.4/vhosts/)
