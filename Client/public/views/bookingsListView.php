@@ -14,7 +14,7 @@
     <div class="row p-2">        
         <div class="col">
             <h2 class="curve">
-                <?= $element->name ?>
+                <?= htmlspecialchars($element->name) ?>
             </h2>
             <h3>
                 Suite "<?= $element->title ?>"

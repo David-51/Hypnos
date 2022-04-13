@@ -4,13 +4,13 @@
 <div class="row">
     <div class="col-auto text-center">
         <h1>
-            <?= $props->title ?>
+            <?= htmlspecialchars($props->title) ?>
         </h1>
         <div class="liner m-auto mb-1">
 
         </div>
         <div class="text-center adress">                
-            <p class="props"><?= $establishment_name ?></p>
+            <p class="props"><?= htmlspecialchars($establishment_name) ?></p>
         </div>
     </div>
     <div class="col-4 ms-auto mt-auto mb-3 text-end">
@@ -43,7 +43,7 @@
                 foreach($props->pictures as $data){
                     ?>
                 <div class="carousel-item <?= $j === 0 ? 'active' : ''; ?>">
-                    <img src="<?= $data->picture_link ?>" alt="Los Angeles" class="d-block mx-auto" style="width:80%">
+                    <img src="<?= htmlspecialchars($data->picture_link) ?>" alt="Los Angeles" class="d-block mx-auto" style="width:80%">
                 </div>        
                 <?php $j++; } ?>
             </div>
@@ -61,7 +61,7 @@
         <p>
             <?= $props->description ?>
             <br>
-            <a href="<?= $props->link_to_booking ?>">Lien Booking</a>
+            <a href="<?= htmlspecialchars($props->link_to_booking) ?>">Lien Booking</a>
             
         </p>
         <a class="btn btn-info col-auto mx-auto" type="button" href="./bookings?suites=<?= $props->id ?>">Réserver maintenant</a>

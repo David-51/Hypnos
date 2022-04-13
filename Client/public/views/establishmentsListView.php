@@ -11,21 +11,21 @@
             <div class="row">
                 <div class="col-auto">
                     <h2 class="curve">
-                        <?= $element->name ?>
+                        <?= htmlspecialchars($element->name) ?>
                     </h2>
                     <p class="font-light adress">
-                        <?= $element->adress ?>
+                        <?= htmlspecialchars($element->adress) ?>
                     </p>
                     <hr>
                 </div>        
                 <div class="col-auto ms-auto">
                     <h3>
-                        <?= $element->city ?>
+                        <?= htmlspecialchars($element->city) ?>
                     </h3>            
                 </div>
                 <div class="col-12">
                     <p>
-                        <?= $element->description ?>
+                        <?= htmlspecialchars($element->description) ?>
                     </p>
                 </div>
             </div>

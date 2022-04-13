@@ -26,17 +26,17 @@
             <div class="row">
                 <div class="row col-10">
                     <h2 class="mb-0 col-auto pe-0 mt-auto" id="fullname-<?= $element->id ?>">
-                    <span id="lastname-<?= $element->id ?>"><?= strtoupper($element->lastname) ?></span>
-                    <span id="firstname-<?= $element->id ?>"><?= ucFirst($element->firstname)?> </span>
+                    <span id="lastname-<?= $element->id ?>"><?= htmlspecialchars(strtoupper($element->lastname)) ?></span>
+                    <span id="firstname-<?= $element->id ?>"><?= htmlspecialchars(ucFirst($element->firstname)) ?> </span>
                     </h2>                
                     <h3 class="card-city mb-0 mt-auto ps-2 col-auto" id="establishment-<?= $element->id ?>">
-                        <?= $element->name ?>
+                        <?= htmlspecialchars($element->name) ?>
                     </h3>                                            
                 </div>         
             </div>
             <div class="row">
                 <p class="font-light mb-1" id="email-<?= $element->id ?>">
-                    <?= $element->email ?>
+                    <?= htmlspecialchars($element->email) ?>
                 </p>                    
             </div>                                
         </div>

@@ -12,7 +12,7 @@
                     <option value="" selected>Choisissez l'hôtel</option>
                     <?php
                     foreach($props as $element){?>
-                    <option value="<?= $element->id ?>"><?= $element->name ?> - <?= $element->city ?></option>
+                    <option value="<?= $element->id ?>"><?= htmlspecialchars($element->name) ?> - <?= htmlspecialchars($element->city) ?></option>
                     <?php }?>
                     
                 </select>

@@ -24,21 +24,21 @@
                 <div class="row">
                     <div class="row col-10">
                         <h2 class="curve ms-1 mb-2 col-auto pe-0" id="title-<?= $element->id ?>">
-                            <?= $element->title ?>
+                            <?= htmlspecialchars($element->title) ?>
                         </h2>                                                                               
                     </div>         
                 </div>
                 <div class="row">
                     <div>
-                        <img class="miniature ms-1 me-2 mb-0 p-0 rounded" id="picture-<?= $element->id ?>" src="<?= @$element->pictures[0] ?>" alt="chambre <?= $element->title ?>">             
+                        <img class="miniature ms-1 me-2 mb-0 p-0 rounded" id="picture-<?= $element->id ?>" src="<?= @htmlspecialchars($element->pictures[0]) ?>" alt="chambre <?= htmlspecialchars($element->title) ?>">             
                         <p id="description-<?= $element->id ?>">
-                            <?= $element->description ?>
+                            <?= htmlspecialchars($element->description) ?>
                         </p>
                         <p>
                             prix : <span id="price-<?= $element->id ?>"><?= $element->price/100?></span> €
                         </p>
                         <div class="text-center">
-                            <a id="link_to_booking-<?= $element->id ?>" href="<?= $element->link_to_booking ?>">Lien Booking.com</a>             
+                            <a id="link_to_booking-<?= $element->id ?>" href="<?= htmlspecialchars($element->link_to_booking ) ?>">Lien Booking.com</a>             
                         </div>
                     </div>
                 </div>                     

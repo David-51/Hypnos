@@ -23,21 +23,21 @@
             <div class="row">
                 <div class="row col-10">
                     <h2 class="curve mb-0 col-auto pe-0" id="name-<?= $element->id ?>">
-                        <?= $element->name ?>
+                        <?= htmlspecialchars($element->name) ?>
                     </h2>                
                     <h3 class="card-city mb-0 mt-auto ps-2 col-auto" id="city-<?= $element->id ?>">
-                        (<?= $element->city ?>)
+                        (<?= htmlspecialchars($element->city) ?>)
                     </h3>                                            
                 </div>         
             </div>
             <div class="row">
                 <p class="font-light adress mb-1" id="adress-<?= $element->id ?>">
-                    <?= $element->adress ?>
+                    <?= htmlspecialchars($element->adress) ?>
                 </p>                    
             </div>
             <div class="row">                
                 <p id="description-<?= $element->id ?>">
-                    <?= $element->description ?>
+                    <?= htmlspecialchars($element->description) ?>
                 </p>                
             </div>                     
         </div>

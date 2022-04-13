@@ -10,7 +10,7 @@
                     <option selected>destination</option>
                     <?php
                     foreach($props as $element){?>
-                    <option value="<?= $element->id ?>"><?= $element->city ?></option>
+                    <option value="<?= $element->id ?>"><?= htmlspecialchars($element->city) ?></option>
                     <?php } ?>                    
                 </select>
                 <button type="submit" class="btn btn-info col-auto py-0 my-0 ms-1">Go !</button>            

@@ -47,7 +47,9 @@ for exemple if your directory is var/www/html
        |     |-- Controller
        |     |-- Model
        |     `-- public
-       `-- Sql
+       |-- Sql
+       |
+       `-- ...
 
 Maybe you have to create a Virtualhost
 You can follow the step on the official website [Apache VirtualHost](https://httpd.apache.org/docs/2.4/vhosts/)
@@ -62,24 +64,26 @@ then you have probably to type your password
 ```source sql/db.sql```
 
 ### Creating an Administrator
-- There is three level of permission in this application
-Administrator = "adm"
-Manager = "man"
-User = "use"
+There is three level of permission in this application :
+- Administrator = "adm"
+- Manager = "man"
+- User = "use"
 
-Run the following command :
 At Mysql prompt run the following command using your own details :
+
 ```INSERT INTO users (firstname, lastname, email, password, role) VALUES ("John", "Doe", "JohnDoe@example.com", "bcryptpassword", "adm");```
 
 Be carreful, you have to insert your hashed password. You can hash your password using the website [bcrypt.fr](https://www.bcrypt.fr/) 
 
 ## Configure your Database on Hypnos application
-Go to the application folder API/Model/Manager
-edit DatabaseManager.php
+Go to the application folder API/Model/Manager.
+
+Edit "DatabaseManager.php"
 
 You have to modify DSN, PASSWORD and USERNAME.
 
 Hypnos application use PHP PDO to connect to the database. Most of the time you only have to enter the username you use for your database and your password. Maybe you have to modify the DSN.
+
 For more information about DSN, you can use the official PHP PDO documentation for your database.
 [PHP PDO](https://www.php.net/manual/fr/pdo.drivers.php)
 
@@ -89,4 +93,4 @@ For more information about DSN, you can use the official PHP PDO documentation f
 ## Quick démos
 You can quickly create a demo with establishments, suites, users and other features.
 run the script demos : `source sql/hypnos.sql`
-All the users password created are 12345678.
+All the users passwords created are 12345678.

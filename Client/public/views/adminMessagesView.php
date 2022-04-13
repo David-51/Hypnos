@@ -14,21 +14,21 @@
                 <div class="col-12"><small><?= date('d-m-Y h:m', strtotime($element->date))?></small></div>
                 <div class="row col-10">
                     <h2 class="mb-0 col-auto pe-0 mt-auto" id="fullname-<?= $element->id ?>">
-                        <span id="lastname-<?= $element->id ?>"><?= strtoupper($element->lastname) ?></span>
-                        <span id="firstname-<?= $element->id ?>"><?= ucFirst($element->firstname)?> </span>
+                        <span id="lastname-<?= $element->id ?>"><?= htmlspecialchars(strtoupper($element->lastname)) ?></span>
+                        <span id="firstname-<?= $element->id ?>"><?= htmlspecialchars(ucFirst($element->firstname)) ?> </span>
                     </h2>                                                                              
                 </div>         
             </div>
             <div class="row">
                 <p class="mb-1" id="email-<?= $element->id ?>">
-                    <?= $element->email ?>
+                    <?= htmlspecialchars($element->email) ?>
                 </p>                                
                 <h3 class="mb-1" id="subject-<?= $element->id ?>">
-                    <?= $element->subject ?>
+                    <?= htmlspecialchars($element->subject) ?>
                 </h3>
                 
                     <p class="mb-1">
-                        <?= $element->message ?>
+                        <?= htmlspecialchars($element->message) ?>
                     </p>
                     
                 </div>
