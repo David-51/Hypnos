@@ -21,7 +21,7 @@ export default function connexion(){
         event.preventDefault();
 
        const formData = new FormData(form);       
-
+       
        fetch('/api/login', {
            method: "POST",
            body: formData

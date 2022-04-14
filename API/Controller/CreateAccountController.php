@@ -23,9 +23,15 @@ if(isset(
             $status = http_response_code(403);
             http_response_code();
             die();         
-        }        
+        } 
+        $_SESSION['firstname'] = $_POST['firstname'];
+        $_SESSION['lastname'] = $_POST['lastname'];
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['role'] = 'use';
+        $_SESSION['id']= $response['id'];
+
         http_response_code();
-        $json = json_encode($response);
+        $json = json_encode($response);        
         echo $json;
  }
  else{

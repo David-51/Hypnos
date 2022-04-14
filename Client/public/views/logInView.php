@@ -15,7 +15,8 @@
             </div>
             <small class="text-danger" id="helper">&ensp;</small>
             <div class="d-grid">
-                <button type="submit" class="btn btn-info my-1 btn-block disabled" id="submit-button">Connexion</button>
+                <button type="submit" 
+                    class="btn btn-info my-1 btn-block disabled" id="submit-button">Connexion</button>
             </div>
             <div class="text-center my-2">
                 <a class="text-danger" href="/signin">Créer un compte</a>
@@ -25,4 +26,5 @@
 </div>
 <div id="validation" class="validation"></div>
 <i id="check" class="fa-regular fa-circle-check check"></i>
+
 <script type="module" src="Client/public/js/connexion.js"></script>
