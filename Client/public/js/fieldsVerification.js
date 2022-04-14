@@ -13,8 +13,21 @@ export function VerifyMail(div){
 
 export function VerifyPassword(div){    
     const password = document.getElementById(div);    
-        const regex = new RegExp(/.{8,}/);
-        return regex.test(password.value);    
+    const test0 = new RegExp(/.{8,}/);
+    const test1 = new RegExp(/[^A-z]{1,}/);
+    const test2 = new RegExp(/[a-z]{1,}/);
+    const test3 = new RegExp(/[A-Z]{1,}/);
+    const test4 = new RegExp(/[0-9]{1,}/);
+
+    const result0 = test0.test(password.value);
+    const result1 = test1.test(password.value);
+    const result2 = test2.test(password.value);
+    const result3 = test3.test(password.value);
+    const result4 = test4.test(password.value);
+
+    const result = result0 && result1 && result2 && result3 && result4;
+
+        return result;    
 }
 
 export function VerifySelect(div){

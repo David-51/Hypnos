@@ -100,7 +100,7 @@ export default function booking(){
                         helper.textContent = "Désolé, ces dates sont indisponibles, veuillez en choisir d'autres"
                     }
                     if(data === 'iderror'){
-                        helper.textContent = "Vous devez être identifié pour réserver"
+                        helper.textContent = "Vous devez être identifié pour réserver"                        
                     }
                 })
             }

@@ -27,6 +27,7 @@
                 <div class="form-group my-1">
                     <label for="password">Mot de passe</label>
                     <input type="password" class="form-control" name="password" id="password" required>
+                    <small>8 caractères minimum dont au moins 1 spécial, 1 majucule et 1 minuscule</small>
                 </div>
                 <div class="form-group my-1">
                     <label for="confirm-password">Confirmez votre mot de passe</label>

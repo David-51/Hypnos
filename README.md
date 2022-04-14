@@ -74,6 +74,7 @@ At Mysql prompt run the following command using your own details :
 ```INSERT INTO users (firstname, lastname, email, password, role) VALUES ("John", "Doe", "JohnDoe@example.com", "bcryptpassword", "adm");```
 
 Be carreful, you have to insert your hashed password. You can hash your password using the website [bcrypt.fr](https://www.bcrypt.fr/) 
+Your password must contain 8 characters with at least 1 special character, 1 uppercase, 1 lowercase.
 
 ## Configure your Database on Hypnos application
 Go to the application folder API/Model/Manager.
@@ -93,4 +94,4 @@ For more information about DSN, you can use the official PHP PDO documentation f
 ## Quick démos
 You can quickly create a demo with establishments, suites, users and other features.
 run the script demos : `source sql/hypnos.sql`
-All the users passwords created are 12345678.
+All the users passwords created are Azerty@1.

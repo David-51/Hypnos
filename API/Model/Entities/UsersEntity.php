@@ -76,8 +76,20 @@ class Users extends Entities
     }
 
     public function setPassword($password) :string {
-        $pattern = '/.{8,}/';
-        if(preg_match($pattern, $password)){
+        $pattern0 = '/.{8,}/';
+        $pattern1 = '/[^A-z]{1,}/';
+        $pattern2 = '/[a-z]{1,}/';
+        $pattern3 = '/[A-Z]{1,}/';
+        $pattern4 = '/[0-9]{1,}/';
+
+        $result0 = preg_match($pattern0, $password);
+        $result1 = preg_match($pattern1, $password);
+        $result2 = preg_match($pattern2, $password);
+        $result3 = preg_match($pattern3, $password);
+        $result4 = preg_match($pattern4, $password);
+
+        $result = $result0 && $result1 && $result2 && $result3 && $result3;
+        if($result){
             $this->password = $password;
         }
         else{
