@@ -4,16 +4,16 @@ use API\Model\Entity\Establishments;
 use API\Model\Entity\Suites;
 use Client\Controller\Template;
 
-if(!isset($_SESSION['lastname'])){
-    $redirect = '/login?redirect=bookings';
-    if(isset($_GET['suites'])){
-        $_GET['suites'] = trim(strip_tags($_GET['suites']));
-        $redirect .= '&suites='.$_GET['suites'];
-    }
+// if(!isset($_SESSION['lastname'])){
+//     $redirect = '/login?redirect=bookings';
+//     if(isset($_GET['suites'])){
+//         $_GET['suites'] = trim(strip_tags($_GET['suites']));
+//         $redirect .= '&suites='.$_GET['suites'];
+//     }
+//     header("Location: $redirect");
+//     die();
+// }
 
-    header("Location: $redirect");
-    die();
-}
 if(isset($_GET['suites'])){
     $suite = new Suites;
     $suite->setId($_GET['suites']);

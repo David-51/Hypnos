@@ -5,29 +5,30 @@ require 'CleanArray.php';
 
 use API\Model\Entity\Bookings;
 
-if(!isset($_SESSION['role'])){
-    http_response_code(400);
-    echo json_encode('Identification error');
-    die();
-}
+
 if(isset($_POST['establishment'], 
 $_POST['suites'],
 $_POST['checkin'],
 $_POST['checkout'])){
     
     $_POST = CleanArray($_POST);
-    $user_id = $_SESSION['id'];
     // $user_id = '13685634-b6b9-11ec-b950-03a11caa0106';
-             
+    
     $booking = new Bookings;
-    $booking->setEntity($user_id, $_POST['suites'], $_POST['checkin'], $_POST['checkout']);
     // Verify disponibility of date
-    $bookedCalendar = $booking->getBookedCalendars();
+    $bookedCalendar = $booking->getBookedCalendars($_POST['suites']);
     $wish = WishBooking($_POST['checkin'], $_POST['checkout']);
     
     $isBookable = empty(array_intersect($bookedCalendar, $wish));
     
     if($isBookable){
+        if(!isset($_SESSION['role'])){
+            http_response_code(202);
+            echo json_encode('iderror');
+            die();
+        }
+        $user_id = $_SESSION['id'];
+        $booking->setEntity($user_id, $_POST['suites'], $_POST['checkin'], $_POST['checkout']);
         try{        
             $response = $booking->bookingPersist();
     

@@ -99,6 +99,9 @@ export default function booking(){
                     if(data === 'notempty'){
                         helper.textContent = "Désolé, ces dates sont indisponibles, veuillez en choisir d'autres"
                     }
+                    if(data === 'iderror'){
+                        helper.textContent = "Vous devez être identifié pour réserver"
+                    }
                 })
             }
             else{                
