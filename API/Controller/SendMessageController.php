@@ -1,6 +1,6 @@
 <?php
 // Verify datas
-
+require 'CleanArray.php';
 // $_POST verification
 
 use API\Model\Entity\Messages;
@@ -11,7 +11,8 @@ if(isset(
     $_POST['email'],
     $_POST['subject'],
     $_POST['message'])){
-        
+    
+    $_POST = CleanArray($_POST);
     $message = new Messages;
 
         try{            
