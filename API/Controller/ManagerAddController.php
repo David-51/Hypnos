@@ -1,5 +1,5 @@
 <?php
-require 'Persmission.php';
+require 'Permission.php';
 
 use API\Model\Entity\Managers;
 use API\Model\Entity\Users;
