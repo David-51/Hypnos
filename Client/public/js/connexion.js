@@ -7,6 +7,7 @@ export default function connexion(){
     const helper = document.getElementById('helper');
     const form = document.getElementById('connexion');
     const submitButton = document.getElementById('submit-button');
+    const createAccount = document.getElementById('create-account');
 
     form.addEventListener('input', () => {         
         // submit button is disabled by default      
@@ -46,6 +47,26 @@ export default function connexion(){
        })
                    
     })
+    createAccount.addEventListener('click', (event) => {
+        event.preventDefault();
+        const redirect = (new URL(document.location)).searchParams.get('redirect');
+        const suites = (new URL(document.location)).searchParams.get('suites')
+        const newUrl = '/signin?redirect=';
+        let url;
+        
+        if(redirect !== null && redirect !== ''){
+            url = newUrl+redirect;
+        
+                if(suites !== null && suites !== ''){
+                    url = url+'&suites='+suites
+                }
+        }
+        else{
+            url = newUrl;
+        }
+        document.location.href = url
+    })
+
 }
 
 connexion();

@@ -19,7 +19,7 @@
                     class="btn btn-info my-1 btn-block disabled" id="submit-button">Connexion</button>
             </div>
             <div class="text-center my-2">
-                <a class="text-danger" href="/signin">Créer un compte</a>
+                <a class="text-danger" href="/signin" id="create-account">Créer un compte</a>
             </div>
         </form>
     </div>    

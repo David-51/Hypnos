@@ -90,7 +90,7 @@ export default function booking(){
                 const validation = document.getElementById('validation').classList.add('light-off');  
                 const check = document.getElementById('check').classList.add('check-in');
                 setTimeout(()=>{
-                    redirectFromParameters('./bookings/list')
+                    redirectFromParameters('./bookings/list/')
                 },3000);
             }
             else if(response.status === 202){
@@ -100,7 +100,11 @@ export default function booking(){
                         helper.textContent = "Désolé, ces dates sont indisponibles, veuillez en choisir d'autres"
                     }
                     if(data === 'iderror'){
-                        helper.textContent = "Vous devez être identifié pour réserver"                        
+                        helper.textContent = "Vous devez être identifié pour réserver, vous allez être redirigé";
+                        setTimeout(() => {
+                            const suites = (new URL(document.location)).searchParams.get('suites')
+                            document.location.href = '/login?redirect=bookings&suites='+suites;
+                        },3000)                   
                     }
                 })
             }
