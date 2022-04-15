@@ -49,7 +49,12 @@
                         src="<?= $src_picture ?>" alt="photo de la chambre"/>
                     
                     <b>Description : </b><?= $data->description ?>
-                    <br><a href="<?= htmlspecialchars($data->link_to_booking) ?>">Réserver sur Booking</a>      
+                    <p>
+                        Prix : <?= htmlspecialchars($data->price)/100 ?> €
+                    </p>
+                    <p>
+                        <a href="<?= htmlspecialchars($data->link_to_booking) ?>">Réserver sur Booking</a>      
+                    </p>
                 </p>
             </div>
         </div>
