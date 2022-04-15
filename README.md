@@ -89,8 +89,6 @@ For more information about DSN, you can use the official PHP PDO documentation f
 [PHP PDO](https://www.php.net/manual/fr/pdo.drivers.php)
 
 
-## How to test Hypnos Application
-
 ## Quick démos
 You can quickly create a demo with establishments, suites, users and other features.
 run the script demos : `source sql/hypnos.sql`
