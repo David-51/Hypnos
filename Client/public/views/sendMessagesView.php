@@ -38,7 +38,7 @@
                 <small class="text-danger" id="helper"></small>
             </div>
             <div class="d-grid my-1">
-                <button type="submit" class="btn btn-info my-1 btn-block disabled" id="submit-button">Submit</button>
+                <button type="submit" class="btn btn-info my-1 btn-block disabled" id="submit-button">Envoyer</button>
             </div>
         </form>
     </div>    
