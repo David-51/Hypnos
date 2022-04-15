@@ -111,8 +111,8 @@ CREATE Table IF NOT EXISTS bookings
     date_checkout DATE NOT NULL,
     number_of_nights INT GENERATED ALWAYS AS ( DATEDIFF(date_checkout, date_checkin)) STORED,    
     price INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
-    FOREIGN KEY (suite_id) REFERENCES suites(id) ON UPDATE CASCADE ON DELETE SET NULL
+    FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (suite_id) REFERENCES suites(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 
 -- Create table 'calendar

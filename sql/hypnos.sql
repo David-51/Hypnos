@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `hypnos`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `hypnos` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `hypnos`;
-
---
 -- Table structure for table `administrators`
 --
 
@@ -70,7 +62,7 @@ CREATE TABLE `bookings` (
   UNIQUE KEY `id` (`id`),
   KEY `user_id` (`user_id`),
   KEY `suite_id` (`suite_id`),
-  CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`suite_id`) REFERENCES `suites` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -292,7 +284,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('16255b12-072f-db56-5359-950c58790646','grignon.david@gmail.com','David','Grignon','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','adm'),('16255bf0-9842-e0db-a468-824158790646','bruce@example.com','bruce','Wayne','$2y$10$6GB8d97t4.t5HsbGdlEdeubMT4is6ESVO2GY0Gimni5wj6NNVTm3i','man'),('fe8e6c8c-b9ca-11ec-91bd-005056214326','john.doe@example.com','john','Doe','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','adm'),('fe8e8519-b9ca-11ec-91bd-005056214326','jack@example.com','jack','Sparrow','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','adm'),('fe8e91f0-b9ca-11ec-91bd-005056214326','frodon@example.com','Frodon','baggins','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','man'),('fe8e92c3-b9ca-11ec-91bd-005056214326','sauron@example.com','Sauron','the magic daemon','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','man'),('fe8e937f-b9ca-11ec-91bd-005056214326','gandalf@example.com','gandalf','the magician','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','man'),('fe8e942a-b9ca-11ec-91bd-005056214326','ragnar@example.com','ragnar','lothbrokes','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','man'),('fe8e9566-b9ca-11ec-91bd-005056214326','kirk@example.com','kirk','hammett','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','man'),('fe8e961f-b9ca-11ec-91bd-005056214326','alexi@example.com','Alexi','Laiho','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','man'),('fe8e977e-b9ca-11ec-91bd-005056214326','jeff@example.com','Jeff','Loomis','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','use'),('fe8e9833-b9ca-11ec-91bd-005056214326','warrel@example.com','Warrel','Dane','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','use'),('fe8e98d9-b9ca-11ec-91bd-005056214326','Danny@example.com','Danny','Ocean','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','use'),('fe8e9983-b9ca-11ec-91bd-005056214326','Rusty@example.com','Rusty','Ryan','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','use'),('fe8e9a22-b9ca-11ec-91bd-005056214326','Jordan@example.com','Jordan','Belfort','$2y$10$rJdi/EQoVOI40Zqvb9A5s.SRPUWFSx72bdxZ70/V8IrTpX7lKZ16a','use');
+INSERT INTO `users` VALUES ('16255b12-072f-db56-5359-950c58790646','grignon.david@gmail.com','David','Grignon','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','adm'),('16255bf0-9842-e0db-a468-824158790646','bruce@example.com','bruce','Wayne','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','man'),('fe8e6c8c-b9ca-11ec-91bd-005056214326','john.doe@example.com','john','Doe','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','adm'),('fe8e8519-b9ca-11ec-91bd-005056214326','jack@example.com','jack','Sparrow','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','adm'),('fe8e91f0-b9ca-11ec-91bd-005056214326','frodon@example.com','Frodon','baggins','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','man'),('fe8e92c3-b9ca-11ec-91bd-005056214326','sauron@example.com','Sauron','the magic daemon','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','man'),('fe8e937f-b9ca-11ec-91bd-005056214326','gandalf@example.com','gandalf','the magician','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','man'),('fe8e942a-b9ca-11ec-91bd-005056214326','ragnar@example.com','ragnar','lothbrokes','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','man'),('fe8e9566-b9ca-11ec-91bd-005056214326','kirk@example.com','kirk','hammett','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','man'),('fe8e961f-b9ca-11ec-91bd-005056214326','alexi@example.com','Alexi','Laiho','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','man'),('fe8e977e-b9ca-11ec-91bd-005056214326','jeff@example.com','Jeff','Loomis','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','use'),('fe8e9833-b9ca-11ec-91bd-005056214326','warrel@example.com','Warrel','Dane','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','use'),('fe8e98d9-b9ca-11ec-91bd-005056214326','Danny@example.com','Danny','Ocean','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','use'),('fe8e9983-b9ca-11ec-91bd-005056214326','Rusty@example.com','Rusty','Ryan','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','use'),('fe8e9a22-b9ca-11ec-91bd-005056214326','Jordan@example.com','Jordan','Belfort','$2y$10$saAktVvsFZNcgb7Y42peS.Doa8ApgRS5X4ljK/gND/9zM/IWrgbiC','use');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -305,4 +297,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-12 18:13:56
+-- Dump completed on 2022-04-15 12:41:58
