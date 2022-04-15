@@ -110,13 +110,18 @@ export default function managerSuites(){
                     form.price.value = datas.price/100;
                     form.link_to_booking.value = datas.link_to_booking;
 
-                    addMiniatureForm(datas.pictures);
-                                        
-                    // event UPDATE and Delete on Pictures
-                    Array.from(picturesUpdateTable).forEach(element => element.addEventListener('change', updatePicture))
-                    
-                    // Cross to Delete Pictures
-                    Array.from(picturesDeleteTable).forEach(element => element.addEventListener('click', deletePicture));
+                    if(targetAction !== 'delete'){
+                        addMiniatureForm(datas.pictures);
+                        formFile.classList.remove('d-none');
+                        // event UPDATE and Delete on Pictures
+                        Array.from(picturesUpdateTable).forEach(element => element.addEventListener('change', updatePicture))
+                        
+                        // Cross to Delete Pictures
+                        Array.from(picturesDeleteTable).forEach(element => element.addEventListener('click', deletePicture));
+                    }
+                    else if(targetAction === 'delete'){
+                        formFile.classList.add('d-none');
+                    }
                                      
                     modal.show();
                 })
