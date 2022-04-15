@@ -92,4 +92,11 @@ For more information about DSN, you can use the official PHP PDO documentation f
 ## Quick démos
 You can quickly create a demo with establishments, suites, users and other features.
 run the script demos : `source sql/hypnos.sql`
-All the users passwords created are Azerty@1.
+
+You can log in with an Administrator account :
+email : john.doe@example.com
+password : Azerty@1
+
+You can log in with a Manager account :
+email : gandalf@example.com
+password : Azerty@1
