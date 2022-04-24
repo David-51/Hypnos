@@ -77,11 +77,9 @@ Be carreful, you have to insert your hashed password. You can hash your password
 Your password must contain 8 characters with at least 1 special character, 1 uppercase, 1 lowercase.
 
 ## Configure your Database on Hypnos application
-Go to the application folder API/Model/Manager.
+Edit the .env file at the racine of your application
 
-Edit "DatabaseManager.php"
-
-You have to modify DSN, PASSWORD and USERNAME.
+You have to modify BDD_DSN, BDD_PASSWORD and BDD_USERNAME. (you can fin example in .env.example file)
 
 Hypnos application use PHP PDO to connect to the database. Most of the time you only have to enter the username you use for your database and your password. Maybe you have to modify the DSN.
 
