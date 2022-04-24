@@ -5,6 +5,10 @@ use Assets\Autoloader;
 require './Client/Assets/Autoloader.php';
 require './Client/Config/pathConfig.php';
 
+require_once './vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 Autoloader::register();
 
 

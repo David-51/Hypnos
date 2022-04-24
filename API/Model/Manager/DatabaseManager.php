@@ -3,10 +3,6 @@ namespace API\Model\Manager;
 
 class Database
 {
-
-    const DSN = 'mysql:dbname=hypnos;host:127.0.0.1;charset=UTF8';
-    const USERNAME = 'administrator';
-    const PASSWORD = 'administrator';
      
     public static $pdo = null;
     
@@ -14,7 +10,8 @@ class Database
     {
         if(!(self::$pdo)){                        
             try{
-                self::$pdo = new \PDO(self::DSN, self::USERNAME, self::PASSWORD);                
+                // self::$pdo = new \PDO(self::DSN, self::USERNAME, self::PASSWORD);                
+                self::$pdo = new \PDO($_ENV['BDD_DSN'], $_ENV['BDD_USERNAME'], $_ENV['BDD_PASSWORD']);                
                 self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             }
             catch(\PDOException $e){
