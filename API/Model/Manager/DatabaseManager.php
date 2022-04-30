@@ -9,8 +9,7 @@ class Database
     private static function connect() :\PDO
     {
         if(!(self::$pdo)){                        
-            try{
-                // self::$pdo = new \PDO(self::DSN, self::USERNAME, self::PASSWORD);                
+            try{                             
                 self::$pdo = new \PDO($_ENV['BDD_DSN'], $_ENV['BDD_USERNAME'], $_ENV['BDD_PASSWORD']);                
                 self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             }

@@ -12,11 +12,6 @@ class Users extends Entities
     public string $lastname;
     public string $password;
     public string $role;
-
-    public function __construct()
-    {                          
-        
-    }
     
     public function setEntity(string $email, string $firstname, string $lastname, string $password, string $role = 'use'){
         try{
@@ -88,16 +83,15 @@ class Users extends Entities
         $result3 = preg_match($pattern3, $password);
         $result4 = preg_match($pattern4, $password);
 
-        $result = $result0 && $result1 && $result2 && $result3 && $result3;
+        $result = $result0 && $result1 && $result2 && $result3 && $result4;
         if($result){
-            $this->password = $password;
+            $crypted_password = password_hash($password, PASSWORD_BCRYPT);
+            
+            return $this->password = $crypted_password;            
         }
         else{
             return throw new Exception("password pattern error");
         } 
-        $crypted_password = password_hash($password, PASSWORD_BCRYPT);
-        
-        return $this->password = $crypted_password;
     }
     public function getPassword() :string {
         return $this->password;

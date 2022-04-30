@@ -3,7 +3,6 @@ namespace API\Model\Manager;
 
 use API\Model\Entity\Entities;
 use API\Model\Manager\Database;
-use Exception;
 
 class Entity
 {    
@@ -52,11 +51,10 @@ class Entity
     
     /**
      * @param string $query, the SQL query to execute
-     * @param bool true FETCH_CLASS whereas FETCH
+     * @param bool true FETCH_CLASS whereas FETCH_ASSOC
      * 
      */
-    public function getWithQuery(string $query, $bool = true){
-        // $fetch_name = 'API\\Model\\Entity\\'.$entity_class;
+    public function getWithQuery(string $query, $bool = true){        
         try{
             $sth = $this->db->prepare($query);
             if($bool === true){
