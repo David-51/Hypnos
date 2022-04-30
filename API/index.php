@@ -15,8 +15,7 @@ Autoloader::register();
 switch (strtolower($_GET['main'])) {
     case 'booking':                
         switch ($_GET['level2']){
-            case 'delete':
-                http_response_code(400);
+            case 'delete':                
                 require './Controller/BookingDeleteController.php';
                 break;
             default:
@@ -152,6 +151,6 @@ switch (strtolower($_GET['main'])) {
         }
     break;
     default:
-    echo json_encode('Mauvaise route...');
+    echo json_encode('Wrong way...');
     http_response_code(403);
 }

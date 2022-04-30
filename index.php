@@ -19,9 +19,6 @@ switch (strtolower($_GET['main'])) {
     case 'suites':
         require 'SuitesListController.php';
         break;
-    case 'carousel':
-        require 'test/carousel.html';
-        break;
     case 'signin':
         require 'SignInController.php';
         break;
