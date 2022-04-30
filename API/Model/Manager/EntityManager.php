@@ -136,7 +136,7 @@ class Entity
         }
         catch(\PDOException $e){ 
             http_response_code(400);
-            echo json_encode($e);                                                    
+            // echo json_encode($e);                                                    
             return false;
         }           
         return $this->entity;
