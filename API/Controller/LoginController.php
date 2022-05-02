@@ -38,5 +38,6 @@ if(isset($_POST['email'], $_POST['password'])){
     }
 }
  else{
-     echo 'You can\'t do that thing LoginController';
+     http_response_code(403);
+     echo json_encode('You can\'t do that thing');
  }

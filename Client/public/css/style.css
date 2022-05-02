@@ -262,6 +262,7 @@ img {
     width : 150px;
     height: 100px;    
     color: var(--bs-light);
+    cursor: pointer;
 }
 
 .picture-close {
@@ -284,6 +285,7 @@ img {
     overflow: hidden;
     border: solid 1px var(--bs-light);
     border-radius: 5px;
+    cursor:pointer;
 }
 
 .helper {

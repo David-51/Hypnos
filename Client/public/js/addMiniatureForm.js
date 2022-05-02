@@ -22,9 +22,7 @@ export default function addMiniatureForm(datasPictures){
         pictureForm.appendChild(button);
         // Add Event listener on button for delete
         button.addEventListener('click', deletePicture);
-        
-        
-        
+                
         // input hidden with picture Id
         const inputPictureId = document.createElement('input');
         inputPictureId.type = 'hidden';

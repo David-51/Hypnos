@@ -45,7 +45,8 @@ class Entity
             return $response;
         }
         catch(\PDOException $e){
-            return 'error'.$e;
+            // return 'error '.$e;
+            return false;
         }
     }
     
