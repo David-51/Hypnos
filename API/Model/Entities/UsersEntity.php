@@ -13,19 +13,13 @@ class Users extends Entities
     public string $password;
     public string $role;
     
-    public function setEntity(string $email, string $firstname, string $lastname, string $password, string $role = 'use'){
-        // try{
+    public function setEntity(string $email, string $firstname, string $lastname, string $password, string $role = 'use'){        
             $this->id = $this->setUniqId();            
             $this->email = $this->setEmail($email);
             $this->firstname = $this->setFirstname($firstname);
             $this->lastname = $this->setLastname($lastname);
             $this->password = $this->setPassword($password);
-            $this->role = $this->setRole($role);
-        // }
-        // catch(Exception $e){            
-        //     echo json_encode($e);
-        //     die();
-        // }
+            $this->role = $this->setRole($role);        
                 
         return $this;
     }    
