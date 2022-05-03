@@ -123,11 +123,10 @@ class Entity
 
         $entity_name = strtolower($this->entity->getEntityName());
 
-        $query = "INSERT INTO $entity_name($params) VALUES($valueToBind)";
+        $query = "INSERT INTO $entity_name($params) VALUES($valueToBind)";        
         try{
 
-            $sth = $this->db->prepare($query);                              
-
+            $sth = $this->db->prepare($query);                                          
             foreach($this->entity as $key => $value){
                 $sth->bindValue(':'.$key, $value);
             }            

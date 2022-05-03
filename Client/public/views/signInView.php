@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-check my-1">
                     <input type="checkbox" class="form-check-input" id="cgu" name="cgu" required>
-                    <label class="cgu" for="exampleCheck1">J'ai lu et j'accepte les conditions d'utilisation</label>
+                    <label class="cgu" for="cgu">J'ai lu et j'accepte les conditions d'utilisation</label>
                 </div>
                 <div>
                     <small class="text-danger" id="helper">&ensp;</small>

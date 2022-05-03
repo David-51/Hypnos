@@ -1,5 +1,5 @@
 export default function updatePicture(event){
-    const pictureRegex = new RegExp(/(update|delete)-(.*)/);
+    const pictureRegex = new RegExp(/(update)-(.*)/);
     const pictureData = pictureRegex.exec(event.target.id)                        
     const pictureId = pictureData[2];
 

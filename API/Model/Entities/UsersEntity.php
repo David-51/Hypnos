@@ -14,17 +14,18 @@ class Users extends Entities
     public string $role;
     
     public function setEntity(string $email, string $firstname, string $lastname, string $password, string $role = 'use'){
-        try{
+        // try{
             $this->id = $this->setUniqId();            
             $this->email = $this->setEmail($email);
             $this->firstname = $this->setFirstname($firstname);
             $this->lastname = $this->setLastname($lastname);
             $this->password = $this->setPassword($password);
             $this->role = $this->setRole($role);
-        }
-        catch(Exception $e){
-            return 'error'.$e;
-        }
+        // }
+        // catch(Exception $e){            
+        //     echo json_encode($e);
+        //     die();
+        // }
                 
         return $this;
     }    
@@ -36,7 +37,7 @@ class Users extends Entities
             return $this->firstname = $firstname;
         }
         else{
-            return throw new Exception("firstname pattern error");
+            return throw new Exception("firstname pattern error");            
         }        
     }
 
@@ -105,7 +106,7 @@ class Users extends Entities
     public function persistUser(){                
         foreach(get_class_vars(__CLASS__) as $key => $value){
             if(!isset($this->$key)){
-                return throw new \Exception('Error, '.$key.' must be defined');
+                return throw new \Exception('Error, '.$key.' must be defined');                
             }
             else{       
                 $this->setEntityManager()->persistEntity();                
@@ -125,7 +126,8 @@ class Users extends Entities
 
     public function getBookingsList(){
          
-        $query = "SELECT users.id as user_id, bookings.id as booking_id, establishments.name, suites.title, bookings.date_checkin, bookings.date_checkout 
+        $query = "SELECT users.id as user_id, bookings.id as booking_id, 
+            establishments.name, suites.title, bookings.date_checkin, bookings.date_checkout 
         FROM bookings 
         JOIN users
         ON users.id = bookings.user_id

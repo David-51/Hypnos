@@ -8,22 +8,29 @@ if(isset(
     $_POST['firstname'],
     $_POST['lastname'],    
     $_POST['email'],
+    $_POST['cgu'],
     $_POST['password'],
     $_POST['confirm-password']) 
     && $_POST['password'] === $_POST['confirm-password']){
 
         // security for datas
         $_POST = CleanArray($_POST);
+        if($_POST['cgu'] !== 'on'){
+            http_response_code(403);
+            echo json_encode('Vous devez accepter les CGUs');
+            die();
+        }
+        
         $user = new Users;
         try{
-            $user->setEntity($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['password'], 'use');
-            $response = $user->persistUser();            
+            $user->setEntity($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['password'], 'use');                    
         }
         catch(Exception $e){
-            $status = http_response_code(403);
-            http_response_code();
+            http_response_code(403);
+            echo json_encode($e->getMessage());            
             die();         
         } 
+        $response = $user->persistUser();            
         $_SESSION['firstname'] = $_POST['firstname'];
         $_SESSION['lastname'] = $_POST['lastname'];
         $_SESSION['email'] = $_POST['email'];
@@ -35,5 +42,6 @@ if(isset(
         echo $json;
  }
  else{
-     echo 'You can\'t do that thing';
+     http_response_code(403);
+     echo json_encode('You can\'t do that thing');
  }

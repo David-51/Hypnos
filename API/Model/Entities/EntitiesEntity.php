@@ -9,7 +9,7 @@ class Entities
     public function __construct()
     {
         // Implement AP\Model\Manager\EntityManager to all Entity
-        $this->em = new Entity($this);
+        // $this->em = new Entity($this);
     }
 
     public function setId($id){
